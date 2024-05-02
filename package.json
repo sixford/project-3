@@ -1,0 +1,22 @@
+{
+  "name": "project-3",
+  "version": "1.0.0",
+  "description": "project 3 full stack ",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "serve": "npx nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.0",
+    "mongoose": "^8.3.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0"
+  }
+}
