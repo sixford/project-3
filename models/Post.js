@@ -7,11 +7,11 @@ const postSchema = new mongoose.Schema(
         image: { type: String, required: true },
         comments: [commentSchema],
         likes: { type: [mongoose.ObjectId], ref: 'User' },
-        owner: { type: mongoose.ObjectId, ref: 'User' }
+        owner: { type: mongoose.ObjectId, ref: 'User' },
 
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 )
 
