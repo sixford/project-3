@@ -34,7 +34,7 @@ userSchema
 userSchema.pre('validate', function (next) {
     // Only do this check if we are modifying password
     if (this.isModified('password') && this.password !== this._passwordConfirmation) {
-        this.invalidate('passwordConfrimation', 'Ensure passwords are matching')
+        this.invalidate('passwordConfirmation', 'Ensure passwords are matching')
     }
 
     next()
@@ -57,4 +57,19 @@ userSchema.set('toJSON', {
     }
 })
 
-// TODO : Create virtuals for populating posts, comments
+
+// Virtuals to populate posts and comments by matching user id to owner field
+userSchema.virtual('posts', {
+    ref: 'Post',
+    localField: '_id',
+    foreignField: 'owner',
+})
+
+userSchema.virtual('comments', {
+    ref: 'Comment',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
+
+export default mongoose.model('User', userSchema)
