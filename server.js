@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
 import 'dotenv/config'
+import router from './lib/router.js'
 
 const app = express()
 const { PORT, CONNECTION_STRING } = process.env
@@ -10,6 +11,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 // Router goes here //
+app.use('/api', router)
 
 async function startServers() {
     try {
