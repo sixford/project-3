@@ -29,7 +29,6 @@ userSchema
     this._passwordConfirmation = value
   })
 
-
 // Validate password confirmation or reject
 userSchema.pre('validate', function (next) {
   // Only do this check if we are modifying password
@@ -70,6 +69,8 @@ userSchema.virtual('comments', {
   localField: '_id',
   foreignField: 'owner',
 })
+
+//! Logic to add cars to user schema
 
 
 export default mongoose.model('User', userSchema)
