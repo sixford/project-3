@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
         owner: { type: mongoose.ObjectId, ref: 'User' }
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 )
 

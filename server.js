@@ -16,9 +16,9 @@ app.use('/api', router)
 async function startServers() {
     try {
         await mongoose.connect(CONNECTION_STRING)
-        console.log('-----Database connection established-----')
+        console.log('💾 Database connection established')
 
-        app.listen(PORT, () => console.log(`-----Server up and running on port ${PORT}`))
+        app.listen(PORT, () => console.log(`✅Server up and running on port ${PORT}`))
     } catch (error) {
         console.log(error)
     }
