@@ -1,6 +1,6 @@
 import Post from '../models/Post.js'
 import { Error } from 'mongoose'
-//! imort error handlers here
+//! import error handlers here
 
 //Get All Posts
 export const getPosts = async (req, res) => {

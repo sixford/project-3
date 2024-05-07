@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import { sendError, sendUnauthorized } from '../lib/common.js'
+import { Error } from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config.js'
@@ -19,29 +20,41 @@ export const getProfile = async (req, res) => {
   }
 }
 
-// export const profileIndex = async (req, res) => {
-//   try {
-
-//   }
-// }
+//PView All Profiles(for development testing)
+export const profileIndex = async (req, res) => {
+  try {
+    const allUsers = await User.find()
+    return res.json(allUsers)
+  } catch (error) {
+    console.log(error, res)
+  }
+}
 
 //Controller to Delete user profile
 export const deleteProfile = async (req, res) => {
   try {
-    console.log('Hit DELETE endpoint')
-    // console.log(req)
-    //*requires req.params i think?
+    const userId = req.currentUser._id
+
+    const deletedUser = await User.findById(userId)
+
+    if (!deletedUser) throw new Error.DocumentNotFoundError('User not Found')
+
+    return res.status(200).json({ message: 'User profile deleted successfully' })
+
   } catch (error) {
-    console.log(error)
+    console.log(error, res)
   }
 }
 
 //controller to view  others profile
 export const getOtherProfile = async (req, res) => {
   try {
-    console.log('Hit VIEW OTHER PROFILE endpoint!!')
-    // console.log(req)
-    //*requires currentUser._id
+    const { userId } = req.params
+    //Was attempting to populate the cars on line below
+    const foundUser = await User.findById(userId)
+
+    if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
+    return res.json(foundUser)
   } catch (error) {
     console.log(error)
   }
@@ -51,8 +64,6 @@ export const getOtherProfile = async (req, res) => {
 //controller for user login ✅
 export const login = async (req, res) => {
   try {
-    // console.log(req.body.email)
-
     const foundUser = await User.findOne({ email: req.body.email })
     // console.log(foundUser)
     if (!foundUser) {
@@ -63,9 +74,9 @@ export const login = async (req, res) => {
     if (!bcrypt.compareSync(req.body.password, foundUser.password)) {
       return sendUnauthorized(res)
     }
-    console.log(foundUser._id)
+    // console.log(foundUser._id)
     const token = jwt.sign({ sub: foundUser._id }, process.env.SECRET, { expiresIn: '24h' })
-    console.log(token)
+    // console.log(token)
 
     return res.json({
       message: `Welcome back, ${foundUser.username}`,
@@ -73,8 +84,7 @@ export const login = async (req, res) => {
     })
     //*requires req.body(email)
   } catch (error) {
-    // sendError(error, res)
-    console.log(error)
+    sendError(error, res)
   }
 }
 

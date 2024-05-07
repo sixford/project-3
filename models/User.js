@@ -1,13 +1,14 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
-const carSchema = new mongoose.Schema({
-  make: String,
-  model: String,
-  image: String,
-  mileage: String,
-  year: Number,
-})
+
+// const carSchema = new mongoose.Schema({
+//   make: String,
+//   model: String,
+//   image: String,
+//   mileage: String,
+//   year: Number,
+// })
 
 // Followers, Following, Likes and Cars are arrays, the rest are strings
 const userSchema = new mongoose.Schema({
@@ -18,7 +19,8 @@ const userSchema = new mongoose.Schema({
   followers: { type: [mongoose.ObjectId], ref: 'User' },
   following: { type: [mongoose.ObjectId], ref: 'User' },
   likes: { type: [mongoose.ObjectId], ref: 'Post' },
-  cars: [carSchema],
+  cars: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }],
+  // cars: [carSchema],
 })
 
 
@@ -74,3 +76,4 @@ userSchema.virtual('comments', {
 
 
 export default mongoose.model('User', userSchema)
+
