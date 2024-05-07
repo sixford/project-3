@@ -8,8 +8,10 @@ const postSchema = new mongoose.Schema(
     content: { type: String, required: true },
     image: { type: String, required: true },
     //Made correction here to fix endpoints. Slight syntax error
-    comments: [{ type: commentSchema }],
-    likes: { type: [mongoose.ObjectId], ref: 'User' },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    // owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    likes: [{ type: mongoose.ObjectId, ref: 'User' }],
     owner: { type: mongoose.ObjectId, ref: 'User' },
 
   },
