@@ -4,7 +4,7 @@ import 'dotenv/config'
 import User from '../models/User.js'
 import userData from './data/users.js'
 import Cars from './data/cars.js'
-import carsData from '/data/cars.js'
+import carsData from './data/cars.js'
 
 async function seedData(){
 
