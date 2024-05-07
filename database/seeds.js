@@ -3,6 +3,8 @@ import 'dotenv/config'
 
 import User from '../models/User.js'
 import userData from './data/users2.js'
+
+//Up for debate to change 
 import Cars from '../models/cars.js'
 import carsData from './data/cars.js'
 
@@ -26,6 +28,7 @@ async function seedData() {
       const userId = createdUsers[Math.floor(Math.random() * createdUsers.length)]._id
       return { ...car, owner: userId }
     })
+    console.log(createdUsers)
     // Add seed data into the database as new documents
     const createdCars = await Cars.create(carsWithOwners)
     console.log(`${createdCars.length} cars added. `)
