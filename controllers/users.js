@@ -51,8 +51,7 @@ export const getOtherProfile = async (req, res) => {
   try {
     const { userId } = req.params
     //Was attempting to populate the cars on line below
-    const foundUser = await User.findById(userId)
-
+    const foundUser = await User.findById(userId).populate('cars')
     if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
     return res.json(foundUser)
   } catch (error) {

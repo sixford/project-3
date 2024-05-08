@@ -14,7 +14,10 @@ export const getPosts = async (req, res) => {
 //Create Post
 export const createPost = async (req, res) => {
   try {
-    console.log('Hit Create Post Endpoint')
+    req.body.owner = req.currentUser._id
+    // console.log(req.body)
+    const createdPost = await Post.create(req.body)
+    return res.status(201).json(createdPost)
   } catch (error) {
     console.log(error)
   }

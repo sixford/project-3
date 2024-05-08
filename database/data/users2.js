@@ -4,6 +4,9 @@ export default [
     email: 'admin@email.com',
     password: 'pass',
     passwordConfirmation: 'pass',
+    cars: [
+      {}
+    ]
   },
   {
     username: 'v',
