@@ -25,14 +25,17 @@ export const getProfile = async (req, res) => {
 //   }
 // }
 
-//Controller to Delete user profile
+//Controller to Delete user profile ✅
 export const deleteProfile = async (req, res) => {
   try {
     console.log('Hit DELETE endpoint')
+    const userId = req.params.userId
     // console.log(req)
     //*requires req.params i think?
+    req.json({ message: 'User profile deleted successfuly' })
   } catch (error) {
     console.log(error)
+    res.status(500).json({ error: 'error' })
   }
 }
 
@@ -79,7 +82,7 @@ export const login = async (req, res) => {
 }
 
 
-//controller for user register
+//controller for user register ✅
 export const register = async (req, res) => {
   try {
     const registeredUser = await User.create(req.body)

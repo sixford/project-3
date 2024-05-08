@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
-const carSchema = new mongoose.Schema({
-  make: String,
-  model: String,
-  image: String,
-  mileage: String,
-  year: Number,
-})
+const carSchema = new mongoose.Schema(
+  {
+    make: { type: String, required: true },
+    model: { type: String, required: true },
+    image: { type: String },
+    mileage: { type: String, required: true },
+    year: { type: Number },
+  }
+
+)
+
 
 // Followers, Following, Likes and Cars are arrays, the rest are strings
 const userSchema = new mongoose.Schema({
