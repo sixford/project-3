@@ -28,19 +28,14 @@ export const profileIndex = async (req, res) => {
   }
 }
 
-//Controller to Delete user profile
+//Controller to Delete user profile ✅
 export const deleteProfile = async (req, res) => {
   try {
-    const userId = req.currentUser._id
-
-    const deletedUser = await User.findById(userId)
-
-    if (!deletedUser) throw new Error.DocumentNotFoundError('User not Found')
-
-    return res.status(200).json({ message: 'User profile deleted successfully' })
-
+    console.log('Hit DELETE endpoint')
+    // console.log(req)
+    //*requires req.params i think?
   } catch (error) {
-    console.log(error, res)
+    console.log(error)
   }
 }
 
@@ -79,7 +74,7 @@ export const login = async (req, res) => {
 }
 
 
-//controller for user register
+//controller for user register ✅
 export const register = async (req, res) => {
   try {
     const registeredUser = await User.create(req.body)
