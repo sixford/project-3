@@ -6,7 +6,7 @@ export default [
     passwordConfirmation: 'pass',
     cars: [
       {}
-    ]
+    ],
   },
   {
     username: 'v',
