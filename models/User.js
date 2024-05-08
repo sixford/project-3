@@ -1,13 +1,16 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
-const carSchema = new mongoose.Schema({
-  make: String,
-  model: String,
-  image: String,
-  mileage: String,
-  year: Number,
-})
+const carSchema = new mongoose.Schema(
+  {
+    make: { type: String},
+    model: { type: String},
+    image: { type: String },
+    mileage: { type: String},
+    year: { type: Number },
+  }
+)
+
 
 // Followers, Following, Likes and Cars are arrays, the rest are strings
 const userSchema = new mongoose.Schema({
@@ -20,8 +23,6 @@ const userSchema = new mongoose.Schema({
   likes: { type: [mongoose.ObjectId], ref: 'Post' },
   cars: [carSchema],
 })
-
-
 
 
 

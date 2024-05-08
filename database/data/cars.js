@@ -47,26 +47,5 @@ export default [
     image: 'mercedes_cclass.jpg',
     mileage: '22,000',
     year: 2020,
-  },
-  {
-    make: 'Lexus',
-    model: 'ES',
-    image: 'lexus_es.jpg',
-    mileage: '18,000',
-    year: 2021,
-  },
-  {
-    make: 'Tesla',
-    model: 'Model S',
-    image: 'tesla_modelS.jpg',
-    mileage: '10,000',
-    year: 2022,
-  },
-  {
-    make: 'Hyundai',
-    model: 'Sonata',
-    image: 'hyundai_sonata.jpg',
-    mileage: '27,000',
-    year: 2018,
   }
 ]

@@ -9,11 +9,9 @@ import 'dotenv/config.js'
 //controller to view  user profile ✅
 export const getProfile = async (req, res) => {
   try {
-    // console.log('Hit view profile endpoint!!')
     console.log(req.currentUser._id)
     const profile = await User.findById(req.currentUser._id)
     return res.json(profile)
-    //*requires currentUser._id
   } catch (error) {
     console.log(error)
     return res.status(500).json(error)
@@ -59,24 +57,17 @@ export const getOtherProfile = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const foundUser = await User.findOne({ email: req.body.email })
-    // console.log(foundUser)
     if (!foundUser) {
-      // console.log('Hit LOGIN endpoint')
       return sendUnauthorized(res)
     }
-
     if (!bcrypt.compareSync(req.body.password, foundUser.password)) {
       return sendUnauthorized(res)
     }
-    // console.log(foundUser._id)
     const token = jwt.sign({ sub: foundUser._id }, process.env.SECRET, { expiresIn: '24h' })
-    // console.log(token)
-
     return res.json({
       message: `Welcome back, ${foundUser.username}`,
       token: token,
     })
-    //*requires req.body(email)
   } catch (error) {
     sendError(error, res)
   }
@@ -88,12 +79,42 @@ export const register = async (req, res) => {
   try {
     const registeredUser = await User.create(req.body)
     return res.json({ message: `Welcome, ${registeredUser.username}` })
-    // console.log('Hit REGISTER endpoint')
-    // console.log(req)
-    //*requires req.body
   } catch (error) {
     sendError(error, res)
     console.log(error)
   }
 }
 
+//Controller to Add a User Car
+export const addCar = async (req, res) => {
+  try {
+    console.log('Hit Create car endpoint')
+    const userId = req.currentUser._id
+    const carData = req.body
+    const user = await User.findById(userId)
+    user.cars.push(carData)
+    await user.save()
+    return res.status(201).json('Car added!')
+  } catch (error) {
+    sendError(error, res)
+    console.log(error)
+  }
+}
+
+
+//Controller to Delete a user Car
+export const deleteCar = async (req, res) => {
+  try {
+    const { carId } = req.params
+    const userId = req.currentUser._id
+    const user = await User.findById(userId)
+    if (!carId) throw new Error.DocumentNotFoundError('Car not Found')
+    const carToDelete = user.cars.id(carId)
+    carToDelete.deleteOne()
+    await user.save()
+    return res.sendStatus(204)
+  } catch (error) {
+    console.log(error)
+
+  }
+}
