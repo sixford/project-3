@@ -24,7 +24,7 @@ async function seedData() {
       }))
     )
 
-    console.log(`${createdUsers.length} users created.And Cars data added`)
+    console.log(`${createdUsers.length} users created. And Cars data added`)
     await mongoose.connection.close()
     console.log('Connection close.')
   } catch (error) {
