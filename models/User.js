@@ -3,10 +3,10 @@ import bcrypt from 'bcrypt'
 
 const carSchema = new mongoose.Schema(
   {
-    make: { type: String, required: true },
-    model: { type: String, required: true },
+    make: { type: String},
+    model: { type: String},
     image: { type: String },
-    mileage: { type: String, required: true },
+    mileage: { type: String},
     year: { type: Number },
   }
 )
@@ -23,8 +23,6 @@ const userSchema = new mongoose.Schema({
   likes: { type: [mongoose.ObjectId], ref: 'Post' },
   cars: [carSchema],
 })
-
-
 
 
 
