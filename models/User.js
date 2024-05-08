@@ -1,17 +1,13 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
-const carSchema = new mongoose.Schema(
-  {
-    make: { type: String, required: true },
-    model: { type: String, required: true },
-    image: { type: String },
-    mileage: { type: String, required: true },
-    year: { type: Number },
-  }
-
-)
-
+const carSchema = new mongoose.Schema({
+  make: String,
+  model: String,
+  image: String,
+  mileage: String,
+  year: Number,
+})
 
 // Followers, Following, Likes and Cars are arrays, the rest are strings
 const userSchema = new mongoose.Schema({
@@ -24,6 +20,10 @@ const userSchema = new mongoose.Schema({
   likes: { type: [mongoose.ObjectId], ref: 'Post' },
   cars: [carSchema],
 })
+
+
+
+
 
 
 // Set virtual password confirmation property
@@ -39,7 +39,6 @@ userSchema.pre('validate', function (next) {
   if (this.isModified('password') && this.password !== this._passwordConfirmation) {
     this.invalidate('passwordConfirmation', 'Ensure passwords are matching')
   }
-
   next()
 })
 
@@ -78,3 +77,4 @@ userSchema.virtual('comments', {
 
 
 export default mongoose.model('User', userSchema)
+

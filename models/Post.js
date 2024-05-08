@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-//imported commentSchema
 import commentSchema from './Comment.js'
 
 const postSchema = new mongoose.Schema(
@@ -13,7 +12,6 @@ const postSchema = new mongoose.Schema(
     // owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     likes: [{ type: mongoose.ObjectId, ref: 'User' }],
     owner: { type: mongoose.ObjectId, ref: 'User' },
-
   },
   {
     timestamps: true,
