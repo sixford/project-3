@@ -1,0 +1,22 @@
+export default [
+    { text: "Wow, that's one sleek ride! 😍" },
+    { text: "Love the color of your car! It really stands out." },
+    { text: "Wishing you safe travels on your road trip! 🚗💨" },
+    { text: "Your car looks like it's straight out of a movie! 🎥🚘" },
+    { text: "Nothing beats the feeling of cruising with the top down. Enjoy every moment!" },
+    { text: "That car is a real head-turner! 😎" },
+    { text: "I've always wanted to take a drive through the countryside. Looks amazing!" },
+    { text: "Road trips are the best way to make unforgettable memories. Have a blast!" },
+    { text: "Your car is giving me major envy right now. Enjoy every mile!" },
+    { text: "The city lights look even better from behind the wheel of your car! 🌃🚗" },
+    { text: "There's something special about classic cars. Yours is a beauty!" },
+    { text: "Your car looks so clean and shiny! What's your secret?" },
+    { text: "I can almost feel the wind in my hair just looking at your convertible! 😊" },
+    { text: "Midnight drives are so peaceful. Perfect time to clear your mind!" },
+    { text: "Tailgating season is the best! Nothing beats good food and good company." },
+    { text: "I wish I could join you on your next adventure! Your car looks ready for anything." },
+    { text: "Your car is the definition of goals! Keep living the dream." },
+    { text: "Every drive is an opportunity for a new adventure. Enjoy the journey!" },
+    { text: "Your car deserves all the likes! Such a stunning ride." },
+    { text: "Nothing beats the feeling of hitting the road with your favorite playlist. Enjoy the drive!" }
+]
