@@ -12,6 +12,8 @@ import { sendError, sendUnauthorized } from '../lib/common.js'
 //   }
 // }
 
+//Get all posts 
+
 export const getPosts = async (req, res) => {
   try {
     const foundPosts = await Post.find()

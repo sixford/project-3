@@ -11,7 +11,7 @@ export const getComments = async (req, res) => {
 
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
 
-    return res.json(post.comments)
+    return res.json(Post.comments)
   } catch (error) {
     console.log(error, res)
   }
