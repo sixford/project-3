@@ -72,8 +72,6 @@ userSchema.virtual('comments', {
   foreignField: 'owner',
 })
 
-//! Logic to add cars to user schema
-
 
 export default mongoose.model('User', userSchema)
 
