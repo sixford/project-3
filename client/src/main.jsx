@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+
+//Style Components
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+
 // Style components
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,7 +23,7 @@ import Profile from './components/pages/Profile.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Root/>,
     children: [
       {
         path: '',
@@ -30,12 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'register',
-        element: <Register />
+        element: <Register/>
       },
       {
         path: 'login',
-        element: <Login />
-
+        element: <Login/>
       }
     ]
   }
