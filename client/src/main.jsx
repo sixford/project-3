@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+// Style components
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+
 //Page components
 
-import Register from './components/Register.jsx'
-import Home from './components/Home.jsx'
-import Login from './components/Login.jsx'
+import Register from './components/pages/Register.jsx'
+import Home from './components/pages/Home.jsx'
+import Login from './components/pages/Login.jsx'
+import Profile from './components/pages/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,12 +25,17 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
+        path: 'profile',
+        element: <Profile />
+      },
+      {
         path: 'register',
         element: <Register />
       },
       {
         path: 'login',
         element: <Login />
+
       }
     ]
   }
