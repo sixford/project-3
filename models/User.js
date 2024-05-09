@@ -25,8 +25,6 @@ const userSchema = new mongoose.Schema({
 })
 
 
-
-
 // Set virtual password confirmation property
 userSchema
   .virtual('passwordConfirmation')

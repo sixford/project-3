@@ -71,12 +71,6 @@ export const updatePost = async (req, res) => {
   }
 }
 
-//     console.log('Hit Update Post Endpoint')
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 //Delete Post ✅
 export const deletePost = async (req, res) => {
   try {
@@ -92,5 +86,4 @@ export const deletePost = async (req, res) => {
     sendError(error, res)
   }
 }
-
 
