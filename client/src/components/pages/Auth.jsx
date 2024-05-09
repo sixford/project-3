@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios'
-import {setToken} from '../lib/auth'
-import {Navigate} from 'react-router-dom'
+import { setToken } from '../../lib/auth'
+import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Auth() {
+
+    //Local variable
+    const navigate = useNavigate();
+
 
     const [formData, setFormData] = useState({
         username: '',
@@ -12,8 +16,9 @@ export default function Register() {
         passwordConfirmation: ''
     })
 
+    //For Login/Register States
     const [isSignup, setIsSignUp] = useState(false)
-    //To decide if login or Register
+
     const switchStatus = () => {
         setIsSignUp((previousState) => !previousState)
     }
@@ -23,30 +28,32 @@ export default function Register() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-
     //Function to handle submit
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            if(isSignup) {
+            if (isSignup) {
                 const { data: { token } } = await axios.post('/api/register/', formData)
                 setToken(token)
+                navigate("/")
             } else {
                 const { data: { token } } = await axios.post('/api/login/', {
                     email: formData.email,
                     password: formData.password
                 })
                 setToken(token)
+                navigate("/")
             }
         } catch (error) {
             console.log(error)
         }
     }
 
+
     return (
         <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
             <div className>
-                <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px'/>
+                <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px' />
             </div>
 
             <h2>{isSignup ? 'Sign Up' : 'Sign In'}</h2>

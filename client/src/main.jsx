@@ -7,17 +7,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //Style Components
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
+import './styles/main.scss'
 
-// Style components
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.js'
 
 //Page components
 
-import Register from './components/pages/Register.jsx'
+import Auth from './components/pages/Auth.jsx'
 import Home from './components/pages/Home.jsx'
-import Login from './components/pages/Login.jsx'
+
 import Profile from './components/pages/Profile.jsx'
 
 const router = createBrowserRouter([
@@ -34,12 +31,8 @@ const router = createBrowserRouter([
         element: <Profile />
       },
       {
-        path: 'register',
-        element: <Register/>
-      },
-      {
-        path: 'login',
-        element: <Login/>
+        path: 'auth',
+        element: <Auth/>
       }
     ]
   }
