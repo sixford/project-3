@@ -1,5 +1,6 @@
-import Comment from '../models/Comment.js'
+// import Comment from '../models/Comment.js'
 import { Error } from 'mongoose'
+import Post from '../models/Post.js'
 
 //GET ALL COMMENTS
 export const getComments = async (req, res) => {

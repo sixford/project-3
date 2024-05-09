@@ -20,7 +20,7 @@ async function seedData() {
     const createdUsers = await User.create(
       userData.map(user => ({
         ...user, 
-        cars: [carsData[Math.floor(Math.random() * carsData.length)]]
+        cars: [carsData[Math.floor(Math.random() * carsData.length)]],
       }))
     )
 

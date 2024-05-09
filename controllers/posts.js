@@ -4,11 +4,20 @@ import { Error } from 'mongoose'
 import { sendError, sendUnauthorized } from '../lib/common.js'
 
 //Get All Posts
+// export const getPosts = async (req, res) => {
+//   try {
+//     console.log('Hit Get All Post Endpoint')
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
 export const getPosts = async (req, res) => {
   try {
-    console.log('Hit Get All Post Endpoint')
+    const foundPosts = await Post.find()
+    return res.json(foundPosts)
   } catch (error) {
-    console.log(error)
+    sendError(error, res)
   }
 }
 

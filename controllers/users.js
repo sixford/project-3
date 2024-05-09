@@ -28,7 +28,7 @@ export const profileIndex = async (req, res) => {
   }
 }
 
-//Controller to Delete user profile ✅
+//Controller to Delete user profile 
 export const deleteProfile = async (req, res) => {
   try {
     console.log('Hit DELETE endpoint')
