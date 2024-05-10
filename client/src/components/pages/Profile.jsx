@@ -15,9 +15,6 @@ export default function Profile( user ){
             <Col md={9}>
               <Nav variant="tabs" defaultActiveKey="/overview">
                 <Nav.Item>
-                  <Nav.Link href="/overview">Overview</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
                   <Nav.Link href="/posts">Posts</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -29,7 +26,7 @@ export default function Profile( user ){
               </Nav>
               <Card className="mt-3">
                 <Card.Body>
-                  <h3></h3>
+                  <h3>Cards Display</h3>
                   {/* Add user's posts here */}
                   </Card.Body>
           </Card>
