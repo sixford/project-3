@@ -1,9 +1,59 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react'
 import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
+import axios from 'axios'
+import { getToken } from '../../lib/auth.js'
 
-export default function Profile({ user }) {
-  // Example posts data
-  const posts = user.posts || []; // Assuming user.posts is an array of post objects
+export default function Profile() {
+  // State
+  const [user, setUser] = useState(null)
+  const [posts, setPosts] = useState([])
+  // const [error, setError] = useState('')
+
+  // Local Variables
+
+  const headers = { headers : { authorization : getToken() }}
+
+
+  // Effects
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        // Make API call to fetch user data using axios
+        const { data } = await axios.get('/api/profile', headers)
+        setUser(data)
+        console.log('User data:', data)
+      // Include secureRoute/Bearer token/Authorization
+
+
+        // Assuming user.POST contains user's posts
+        const userPosts = data.posts || []
+        setPosts(userPosts)
+        console.log('User posts:', userPosts)
+      } catch (error) {
+        console.error('Error fetching user data:', error.message)
+      }
+    }
+
+    fetchUserData()
+  }, [])
+
+  // Render
+  if (!user) {
+    return <div>Loading...</div>
+  }
+
+  console.log('Rendering profile component with user:', user)
+  // (api/profile)
+  //Make API call to send me back appropriate user.
+  // user.POST
+
+  //async function 
+  //useEffect that gets called once when page loads 
+  //try
+
+  //catch
+
+
 
   return (
     <Container className="mt-5" style={{ border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }}>
@@ -47,21 +97,9 @@ export default function Profile({ user }) {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }
 
-Profile.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    posts: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-      })
-    ),
-  }).isRequired,
-}
 
     
 
