@@ -7,7 +7,7 @@ export default function NavBar() {
   const isLoggedIn = true
 
   return (
-    <nav className="navbar navbar-expand-md bg-body-black border-bottom" style={{ backgroundColor: 'blue' }}>
+    <nav className="navbar navbar-expand-md bg-body-black border-bottom" style={{ backgroundColor: 'black' }}>
       <div className="container">
         {isLoggedIn && (
           <button className="btn navbar-btn navbar-font">
