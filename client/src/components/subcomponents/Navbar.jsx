@@ -17,7 +17,7 @@ export default function NavBar() {
           </button>
         )}
         <button className="btn navbar-btn navbar-font">
-          <Link to="/profile">Profile</Link>
+          <Link to="profile">Profile</Link>
         </button>
         <button className="btn navbar-btn navbar-font">
           <Link to="/">Logout</Link>
