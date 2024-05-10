@@ -3,28 +3,36 @@ import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+
+//Style Components
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+import './styles/main.scss'
+
+
 //Page components
 
-import Register from './components/Register.jsx'
-import Home from './components/Home.jsx'
-import Login from './components/Login.jsx'
+import Auth from './components/pages/Auth.jsx'
+import Home from './components/pages/Home.jsx'
+
+import Profile from './components/pages/Profile.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Root/>,
     children: [
       {
         path: '',
         element: <Home />
       },
       {
-        path: 'register',
-        element: <Register />
+        path: 'profile',
+        element: <Profile />
       },
       {
-        path: 'login',
-        element: <Login />
+        path: 'auth',
+        element: <Auth/>
       }
     ]
   }

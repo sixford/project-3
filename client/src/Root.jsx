@@ -1,35 +1,26 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+
 
 // imports for each component e.g navbar, footer go here
 
-export default function Root () {
+import Navbar from './components/subcomponents/Navbar'
+import Footer from './components/pages/Footer'
+
+export default function Root({ children }) {
 
   return (
-    <BrowserRouter>
-
-    <header>
+    <div className='d-flex flex-column min-vh-100'>
+      {/* Header / Nav */}
       <Navbar />
-    </header>
 
+      {/* Main Page Content */}
+      <main className='flex-grow-1 d-flex flex-column'>
+        { children || <Outlet />}
+      </main>
 
-    <main>
-
-
-      <Routes>
-        <Route path = "/" element={<Home />}>
-        </Route>
-        <Route path = "/" element={<Profile />}>
-        </Route>
-        <Route path = "/" element={<Register />}>
-        </Route>
-        <Route path = "/" element={<Login />}>
-        </Route>
-        <Route>
-        </Route>
-      </Routes>
-    </main>
-    
-    <Footer />
-  </BrowserRouter>
+      {/* Footer */}
+      <Footer />
+    </div>
   )
 }
+

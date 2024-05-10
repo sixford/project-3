@@ -11,12 +11,12 @@ const commentSchema = new mongoose.Schema(
 )
 
 
+
 const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
     image: { type: String, required: true },
-    //Made correction here to fix endpoints. Slight syntax error
     comments: [commentSchema],
     // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     // owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
