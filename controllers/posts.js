@@ -89,3 +89,29 @@ export const deletePost = async (req, res) => {
   }
 }
 
+export const handleLike = async (req, res) => {
+  try {
+    const currentUser = req.currentUser
+    // wants 'postId' property passed in req.body
+    const postToLike = await Post.findById(req.body.postId)
+    // If already liked:
+    if (currentUser.likes.includes(postToLike._id)) {
+      // Remove from likes for both
+      currentUser.likes.splice(currentUser.likes.findIndex((id) => id === postToLike._id), 1)
+      postToLike.likes.splice(postToLike.likes.findIndex((id) => id === currentUser._id), 1)
+    } else {
+      // Add each object id into each likes array
+      postToLike.likes.push(req.currentUser._id)
+      req.currentUser.likes.push(postToLike._id)
+    }
+    // save documents
+    currentUser.save()
+    postToLike.save()
+
+    // respond with updated user
+    return res.json(currentUser)
+
+  } catch (error) {
+    sendError(error, res)
+  }
+}

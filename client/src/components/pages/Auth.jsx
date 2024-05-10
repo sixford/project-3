@@ -51,7 +51,7 @@ export default function Auth() {
 
     return (
         <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
-            <div className>
+            <div>
                 <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px' />
             </div>
 
