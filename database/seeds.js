@@ -3,7 +3,7 @@ import 'dotenv/config'
 import User from '../models/User.js'
 import userData from './data/users.js'
 import carsData from './data/cars.js'
-import { Post, Comment } from '../models/Post.js'
+import Post from '../models/Post.js'
 import postData from './data/posts.js'
 import commentData from './data/comments.js'
 
