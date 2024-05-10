@@ -18,6 +18,13 @@ nav {
         margin-left: 1.2rem ;
         padding-left: 10px;
         border-left: 2px solid rgba(255, 255, 255, 0.753);
+        transition: transform 300ms;
+   
+    }
+
+    .nav-item:hover {
+        transform: scale(1.5);
+        font-weight: bold;
 
     }
 }

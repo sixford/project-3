@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { setToken } from '../../lib/auth'
+import { isLoggedIn, setToken } from '../../lib/auth'
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
