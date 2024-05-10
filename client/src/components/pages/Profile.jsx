@@ -1,8 +1,9 @@
-import { Container, Row, Col, Nav, Card } from 'react-bootstrap'
-export default function Profile( user ) {
-  return (
+// import PropTypes from 'prop-types'
+import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
 
-        <Container className="mt-5" style={{ border: '1px solid #ccc', borderRadius: '5px' }}>
+export default function Profile( user ){
+  return (
+    <Container className="mt-5" style={{ border: '1px solid #ccc', borderRadius: '5px' }} shadow>
           <Row>
             <Col md={3} className="border-right">
               <div className="sidebar">
@@ -28,12 +29,30 @@ export default function Profile( user ) {
               </Nav>
               <Card className="mt-3">
                 <Card.Body>
-                  <h3>Posts</h3>
+                  <h3></h3>
                   {/* Add user's posts here */}
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      )
-    }
+                  </Card.Body>
+          </Card>
+          <Button variant="primary" className="mt-3">Add Post</Button> {/* Add Post button */}
+        </Col>
+      </Row>
+    </Container>
+  )
+}
+    
+
+
+
+// Add props validation
+// Profile.propTypes = {
+//   user: PropTypes.shape({
+//     username: PropTypes.string.isRequired,
+//     posts: PropTypes.arrayOf(
+//       PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         content: PropTypes.string.isRequired,
+//         image: PropTypes.string.isRequired
+//       })
+//     ).isRequired
+//   }).isRequired
+// };
