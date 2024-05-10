@@ -11,7 +11,7 @@ import mongoose from 'mongoose'
 export const getProfile = async (req, res) => {
   try {
     console.log(req.currentUser._id)
-    const profile = await User.findById(req.currentUser._id)
+    const profile = await User.findById(req.currentUser._id).populate('posts')
     return res.json(profile)
   } catch (error) {
     console.log(error)
