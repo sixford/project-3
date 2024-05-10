@@ -9,7 +9,7 @@ import Footer from './components/pages/Footer'
 export default function Root({ children }) {
 
   return (
-    <div className='d-flex flex-column min-vh-100'>
+    <div className='home d-flex flex-column min-vh-100'>
       {/* Header / Nav */}
       <Navbar />
 
