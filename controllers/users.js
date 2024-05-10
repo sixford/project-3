@@ -4,7 +4,8 @@ import { Error } from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config.js'
-
+import { json } from 'express'
+import mongoose from 'mongoose'
 
 //controller to view  user profile ✅
 export const getProfile = async (req, res) => {
@@ -116,5 +117,52 @@ export const deleteCar = async (req, res) => {
   } catch (error) {
     console.log(error)
 
+  }
+}
+
+// this function is a Work in progress, comment out if necessary
+export const getHomeFeed = async (req, res) => {
+  try {
+    const following = await User.findById(req.currentUser._id).following || []
+    const followingWithPosts = following.map(user => user.populate('posts'))
+    const posts = followingWithPosts.map(user => { return user.posts })
+    return res.json(posts)
+  } catch (error) {
+    sendError(error, res)
+  }
+}
+
+// Follow a User endpoint
+export const handleFollow = async (req, res) => {
+
+  try {
+    // Disallow following yourself -> this needs an error message handler in sendError
+    if (req.body.toFollow == req.currentUser._id) throw new Error(`You cant follow yourself User ${req.currentUser._id}`)
+
+    // retrieve user and userToFollow documents
+    const newFollow = req.body.toFollow
+    const follow = await User.findById(newFollow)
+    const currentUser = req.currentUser
+
+    // If already following
+    if (currentUser.following.includes(follow._id)) {
+      // remove eachother from their respective followers/following arrays
+      follow.followers.splice(follow.followers.findIndex((element) => element === currentUser._id), 1)
+      currentUser.following.splice(currentUser.following.findIndex((element) => element === req.body.toFollow), 1)
+    } else {
+      // If a new follower: push into eachother's following/followers arrays
+      currentUser.following.push(follow._id)
+      follow.followers.push(currentUser._id)
+
+    }
+    // save the documents
+    currentUser.save()
+    follow.save()
+
+    // return a response
+    return res.json(currentUser)
+
+  } catch (error) {
+    sendError(error, res)
   }
 }
