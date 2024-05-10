@@ -34,8 +34,7 @@ export default function Auth() {
         try {
             if (isSignup) {
                 const { data: { token } } = await axios.post('/api/register/', formData)
-                setToken(token)
-                navigate("/")
+                navigate("/Auth")
             } else {
                 const { data: { token } } = await axios.post('/api/login/', {
                     email: formData.email,
@@ -48,7 +47,6 @@ export default function Auth() {
             console.log(error)
         }
     }
-
 
     return (
         <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
