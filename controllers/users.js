@@ -120,12 +120,18 @@ export const deleteCar = async (req, res) => {
   }
 }
 
-// this function is a Work in progress, comment out if necessary
+// Generate a list of all posts from followers
 export const getHomeFeed = async (req, res) => {
   try {
-    const following = await User.findById(req.currentUser._id).following || []
-    const followingWithPosts = following.map(user => user.populate('posts'))
-    const posts = followingWithPosts.map(user => { return user.posts })
+
+    // Get following list, find each user and populate posts, appending posts to  array
+    const following = req.currentUser.following
+    let posts = []
+    for (let i = 0; i < following.length; i++) {
+      const followingWithPosts = await User.findById(following[i]).populate('posts')
+      posts.push(...followingWithPosts.posts)
+    }
+    // Return array of all posts of users followed
     return res.json(posts)
   } catch (error) {
     sendError(error, res)
