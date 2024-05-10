@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { isLoggedIn, setToken } from '../../lib/auth'
+import { setToken } from '../../lib/auth'
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
@@ -17,7 +17,7 @@ export default function Auth() {
     })
 
     //For Login/Register States
-    const [isSignup, setIsSignUp] = useState(false)
+    const [isSignup, setIsSignUp] = useState(true)
 
     const switchStatus = () => {
         setIsSignUp((previousState) => !previousState)
@@ -33,8 +33,9 @@ export default function Auth() {
         e.preventDefault()
         try {
             if (isSignup) {
-                const { data: { token } } = await axios.post('/api/register/', formData)
+                await axios.post('/api/register/', formData)
                 navigate("/Auth")
+                switchStatus()
             } else {
                 const { data: { token } } = await axios.post('/api/login/', {
                     email: formData.email,
