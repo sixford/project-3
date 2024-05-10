@@ -3,11 +3,12 @@ import bcrypt from 'bcrypt'
 
 const carSchema = new mongoose.Schema(
   {
-    make: { type: String },
-    model: { type: String },
-    image: { type: String },
-    mileage: { type: String },
-    year: { type: Number },
+    make: { type: String, required: true },
+    model: { type: String, required: true },
+    image: String,
+    mileage: String,
+    year: Number,
+
   }
 )
 

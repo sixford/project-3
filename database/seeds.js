@@ -6,6 +6,7 @@ import carsData from './data/cars.js'
 import Post from '../models/Post.js'
 import postData from './data/posts.js'
 import commentData from './data/comments.js'
+import Comment from '../models/Comment.js'
 
 async function seedData() {
 
@@ -29,11 +30,14 @@ async function seedData() {
 
     console.log(`${createdUsers.length} users created. And Cars data added`)
 
-    // Create comments, adding owners 
+    // Deletet, Create comments, adding owners 
+    const deletedComments = await Comment.deleteMany()
+    console.log(`${deletedComments.deletedCount} comments deleted`)
 
-    const createdComments = commentData.map(comment => {
-      return ({ ...comment, owner: createdUsers[Math.floor(Math.random() * createdUsers.length)]._id })
-    })
+    const createdComments = await Comment.create(
+      commentData.map(comment => {
+        return ({ ...comment, owner: createdUsers[Math.floor(Math.random() * createdUsers.length)]._id })
+      }))
     console.log(`We created ${createdComments.length} comments`)
     console.log('Example -> ', createdComments[0])
     // Add randomly either 2 or three random comments to posts
