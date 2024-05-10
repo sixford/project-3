@@ -1,31 +1,32 @@
-import { Link } from 'react-router-dom'
-// import { useState }
-// import axios from 'axios'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { isLoggedIn, removeToken } from '../../lib/auth'
+
 import homeImage from '../assets/garage-home.png'
 
 export default function NavBar() {
   const isLoggedIn = true
+  const navigate = useNavigate()
 
   return (
-    <nav className="navbar navbar-expand-md bg-body-black border-bottom" style={{ backgroundColor: 'black' }}>
-      <div className="container">
-        {isLoggedIn && (
-          <button className="btn navbar-btn navbar-font">
-            <Link to="/">
-            <img src={homeImage} alt="Home" width="50" height="50" />
+
+
+    <header>
+      <nav className="navbar navbar-expand-md bg-black">
+        <div className="container ">
+          <div className='flex-grow-1'>
+            <Link className="navbar-brand" to="/">
+              <img className="home-logo" src={homeImage} alt="Home" />
             </Link>
-          </button>
-        )}
-        <button className="btn navbar-btn navbar-font">
-          <Link to="profile">Profile</Link>
-        </button>
-        <button className="btn navbar-btn navbar-font">
-          <Link to="/">Logout</Link>
-        </button>
-        {/* Add other navbar items here */}
-      </div>
-    </nav>
+          </div>
+          <div>
+              <NavLink className="nav-item" to="/profile">Profile</NavLink>
+              <NavLink className="nav-item" to="/profile">Logout</NavLink>
+          </div>
+          {/* {isLoggedIn && (
+          )} */}
+
+        </div>
+      </nav>
+    </header>
   )
 }
-
-  
