@@ -42,7 +42,6 @@ export const getPost = async (req, res) => {
     console.log(req.params)
 
     const foundPost = await Post.findById(postId)
-    // .populate('owner').populate('posts')
 
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
     return res.json(foundPost)
@@ -94,7 +93,7 @@ export const handleLike = async (req, res) => {
     const currentUser = req.currentUser
     // wants 'postId' property passed in req.body
     const postToLike = await Post.findById(req.body.postId)
-    
+
     // If already liked:
     if (currentUser.likes.includes(postToLike._id)) {
       // Remove from likes for both

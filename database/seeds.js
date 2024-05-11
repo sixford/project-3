@@ -56,6 +56,8 @@ async function seedData() {
     // Delete
     const deletedPosts = await Post.deleteMany()
     console.log(`${deletedPosts.deletedCount} posts deleted`)
+
+
     // Add owner and comments and count
     let totalComments = 0
     const updatedPosts = postData.map(post => {
@@ -63,11 +65,14 @@ async function seedData() {
       const newPost = { ...post, owner: randOwnerId, comments: randomComments() }
       // for counting
       totalComments += newPost.comments.length
+
       return (newPost)
     })
+
+    console.log("created_post_1: ", updatedPosts[0])
+
     // Create posts
     const createdPosts = await Post.create(updatedPosts)
-
     console.log(`${createdPosts.length} posts created and ${totalComments} comments`)
 
     await mongoose.connection.close()

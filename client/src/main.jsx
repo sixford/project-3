@@ -17,6 +17,7 @@ import Home from './components/pages/Home.jsx'
 
 import Profile from './components/pages/Profile.jsx'
 import HomeFeed from './components/pages/HomeFeed.jsx'
+import SinglePost from './components/pages/SinglePost.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <HomeFeed />
+      },
+      {
+        path: ':postId',
+        element: <SinglePost />
       }
     ]
   }

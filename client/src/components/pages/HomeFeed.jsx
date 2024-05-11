@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { getToken } from "../../lib/auth"
 import { Col, Row, Card, Container } from 'react-bootstrap'
+import { useNavigate } from "react-router-dom"
 
 export default function HomeFeed() {
 
@@ -9,8 +10,16 @@ export default function HomeFeed() {
     const args = { headers: { authorization: getToken() } }
 
     const [postData, setPostData] = useState()
+    const [postId, setPostId] = useState()
 
+    const navigate = useNavigate()
 
+    function handleClick(e) {
+        // for now you must click the image to load the single post page
+        const _id = e.target.id
+        navigate(`/${_id}`)
+
+    }
     // call homefeed endpoint for post data
     useEffect(() => {
         async function getPostData() {
@@ -35,8 +44,8 @@ export default function HomeFeed() {
                     return (
                         // Generate card for each post
                         <Col xs={12} sm={6} m={4} lg={4} xl={3} key={_id} >
-                            <Card style={{ width: "20rem" }}>
-                                <Card.Img src={image} alt={title} />
+                            <Card style={{ width: "20rem", cursor: "pointer" }} onClick={handleClick}>
+                                <Card.Img src={image} alt={title} id={_id} />
                                 <Card.Body>
                                     <Card.Title>{title}</Card.Title>
                                     <Card.Text>{content}</Card.Text>
