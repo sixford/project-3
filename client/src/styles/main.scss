@@ -3,26 +3,27 @@
     padding: 0;
 }
 
-html, body {
+html {
     height: 100vh;
-  }
+}
 
 
 nav {
     min-height: 5vh;
-    
+
     .home-logo {
         width: 45px;
         border-radius: 5px;
     }
+
     .nav-item {
         text-decoration: none;
         color: white;
-        margin-left: 1.2rem ;
+        margin-left: 1.2rem;
         padding-left: 10px;
         border-left: 2px solid rgba(255, 255, 255, 0.753);
         transition: transform 300ms;
-   
+
     }
 
     .nav-item:hover {
@@ -36,14 +37,13 @@ nav {
     width: 100%;
     display: flex;
     position: relative;
-    
+
     video {
-        width:100vw;
+        width: 100vw;
         height: 87.2vh;
-        padding-bottom: -20px;
         object-fit: cover;
     }
-    
+
     .hero-content {
         position: absolute;
         width: 100%;

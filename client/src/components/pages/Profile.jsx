@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Nav, Card} from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
+import AddPost from './AddPost.jsx'
 
 export default function Profile() {
   // State
@@ -11,7 +12,7 @@ export default function Profile() {
 
   // Local Variables
 
-  const headers = { headers : { authorization : getToken() }}
+  const headers = { headers: { authorization: getToken() } }
 
 
   // Effects
@@ -22,7 +23,7 @@ export default function Profile() {
         const { data } = await axios.get('/api/profile', headers)
         setUser(data)
         console.log('User data:', data)
-      // Include secureRoute/Bearer token/Authorization
+        // Include secureRoute/Bearer token/Authorization
 
 
         // Assuming user.POST contains user's posts
@@ -93,7 +94,8 @@ export default function Profile() {
               ))}
             </Row>
           </div>
-          <Button variant="primary" className="mt-3">Add Post</Button> {/* Add Post button */}
+          {/* Added this to help with creading new post-viv */}
+          <AddPost/>
         </Col>
       </Row>
     </Container>
@@ -101,7 +103,7 @@ export default function Profile() {
 }
 
 
-    
+
 
 
 

@@ -10,14 +10,17 @@ export default function Root({ children }) {
 
   return (
     <>
-        {/* Header / Nav */}
-        <Navbar />
+      {/* Header / Nav */}
+      <Navbar />
 
-        {/* Main Page Content */}
+      {/* Main Page Content */}
+      <main className='flex-grow-1 d-flex flex-column'>
         {children || <Outlet />}
-        
-        {/* Footer */}
-        {/*removed footer for now, positioning incorrect -  to be fixed */}
+      </main>
+
+      {/* Footer */}
+      {/*removed footer for now, positioning incorrect -  to be fixed  P.S. should be fixed now -viv*/}
+      <Footer />
 
     </>
   )
