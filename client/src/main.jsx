@@ -16,23 +16,28 @@ import Auth from './components/pages/Auth.jsx'
 import Home from './components/pages/Home.jsx'
 
 import Profile from './components/pages/Profile.jsx'
+import HomeFeed from './components/pages/HomeFeed.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root/>,
+    element: <Root />,
     children: [
       {
         path: '',
         element: <Home />
       },
       {
-        path: '/profile',
+        path: 'profile',
         element: <Profile />
       },
       {
         path: 'auth',
-        element: <Auth/>
+        element: <Auth />
+      },
+      {
+        path: 'home',
+        element: <HomeFeed />
       }
     ]
   }

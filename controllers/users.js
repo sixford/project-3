@@ -129,6 +129,7 @@ export const getHomeFeed = async (req, res) => {
     let posts = []
     for (let i = 0; i < following.length; i++) {
       const followingWithPosts = await User.findById(following[i]).populate('posts')
+      console.log(followingWithPosts)
       posts.push(...followingWithPosts.posts)
     }
     // Return array of all posts of users followed
@@ -140,14 +141,17 @@ export const getHomeFeed = async (req, res) => {
 
 // Follow a User endpoint
 export const handleFollow = async (req, res) => {
-
   try {
+
+
     // Disallow following yourself -> this needs an error message handler in sendError
     if (req.body.toFollow == req.currentUser._id) throw new Error(`You cant follow yourself User ${req.currentUser._id}`)
 
     // retrieve user and userToFollow documents
     const newFollow = req.body.toFollow
     const follow = await User.findById(newFollow)
+    if (!follow) throw new DocumentNotFoundError('Not a user Id')
+
     const currentUser = req.currentUser
 
     // If already following

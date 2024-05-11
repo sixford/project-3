@@ -29,7 +29,11 @@ async function seedData() {
     )
 
     console.log(`${createdUsers.length} users created. And Cars data added`)
+    const admin = await User.findOne({ username: "admin" })
+    console.log("FOUND ADMIN:", admin)
 
+    createdUsers.forEach(user => admin.following.push(user._id))
+    admin.save()
     // Deletet, Create comments, adding owners 
     const deletedComments = await Comment.deleteMany()
     console.log(`${deletedComments.deletedCount} comments deleted`)
@@ -52,21 +56,17 @@ async function seedData() {
     // Delete
     const deletedPosts = await Post.deleteMany()
     console.log(`${deletedPosts.deletedCount} posts deleted`)
-    // Add owner and comments
+    // Add owner and comments and count
+    let totalComments = 0
     const updatedPosts = postData.map(post => {
       const randOwnerId = createdUsers[Math.floor(Math.random() * createdUsers.length)]._id
       const newPost = { ...post, owner: randOwnerId, comments: randomComments() }
+      // for counting
+      totalComments += newPost.comments.length
       return (newPost)
     })
-
     // Create posts
     const createdPosts = await Post.create(updatedPosts)
-
-    // Count comments
-    let totalComments = 0
-    createdPosts.forEach(post => {
-      totalComments += post.comments.length
-    })
 
     console.log(`${createdPosts.length} posts created and ${totalComments} comments`)
 

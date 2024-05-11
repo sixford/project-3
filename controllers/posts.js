@@ -94,6 +94,7 @@ export const handleLike = async (req, res) => {
     const currentUser = req.currentUser
     // wants 'postId' property passed in req.body
     const postToLike = await Post.findById(req.body.postId)
+    
     // If already liked:
     if (currentUser.likes.includes(postToLike._id)) {
       // Remove from likes for both
