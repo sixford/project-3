@@ -9,18 +9,17 @@ import Footer from './components/pages/Footer'
 export default function Root({ children }) {
 
   return (
-    <div className='home d-flex flex-column min-vh-100'>
-      {/* Header / Nav */}
-      <Navbar />
+    <>
+        {/* Header / Nav */}
+        <Navbar />
 
-      {/* Main Page Content */}
-      <main className='flex-grow-1 d-flex flex-column'>
-        { children || <Outlet />}
-      </main>
+        {/* Main Page Content */}
+        {children || <Outlet />}
+        
+        {/* Footer */}
+        {/*removed footer for now, positioning incorrect -  to be fixed */}
 
-      {/* Footer */}
-      <Footer />
-    </div>
+    </>
   )
 }
 

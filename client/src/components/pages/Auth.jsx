@@ -35,16 +35,16 @@ export default function Auth() {
         try {
             if (isSignup) {
                 await axios.post('/api/register/', formData)
-                navigate("/Auth")
                 switchStatus()
-            } else {
-                const { data: { token } } = await axios.post('/api/login/', {
-                    email: formData.email,
-                    password: formData.password
-                })
-                setToken(token)
-                navigate("/")
             }
+            const { data: { token } } = await axios.post('/api/login/', {
+                email: formData.email,
+                password: formData.password
+            })
+
+            setToken(token)
+            navigate("/home")
+
         } catch (error) {
             setError(error.response.data)
             console.log(error.response.data)
