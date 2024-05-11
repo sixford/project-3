@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap';
 
 export default function AddPost() {
     const [show, setShow] = useState(false);
@@ -9,28 +9,53 @@ export default function AddPost() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     return (
         <>
-            <Button variant="primary" className='my-3' onClick={handleShow}>
-                Add Post
+            <Button variant="primary" onClick={handleShow}>
+                Launch demo modal
             </Button>
 
-            < Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} size="lg" centered>
+            <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Create Post</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Dummy Text</p>
-                 </Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter a title for your Post"
+                                autoFocus
+                            />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                        >
+                            <Form.Label>Content</Form.Label>
+                            <Form.Control as="textarea" rows={2} />
+                        </Form.Group>
+                        <Form.Group controlId="formImage">
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                required
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}> Cancel </Button>
-                    <Button variant="primary">Create Post</Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </>
     );
 }
-
-
-
