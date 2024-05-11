@@ -8,10 +8,8 @@ const carSchema = new mongoose.Schema(
     image: String,
     mileage: String,
     year: Number,
-
   }
 )
-
 
 // Followers, Following, Likes and Cars are arrays, the rest are strings
 const userSchema = new mongoose.Schema({

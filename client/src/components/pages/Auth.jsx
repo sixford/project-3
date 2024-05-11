@@ -17,6 +17,7 @@ export default function Auth() {
 
     const [error, setError] = useState('')
 
+
     //For Login/Register States
     const [isSignup, setIsSignUp] = useState(true)
 
@@ -47,7 +48,6 @@ export default function Auth() {
             }
         } catch (error) {
             setError(error.response.data)
-            console.log(error.response.data)
         }
     }
 
@@ -65,7 +65,6 @@ export default function Auth() {
                             <input type='text' className="form-control" name='username' id='username' placeholder='Username' onChange={handleChange} value={formData.username} />
                             <label htmlFor="username">Username</label>
                         </div>
-
                     </>
                 )}
                 <div className='form-floating mb-3'>
@@ -85,13 +84,14 @@ export default function Auth() {
                         </div>
                     </>
                 )}
-
-
                 <button type='submit' className='btn btn-primary mt-3'>
                     {isSignup ? 'Sign Up' : 'Sign In'}
                 </button>
-                <div>
-                    {error && <p className='text-center mt-3 text-danger' >Please insure your details are correct..</p>}
+                <div className='text-center'>
+                    {error && 
+                        <p className='text-center mt-3 text-danger'>
+                        {error.email || error.username || error.message ||'Invalid details. Please please try again'}
+                        </p>}
                     <div>
                         <button type='button' className='btn btn-secondary m-4' onClick={switchStatus}>
                             {isSignup ? 'Already have an account? Sign In' : 'New here? Create an Account '}
