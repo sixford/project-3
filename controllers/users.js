@@ -129,7 +129,6 @@ export const getHomeFeed = async (req, res) => {
     let posts = []
     for (let i = 0; i < following.length; i++) {
       const followingWithPosts = await User.findById(following[i]).populate('posts')
-      console.log(followingWithPosts)
       posts.push(...followingWithPosts.posts)
     }
     // Return array of all posts of users followed

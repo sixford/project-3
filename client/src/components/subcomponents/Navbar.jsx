@@ -16,15 +16,15 @@ export default function NavBar() {
       <nav className="navbar navbar-expand-md bg-black">
         <div className="container ">
           <div className='flex-grow-1'>
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/home">
               <img className="home-logo" src={homeImage} alt="Home" />
             </Link>
           </div>
           {isLoggedIn() && (
-          <div>
+            <div>
               <NavLink className="nav-item" to="/profile">Profile</NavLink>
               <span type="button" className="nav-item" onClick={handleLogout}>Logout</span>
-          </div>
+            </div>
           )}
         </div>
       </nav>
