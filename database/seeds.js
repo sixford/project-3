@@ -29,11 +29,14 @@ async function seedData() {
     )
 
     console.log(`${createdUsers.length} users created. And Cars data added`)
+
+    // Push users into following for admin for testing
     const admin = await User.findOne({ username: "admin" })
     console.log("FOUND ADMIN:", admin)
-
-    createdUsers.forEach(user => admin.following.push(user._id))
+    createdUsers.forEach(user => user.username !== 'admin' && admin.following.push(user._id))
     admin.save()
+
+
     // Deletet, Create comments, adding owners 
     const deletedComments = await Comment.deleteMany()
     console.log(`${deletedComments.deletedCount} comments deleted`)

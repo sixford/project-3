@@ -16,7 +16,7 @@ export default function HomeFeed() {
     function handleClick(e) {
         // for now you must click the image to load the single post page
         const _id = e.target.id
-        navigate(`/${_id}`)
+        navigate(`/posts/${_id}`)
 
     }
     // call homefeed endpoint for post data
@@ -25,6 +25,7 @@ export default function HomeFeed() {
             try {
                 const data = await axios.get('/api/homefeed', args)
                 setPostData(data.data)
+                console.log(data.data)
             } catch (error) {
                 console.log(error)
             }
