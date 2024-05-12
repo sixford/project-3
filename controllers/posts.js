@@ -39,11 +39,14 @@ export const createPost = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const { postId } = req.params
-    console.log(req.params)
 
     const foundPost = await Post.findById(postId).populate('owner')
-
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
+
+    // Check if following
+    if (req.currentUser.following.includes(foundPost.owner._id)) {
+      return res.json({ ...foundPost, followed: true })
+    }
     return res.json(foundPost)
   } catch (error) {
     sendError(error, res)

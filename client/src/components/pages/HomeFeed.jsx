@@ -25,6 +25,7 @@ export default function HomeFeed() {
             try {
                 const data = await axios.get('/api/homefeed', args)
                 setPostData(data.data)
+                console.log(data.data)
             } catch (error) {
                 console.log(error)
             }
