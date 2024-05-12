@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Card, Container, Button } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
 
 export default function SinglePost() {
@@ -14,7 +14,7 @@ export default function SinglePost() {
 
     const args = { headers: { authorization: getToken() } }
 
-    
+
     async function handleFollow(e) {
         try {
             await axios.post('/api/follow', { 'toFollow': post.owner._id }, args)
@@ -58,7 +58,7 @@ export default function SinglePost() {
             {post ?
                 <Card className='single-post'>
                     <Card.Header className="d-flex justify-content-between" >
-                        {post.owner.username}
+                        <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
                         <div className="follow-and-like">
                             <Button onClick={handleFollow} id='follow-button'>{following ? 'Unfollow' : 'Follow'}</Button>
                             <Button onClick={handleLike}>{liked ? 'Unlike' : 'Like'}</Button>

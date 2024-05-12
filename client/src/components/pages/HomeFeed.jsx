@@ -16,7 +16,7 @@ export default function HomeFeed() {
     function handleClick(e) {
         // for now you must click the image to load the single post page
         const _id = e.target.id
-        navigate(`/${_id}`)
+        navigate(`/posts/${_id}`)
 
     }
     // call homefeed endpoint for post data
