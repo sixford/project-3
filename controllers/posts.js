@@ -41,7 +41,7 @@ export const getPost = async (req, res) => {
     const { postId } = req.params
     console.log(req.params)
 
-    const foundPost = await Post.findById(postId)
+    const foundPost = await Post.findById(postId).populate('owner')
 
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
     return res.json(foundPost)

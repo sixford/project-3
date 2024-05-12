@@ -10,7 +10,6 @@ export default function HomeFeed() {
     const args = { headers: { authorization: getToken() } }
 
     const [postData, setPostData] = useState()
-    const [postId, setPostId] = useState()
 
     const navigate = useNavigate()
 
@@ -44,8 +43,8 @@ export default function HomeFeed() {
                     return (
                         // Generate card for each post
                         <Col xs={12} sm={6} m={4} lg={4} xl={3} key={_id} >
-                            <Card style={{ width: "20rem", cursor: "pointer" }} onClick={handleClick}>
-                                <Card.Img src={image} alt={title} id={_id} />
+                            <Card style={{ width: "20rem", cursor: "pointer" }} >
+                                <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
                                 <Card.Body>
                                     <Card.Title>{title}</Card.Title>
                                     <Card.Text>{content}</Card.Text>
