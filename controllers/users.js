@@ -169,7 +169,6 @@ export const handleFollow = async (req, res) => {
     follow.save()
 
     // return a response
-    console.log(currentUser)
     return res.sendStatus(204)
 
   } catch (error) {

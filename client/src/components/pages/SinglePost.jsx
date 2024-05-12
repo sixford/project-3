@@ -10,10 +10,11 @@ export default function SinglePost() {
     const [post, setPost] = useState()
     const { postId } = useParams()
     const [following, setFollowing] = useState()
+    const [liked, setLiked] = useState()
 
     const args = { headers: { authorization: getToken() } }
 
-
+    
     async function handleFollow(e) {
         try {
             await axios.post('/api/follow', { 'toFollow': post.owner._id }, args)
@@ -24,7 +25,14 @@ export default function SinglePost() {
         }
     }
 
-
+    async function handleLike(e) {
+        try {
+            await axios.post('/api/like', { 'postId': post._id }, args)
+            liked ? setLiked(false) : setLiked(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     useEffect(() => {
@@ -32,14 +40,14 @@ export default function SinglePost() {
             try {
                 const { data } = await axios.get(`/api/posts/${postId}`, args)
                 setPost(data._doc)
+                // Back end checks if following or liked and alters the Follow and Like buttons inner text accordingly
                 data.followed ? setFollowing(true) : setFollowing(false)
+                data.liked ? setLiked(true) : setLiked(false)
                 console.log("Post: ", data)
             } catch (error) {
                 console.log(error)
             }
         }
-
-        //const checkFollow = post.owner.username
 
         getPost()
     }, [])
@@ -53,7 +61,7 @@ export default function SinglePost() {
                         {post.owner.username}
                         <div className="follow-and-like">
                             <Button onClick={handleFollow} id='follow-button'>{following ? 'Unfollow' : 'Follow'}</Button>
-                            <Button>Like</Button>
+                            <Button onClick={handleLike}>{liked ? 'Unlike' : 'Like'}</Button>
                         </div>
                     </Card.Header> {/* On click should navigate to Owner's page*/}
                     <Card.Img src={post.image} />

@@ -40,12 +40,16 @@ export const getPost = async (req, res) => {
   try {
     const { postId } = req.params
 
-    const foundPost = await Post.findById(postId).populate('owner')
+    let foundPost = await Post.findById(postId).populate('owner')
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
 
     // Check if following
     if (req.currentUser.following.includes(foundPost.owner._id)) {
-      return res.json({ ...foundPost, followed: true })
+      foundPost = { ...foundPost, followed: true }
+    }
+    // Check if post is liked by current user
+    if (foundPost._doc.likes.includes(req.currentUser._id)) {
+      foundPost = { ...foundPost, liked: true }
     }
     return res.json(foundPost)
   } catch (error) {
@@ -112,7 +116,7 @@ export const handleLike = async (req, res) => {
     postToLike.save()
 
     // respond with updated user
-    return res.json(currentUser)
+    return res.sendStatus(204)
 
   } catch (error) {
     sendError(error, res)
