@@ -15,26 +15,28 @@ export default function Profile() {
   const headers = { headers: { authorization: getToken() } }
 
 
-  // Effects
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        // Make API call to fetch user data using axios
-        const { data } = await axios.get('/api/profile', headers)
-        setUser(data)
-        console.log('User data:', data)
-        // Include secureRoute/Bearer token/Authorization
+  //! Ive moved this function outside of the useEffect so i can call it to render the page on addPost -viv
+  async function fetchUserData() {
+    try {
+      // Make API call to fetch user data using axios
+      const { data } = await axios.get('/api/profile', headers)
+      setUser(data)
+      // console.log('User data:', data)
+      // Include secureRoute/Bearer token/Authorization
 
 
-        // Assuming user.POST contains user's posts
-        const userPosts = data.posts || []
-        setPosts(userPosts)
-        console.log('User posts:', userPosts)
-      } catch (error) {
-        console.error('Error fetching user data:', error.message)
-      }
+      // Assuming user.POST contains user's posts
+      const userPosts = data.posts || []
+      setPosts(userPosts)
+      // console.log('User posts:', userPosts)
+    } catch (error) {
+      console.error('Error fetching user data:', error.message)
     }
+  }
 
+  // Effects
+  //! useEffect is still calling the function -viv
+  useEffect(() => {
     fetchUserData()
   }, [])
 
@@ -43,7 +45,7 @@ export default function Profile() {
     return <div>Loading...</div>
   }
 
-  console.log('Rendering profile component with user:', user)
+  // console.log('Rendering profile component with user:', user)
   // (api/profile)
   //Make API call to send me back appropriate user.
   // user.POST
@@ -80,6 +82,9 @@ export default function Profile() {
           </Nav>
           <div className="mt-3">
             <h3>User Posts</h3>
+              {/* Added this to help with creating new post-viv */}
+              {/* //!Calling it down here so we render the page when a new post is added -viv */}
+              <AddPost fetchPosts={fetchUserData}/>
             <Row>
               {posts.map((post, index) => (
                 <Col key={index} md={4} className="mb-3">
@@ -94,8 +99,6 @@ export default function Profile() {
               ))}
             </Row>
           </div>
-          {/* Added this to help with creading new post-viv */}
-          <AddPost/>
         </Col>
       </Row>
     </Container>

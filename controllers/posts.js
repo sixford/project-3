@@ -1,7 +1,7 @@
 import Post from '../models/Post.js'
 import { Error } from 'mongoose'
 //! import error handlers here
-import { sendError, sendUnauthorized } from '../lib/common.js'
+import { sendError } from '../lib/common.js'
 
 //Get All Posts
 // export const getPosts = async (req, res) => {
@@ -27,11 +27,12 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
   try {
     req.body.owner = req.currentUser._id
-    // console.log(req.body)
     const createdPost = await Post.create(req.body)
     return res.status(201).json(createdPost)
   } catch (error) {
     console.log(error)
+    //added this line -viv
+    res.status(400).json({ message: 'Validation failed', errors: error.errors });
   }
 }
 
