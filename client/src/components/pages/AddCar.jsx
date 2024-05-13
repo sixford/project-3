@@ -9,9 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 export default function AddCar({ fetchUserData, currentUser }) {
-
     //State
-
     const [formData, setFormData] = useState({
         make: '',
         model: '',
@@ -19,7 +17,6 @@ export default function AddCar({ fetchUserData, currentUser }) {
         mileage: '',
         year: ''
     })
-
     const [show, setShow] = useState(false)
     const [error, setError] = useState('')
     const params = useParams()

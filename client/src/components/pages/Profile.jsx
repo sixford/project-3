@@ -4,6 +4,8 @@ import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
+import UpdatePost from './UpdatePost.jsx'
+
 import CarsOwned from './CarsOwned.jsx'
 
 
@@ -34,7 +36,7 @@ export default function Profile() {
       setLikes(data.likes || [])
       setFollows(data.following || [])
       setCars(data.cars)
-      console.log(data)
+      // console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
     }
@@ -84,21 +86,15 @@ export default function Profile() {
                 <Row>
                   {posts.map((post, index) => (
                     <Col key={index} md={4} className="mb-3">
-                      <Button 
-                        as={Link} 
-                        to={`/posts/${post._id}`} 
-                        variant="light" 
-                        className="p-0 border-0 text-left"
-                        style={{ width: '100%', backgroundColor: 'transparent' }}
-                      >
-                        <Card>
-                          <Card.Img variant="top" src={post.image} />
-                          <Card.Body>
-                            <Card.Title>{post.title}</Card.Title>
-                            <Card.Text>{post.content}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      </Button>
+                      <Card>
+                        <Card.Img variant="top" src={post.image} />
+                        <Card.Body>
+                          <Card.Title>{post.title}</Card.Title>
+                          <Card.Text>{post.content}</Card.Text>
+                          <UpdatePost id={post._id} reloadData={fetchUserData}/>
+                          <Button type="submit" variant="danger" onClick={() => handleTabChange('likes')} >Delete</Button>
+                        </Card.Body>
+                      </Card>
                     </Col>
                   ))}
                 </Row>
