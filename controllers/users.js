@@ -162,7 +162,6 @@ export const handleFollow = async (req, res) => {
       // If a new follower: push into eachother's following/followers arrays
       currentUser.following.push(follow._id)
       follow.followers.push(currentUser._id)
-
     }
     // save the documents
     currentUser.save()
