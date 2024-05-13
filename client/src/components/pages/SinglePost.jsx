@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { Card, Container, Button } from "react-bootstrap"
 import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
+// import jwt from 'jsonwebtoken'
+// import 'dotenv/config'
 
 export default function SinglePost() {
 
@@ -11,6 +13,7 @@ export default function SinglePost() {
     const { postId } = useParams()
     const [following, setFollowing] = useState()
     const [liked, setLiked] = useState()
+    const [user, setUser] = useState()
 
     const args = { headers: { authorization: getToken() } }
 
@@ -19,7 +22,6 @@ export default function SinglePost() {
         try {
             await axios.post('/api/follow', { 'toFollow': post.owner._id }, args)
             following ? setFollowing(false) : setFollowing(true)
-
         } catch (error) {
             console.log(error)
         }
@@ -40,16 +42,26 @@ export default function SinglePost() {
             try {
                 const { data } = await axios.get(`/api/posts/${postId}`, args)
                 setPost(data._doc)
-                // Back end checks if following or liked and alters the Follow and Like buttons inner text accordingly
-                data.followed ? setFollowing(true) : setFollowing(false)
-                data.liked ? setLiked(true) : setLiked(false)
-                console.log("Post: ", data)
+                setUser(data.currentUser)
+
+                console.log("Post: ", data._doc)
+
+                // Dynamically change like and follow buttons
+                data._doc.owner.followers.includes(data.currentUser) ? setFollowing(true) : setFollowing(false)
+                data._doc.likes.includes(data.currentUser) ? setLiked(true) : setLiked(false)
+
             } catch (error) {
                 console.log(error)
             }
         }
 
         getPost()
+        // const token = getToken()
+        // console.log(token)
+        // const payload = jwt.verify(token, 'project3kane')
+        // setUser(payload.sub)
+        // console.log(user)
+
     }, [])
 
 
@@ -60,8 +72,8 @@ export default function SinglePost() {
                     <Card.Header className="d-flex justify-content-between" >
                         <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
                         <div className="follow-and-like">
-                            <Button onClick={handleFollow} id='follow-button'>{following ? 'Unfollow' : 'Follow'}</Button>
-                            <Button onClick={handleLike}>{liked ? 'Unlike' : 'Like'}</Button>
+                            <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
+                            <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
                         </div>
                     </Card.Header> {/* On click should navigate to Owner's page*/}
                     <Card.Img src={post.image} />
@@ -71,7 +83,7 @@ export default function SinglePost() {
 
                     </Card.Body>
                 </Card >
-                : ""
+                : "loading"
             }
         </Container >
     )
