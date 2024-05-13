@@ -8,6 +8,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+//Custom Components
+import ImageUpload from '../elements/ImageUpload.jsx';
+
+
 export default function AddCar({ fetchUserData, currentUser }) {
     //State
     const [formData, setFormData] = useState({
@@ -81,7 +85,7 @@ export default function AddCar({ fetchUserData, currentUser }) {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="model">
+                        <Form.Group className="mb-3 text-light" controlId="model">
                             <Form.Label>Model</Form.Label>
                             <Form.Control
                                 type="text"
@@ -92,16 +96,7 @@ export default function AddCar({ fetchUserData, currentUser }) {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId="image">
-                            <Form.Label>Image</Form.Label>
-                            <Form.Control
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
+                        <ImageUpload formData={formData} setFormData={setFormData}/>
                         <Form.Group className="mb-3" controlId="mileage">
                             <Form.Label>Mileage</Form.Label>
                             <Form.Control

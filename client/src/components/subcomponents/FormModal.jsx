@@ -1,8 +1,8 @@
+//Bootstrap Component
+import {Button, Form, Modal} from 'react-bootstrap';
 
-import { useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+//Custom Components
+import ImageUpload from '../elements/ImageUpload.jsx'
 
 export default function FormModal({ show, handleClose, handleSubmit, title, formData, setFormData, error, setError }) {
     const handleChange = (e) => {
@@ -41,16 +41,8 @@ export default function FormModal({ show, handleClose, handleSubmit, title, form
                             required
                         />
                     </Form.Group>
-                    <Form.Group controlId="image">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            onChange={handleChange}
-                            required
-                        />
-                    </Form.Group>
+                    {/* //!ADDED custom component here form elements/ -viv */}
+                    <ImageUpload formData={formData} setFormData={setFormData}/>
                     {error && <p className='text-danger text-center my-2'>{error.message}. Complete all fields.</p>}
                 </Modal.Body>
                 <Modal.Footer>
