@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
@@ -99,16 +100,31 @@ export default function Profile() {
                 </Row>
               </div>
             )}
-            {activeTab === 'likes' && (
-              <div>
-                <h3>Likes</h3>
-                <Row>
-                  {likes.map((like, index) => (
-                    <Col key={index} md={4} className="mb-3">
-                    </Col>
-                  ))}
-                </Row>
-              </div>
+  {activeTab === 'likes' && (
+        <div>
+          <h3>Likes</h3>
+          <Row>
+            {likes.map((like, index) => (
+              <Col key={index} md={4} className="mb-3">
+                <Button 
+                  as={Link} 
+                  to={`/posts/${like._id}`} 
+                  variant="light" 
+                  className="p-0 border-0 text-left"
+                  style={{ width: '100%', backgroundColor: 'transparent' }}
+                >
+                  <Card>
+                    <Card.Img variant="top" src={like.image} />
+                    <Card.Body>
+                      <Card.Title>{like.title}</Card.Title>
+                      <Card.Text>{like.content}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </div>
             )}
             {activeTab === 'follows' && (
               <div>
@@ -116,12 +132,13 @@ export default function Profile() {
                 <Row>
                   {follows.map((follow, index) => (
                     <Col key={index} md={4} className="mb-3">
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>{follow.username}</Card.Title>
-                          <Card.Text>Username {follow.username}</Card.Text>
-                        </Card.Body>
-                      </Card>
+                      <Link to={`/profile/${follow.id}`}>
+                        <Card>
+                          <Card.Body>
+                            <Card.Title>{follow.username}</Card.Title>
+                          </Card.Body>
+                        </Card>
+                      </Link>
                     </Col>
                   ))}
                 </Row>

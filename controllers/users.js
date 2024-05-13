@@ -43,11 +43,12 @@ export const getOtherProfile = async (req, res) => {
   try {
     const { userId } = req.params
 
-    let foundUser = await User.findById(userId).populate('posts')
+    let foundUser = await User.findById(userId).populate('posts').populate('likes')
     if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
 
     // Add logged in user id to check if following
     foundUser = { ...foundUser, userId: req.currentUser._id }
+    console.log(foundUser)
     return res.json(foundUser)
   } catch (error) {
     console.log(error)
@@ -166,8 +167,6 @@ export const handleFollow = async (req, res) => {
 
       currentUser.following = currentUser.following.filter(id => !id.equals(follow._id))
 
-      // follow.followers.splice(follow.followers.findIndex((element) => element === currentUser._id), 1)
-      // currentUser.following.splice(currentUser.following.findIndex((element) => element === req.body.toFollow), 1)
     } else {
       // If a new follower: push into eachother's following/followers arrays
       currentUser.following.push(follow._id)

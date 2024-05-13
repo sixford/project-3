@@ -3,7 +3,7 @@ import AddCar from "./AddCar.jsx"
 
 import { Card, Container } from 'react-bootstrap'
 
-export default function CarsOwned({ fetchUserData, cars }) {
+export default function CarsOwned({ fetchUserData, cars, currentUser }) {
 
     return (
         <>
@@ -17,7 +17,7 @@ export default function CarsOwned({ fetchUserData, cars }) {
                             <Card.Text> Year: {car.year} | Mileage: {car.mileage}</Card.Text>
                         </Card.ImgOverlay>
                     </Card>))}
-                <AddCar fetchUserData={fetchUserData} />
+                <AddCar fetchUserData={fetchUserData} currentUser={currentUser} />
             </Container>
         </>
     )

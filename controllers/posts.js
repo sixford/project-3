@@ -26,6 +26,7 @@ export const getPosts = async (req, res) => {
 //Create Post ✅
 export const createPost = async (req, res) => {
   try {
+    
     req.body.owner = req.currentUser._id
     const createdPost = await Post.create(req.body)
     return res.status(201).json(createdPost)
@@ -41,12 +42,13 @@ export const getPost = async (req, res) => {
   try {
     const { postId } = req.params
 
-    let foundPost = await Post.findById(postId).populate('owner')
+    let foundPost = await Post.findById(postId).populate('owner').populate('comments').populate({ path: 'comments', populate: { path: 'owner' } })
+
     if (!foundPost) throw new Error.DocumentNotFoundError('Post Not Found')
 
     // return user id to check like and follow
     foundPost = { ...foundPost, currentUser: req.currentUser._id }
-    
+
     return res.json(foundPost)
   } catch (error) {
     sendError(error, res)
@@ -96,6 +98,7 @@ export const handleLike = async (req, res) => {
     // wants 'postId' property passed in req.body
     const postToLike = await Post.findById(req.body.postId)
 
+    console.log(currentUser)
     // If already liked:
     console.log(currentUser)
     if (postToLike.likes.includes(currentUser._id)) {

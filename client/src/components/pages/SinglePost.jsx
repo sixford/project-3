@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Card, Container, Button } from "react-bootstrap"
+import { Card, Container, Button, ListGroup, ListGroupItem } from "react-bootstrap"
 import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
 // import jwt from 'jsonwebtoken'
@@ -36,7 +36,6 @@ export default function SinglePost() {
         }
     }
 
-
     useEffect(() => {
         async function getPost() {
             try {
@@ -56,35 +55,49 @@ export default function SinglePost() {
         }
 
         getPost()
-        // const token = getToken()
-        // console.log(token)
-        // const payload = jwt.verify(token, 'project3kane')
-        // setUser(payload.sub)
-        // console.log(user)
+
 
     }, [])
 
 
     return (
-        <Container>
+        <>
             {post ?
-                <Card className='single-post'>
-                    <Card.Header className="d-flex justify-content-between" >
-                        <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
-                        <div className="follow-and-like">
-                            <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
-                            <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
-                        </div>
-                    </Card.Header> {/* On click should navigate to Owner's page*/}
-                    <Card.Img src={post.image} />
-                    <Card.Body>
-                        <Card.Title>{post.title}</Card.Title>
-                        <Card.Text>{post.content}</Card.Text>
+                <Container >
+                    <div className="d-flex justify-content-center">
+                        <Card className='single-post'>
+                            <Card.Header className="d-flex justify-content-between" >
+                                <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
+                                <div className="follow-and-like">
+                                    <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
+                                    <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
+                                </div>
+                            </Card.Header> {/* On click should navigate to Owner's page*/}
+                            <Card.Img src={post.image} />
+                            <Card.Body>
+                                <Card.Title>{post.title}</Card.Title>
+                                <Card.Text>{post.content}</Card.Text>
+                            </Card.Body>
+                        </Card >
+                        <Card className="single-post">
+                            <Card.Header>Comments</Card.Header>
+                            <ListGroup >
+                                {post.comments.map(comment => {
+                                    return <ListGroupItem key={comment._id}>
+                                        {comment.text} <br />
+                                        <div className="d-flex justify-content-between">
+                                            <small>{comment.owner.username}</small>
+                                            <small>{new Date(comment.updatedAt).toDateString()}</small>
+                                        </div>
 
-                    </Card.Body>
-                </Card >
+                                    </ListGroupItem>
+                                })}
+                            </ListGroup>
+                        </Card>
+                    </div>
+                </Container >
                 : "loading"
             }
-        </Container >
+        </>
     )
 }
