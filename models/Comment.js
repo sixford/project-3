@@ -9,4 +9,11 @@ const commentSchema = new mongoose.Schema(
         timestamps: true,
     }
 )
+
+commentSchema.virtual('popUser', {
+    ref: 'User',
+    localField: 'owner',
+    foreignField: '_id'
+})
+
 export default mongoose.model('Comment', commentSchema)
