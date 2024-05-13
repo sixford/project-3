@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   profilePic: String,
   followers: { type: [mongoose.ObjectId], ref: 'User' },
   following: { type: [mongoose.ObjectId], ref: 'User' },
-  likes: { type: [mongoose.ObjectId], ref: 'Post' },
+  // likes: { type: [mongoose.ObjectId], ref: 'Post' },
   cars: [carSchema],
 })
 
@@ -69,6 +69,12 @@ userSchema.virtual('comments', {
   ref: 'Comment',
   localField: '_id',
   foreignField: 'owner',
+})
+
+userSchema.virtual('likes', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'likes',
 })
 
 

@@ -10,7 +10,7 @@ import Post from '../models/Post.js'
 export const getProfile = async (req, res) => {
   try {
     console.log(req.currentUser._id)
-    const profile = await User.findById(req.currentUser._id).populate('posts')
+    const profile = await User.findById(req.currentUser._id).populate('posts').populate('following').populate('likes')
     return res.json(profile)
   } catch (error) {
     console.log(error)

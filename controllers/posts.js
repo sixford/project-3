@@ -32,7 +32,7 @@ export const createPost = async (req, res) => {
   } catch (error) {
     console.log(error)
     //added this line -viv
-    res.status(400).json({ message: 'Validation failed', errors: error.errors });
+    res.status(400).json({ message: 'Validation failed', errors: error.errors })
   }
 }
 
@@ -99,7 +99,8 @@ export const handleLike = async (req, res) => {
 
     console.log(currentUser)
     // If already liked:
-    if (currentUser.likes.includes(postToLike._id)) {
+    console.log(currentUser)
+    if (postToLike.likes.includes(currentUser._id)) {
       // Remove from likes for both
       currentUser.likes.splice(currentUser.likes.findIndex((id) => id === postToLike._id), 1)
       postToLike.likes.splice(postToLike.likes.findIndex((id) => id === currentUser._id), 1)
