@@ -25,14 +25,14 @@ export default function Profile() {
   // Fetch user data
   async function fetchUserData() {
     try {
-      const { data } = await axios.get('/api/profile', headers);
+      const { data } = await axios.get('/api/profile', headers)
       setUser(data);
 
       // Set user posts, likes, and follows
       setPosts(data.posts || [])
       setLikes(data.likes || [])
       setFollows(data.following || [])
-      console.log(data.following)
+      console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
     }
