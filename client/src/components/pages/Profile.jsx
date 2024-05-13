@@ -3,6 +3,8 @@ import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
+import UpdatePost from './UpdatePost.jsx'
+
 import CarsOwned from './CarsOwned.jsx'
 
 
@@ -16,9 +18,9 @@ export default function Profile() {
 
   const [cars, setCars] = useState([])
   // const [error, setError] = useState('')
-  
 
-  
+
+
   // Local Variables
   const headers = { headers: { authorization: getToken() } }
 
@@ -32,7 +34,8 @@ export default function Profile() {
       setPosts(data.posts || [])
       setLikes(data.likes || [])
       setFollows(data.following || [])
-      console.log(data)
+      setCars(data.cars)
+      // console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
     }
@@ -58,7 +61,7 @@ export default function Profile() {
         <Col md={3} className="border-right">
           <div className="sidebar">
             <h4>{user.username}</h4>
-              <CarsOwned fetchUserData={fetchUserData} cars={cars}/>
+            <CarsOwned fetchUserData={fetchUserData} cars={cars} />
             <p>Friends</p>
           </div>
         </Col>
@@ -87,6 +90,8 @@ export default function Profile() {
                         <Card.Body>
                           <Card.Title>{post.title}</Card.Title>
                           <Card.Text>{post.content}</Card.Text>
+                          <UpdatePost id={post._id} reloadData={fetchUserData}/>
+                          <Button type="submit" variant="danger" onClick={() => handleTabChange('likes')} >Delete</Button>
                         </Card.Body>
                       </Card>
                     </Col>
