@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { getToken } from '../../lib/auth.js'
+import { useParams } from 'react-router-dom';
 
 //Bootstrap Components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-export default function AddCar({ fetchUserData }) {
+export default function AddCar({ fetchUserData, currentUser }) {
 
     //State
 
@@ -18,10 +19,11 @@ export default function AddCar({ fetchUserData }) {
         mileage: '',
         year: ''
     })
-    
+
     const [show, setShow] = useState(false)
     const [error, setError] = useState('')
-
+    const params = useParams()
+    console.log(params)
     //*Modal
     const handleClose = () => {
         setShow(false)
@@ -34,7 +36,7 @@ export default function AddCar({ fetchUserData }) {
     //*Token 
     const headers = { headers: { authorization: getToken() } }
 
-    
+
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
         setError('')
@@ -48,7 +50,7 @@ export default function AddCar({ fetchUserData }) {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-                        //Remove res -viv
+            //Remove res -viv
             const res = await axios.post('/api/profile/cars', formData, headers)
             console.log(res)
             clearForm()
@@ -63,7 +65,7 @@ export default function AddCar({ fetchUserData }) {
 
     return (
         <>
-            <Button variant="primary"  className="my-3 px-1 py-1" onClick={handleShow}>Add a Car</Button>
+            {currentUser === params.userId && <Button variant="primary" className="my-3 px-1 py-1" onClick={handleShow}>Add a Car</Button>}
             <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a New Car</Modal.Title>
@@ -125,8 +127,8 @@ export default function AddCar({ fetchUserData }) {
                                 required
                             />
                         </Form.Group>
-                        {error && 
-                            <p className='text-danger text-center my-2'>{error.message}. Complete all fields.</p>   
+                        {error &&
+                            <p className='text-danger text-center my-2'>{error.message}. Complete all fields.</p>
                         }
                     </Modal.Body>
                     <Modal.Footer>

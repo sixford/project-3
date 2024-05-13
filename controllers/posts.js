@@ -26,6 +26,7 @@ export const getPosts = async (req, res) => {
 //Create Post ✅
 export const createPost = async (req, res) => {
   try {
+    
     req.body.owner = req.currentUser._id
     const createdPost = await Post.create(req.body)
     return res.status(201).json(createdPost)
