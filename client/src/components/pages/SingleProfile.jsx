@@ -8,6 +8,7 @@ export default function SingleProfile() {
 
     const [userData, setUserData] = useState()
     const [following, setFollowing] = useState()
+    const [user, setUser] = useState()
     const params = useParams()
 
     const args = { headers: { authorization: getToken() } }
@@ -28,7 +29,9 @@ export default function SingleProfile() {
         async function getData() {
             try {
                 const { data } = await axios.get(`/api/profile/${params.userId}`, args)
-                setUserData(data)
+                setUserData(data._doc)
+                data._doc.followers.includes(data.userId) ? setFollowing(true) : setFollowing(false)
+                setUser(data.userId)
                 console.log(data)
             } catch (error) {
                 console.log(error)

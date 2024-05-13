@@ -46,7 +46,8 @@ export const getOtherProfile = async (req, res) => {
     let foundUser = await User.findById(userId).populate('posts')
     if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
 
-
+    // Add logged in user id to check if following
+    foundUser = { ...foundUser, userId: req.currentUser._id }
     return res.json(foundUser)
   } catch (error) {
     console.log(error)
