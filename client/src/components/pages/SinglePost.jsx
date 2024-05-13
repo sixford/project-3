@@ -36,11 +36,6 @@ export default function SinglePost() {
         }
     }
 
-    function formatDate(date) {
-        const now = new Date()
-
-    }
-
     useEffect(() => {
         async function getPost() {
             try {
@@ -68,36 +63,38 @@ export default function SinglePost() {
     return (
         <>
             {post ?
-                <Container className="d-flex">
-                    <Card className='single-post'>
-                        <Card.Header className="d-flex justify-content-between" >
-                            <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
-                            <div className="follow-and-like">
-                                <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
-                                <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
-                            </div>
-                        </Card.Header> {/* On click should navigate to Owner's page*/}
-                        <Card.Img src={post.image} />
-                        <Card.Body>
-                            <Card.Title>{post.title}</Card.Title>
-                            <Card.Text>{post.content}</Card.Text>
-                        </Card.Body>
-                    </Card >
-                    <Card>
-                        <Card.Header>Comments</Card.Header>
-                        <ListGroup >
-                            {post.comments.map(comment => {
-                                return <ListGroupItem key={comment._id}>
-                                    {comment.text} <br />
-                                    <div className="d-flex justify-content-between">
-                                        <small>{comment.owner.username}</small>
-                                        <small>{new Date(comment.updatedAt).toDateString()}</small>
-                                    </div>
+                <Container >
+                    <div className="d-flex justify-content-center">
+                        <Card className='single-post'>
+                            <Card.Header className="d-flex justify-content-between" >
+                                <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
+                                <div className="follow-and-like">
+                                    <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
+                                    <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
+                                </div>
+                            </Card.Header> {/* On click should navigate to Owner's page*/}
+                            <Card.Img src={post.image} />
+                            <Card.Body>
+                                <Card.Title>{post.title}</Card.Title>
+                                <Card.Text>{post.content}</Card.Text>
+                            </Card.Body>
+                        </Card >
+                        <Card className="single-post">
+                            <Card.Header>Comments</Card.Header>
+                            <ListGroup >
+                                {post.comments.map(comment => {
+                                    return <ListGroupItem key={comment._id}>
+                                        {comment.text} <br />
+                                        <div className="d-flex justify-content-between">
+                                            <small>{comment.owner.username}</small>
+                                            <small>{new Date(comment.updatedAt).toDateString()}</small>
+                                        </div>
 
-                                </ListGroupItem>
-                            })}
-                        </ListGroup>
-                    </Card>
+                                    </ListGroupItem>
+                                })}
+                            </ListGroup>
+                        </Card>
+                    </div>
                 </Container >
                 : "loading"
             }
