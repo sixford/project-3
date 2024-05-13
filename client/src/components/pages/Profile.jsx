@@ -33,6 +33,7 @@ export default function Profile() {
       setPosts(data.posts || [])
       setLikes(data.likes || [])
       setFollows(data.following || [])
+      setCars(data.cars)
       console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
@@ -83,36 +84,51 @@ export default function Profile() {
                 <Row>
                   {posts.map((post, index) => (
                     <Col key={index} md={4} className="mb-3">
-                      <Card>
-                        <Card.Img variant="top" src={post.image} />
-                        <Card.Body>
-                          <Card.Title>{post.title}</Card.Title>
-                          <Card.Text>{post.content}</Card.Text>
-                        </Card.Body>
-                      </Card>
+                      <Button 
+                        as={Link} 
+                        to={`/posts/${post._id}`} 
+                        variant="light" 
+                        className="p-0 border-0 text-left"
+                        style={{ width: '100%', backgroundColor: 'transparent' }}
+                      >
+                        <Card>
+                          <Card.Img variant="top" src={post.image} />
+                          <Card.Body>
+                            <Card.Title>{post.title}</Card.Title>
+                            <Card.Text>{post.content}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </Button>
                     </Col>
                   ))}
                 </Row>
               </div>
             )}
-            {activeTab === 'likes' && (
-              <div>
-                <h3>Likes</h3>
-                <Row>
-                  {likes.map((like, index) => (
-                    <Col key={index} md={4} className="mb-3">
-                      <Link to={`/posts/${like._id}`}>
-                        <Card>
-                          <Card.Body>
-                            <Card.Title>{like.title}</Card.Title>
-                            <Card.Text>{like.content}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      </Link>
-                    </Col>
-                  ))}
-                </Row>
-              </div>
+  {activeTab === 'likes' && (
+        <div>
+          <h3>Likes</h3>
+          <Row>
+            {likes.map((like, index) => (
+              <Col key={index} md={4} className="mb-3">
+                <Button 
+                  as={Link} 
+                  to={`/posts/${like._id}`} 
+                  variant="light" 
+                  className="p-0 border-0 text-left"
+                  style={{ width: '100%', backgroundColor: 'transparent' }}
+                >
+                  <Card>
+                    <Card.Img variant="top" src={like.image} />
+                    <Card.Body>
+                      <Card.Title>{like.title}</Card.Title>
+                      <Card.Text>{like.content}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </div>
             )}
             {activeTab === 'follows' && (
               <div>
