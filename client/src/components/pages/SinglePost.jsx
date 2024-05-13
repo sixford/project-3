@@ -44,7 +44,7 @@ export default function SinglePost() {
                 setPost(data._doc)
                 setUser(data.currentUser)
 
-                console.log("Post: ", data._doc)
+                console.log("Post: ", data)
 
                 // Dynamically change like and follow buttons
                 data._doc.owner.followers.includes(data.currentUser) ? setFollowing(true) : setFollowing(false)
