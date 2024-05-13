@@ -3,14 +3,18 @@ import { Container, Row, Col, Nav, Card} from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
-import AddCar from './AddCar.jsx'
+import CarsOwned from './CarsOwned.jsx'
+
 
 export default function Profile() {
   // State
   const [user, setUser] = useState(null)
   const [posts, setPosts] = useState([])
+  const [cars, setCars] = useState([])
   // const [error, setError] = useState('')
+  
 
+  
   // Local Variables
 
   const headers = { headers: { authorization: getToken() } }
@@ -25,10 +29,11 @@ export default function Profile() {
       console.log('User data:', data)
       // Include secureRoute/Bearer token/Authorization
 
-
       // Assuming user.POST contains user's posts
       const userPosts = data.posts || []
       setPosts(userPosts)
+
+      setCars(data.cars)
       // console.log('User posts:', userPosts)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
@@ -65,11 +70,7 @@ export default function Profile() {
         <Col md={3} className="border-right">
           <div className="sidebar">
             <h4>{user.username}</h4>
-            {/* adding ability to addCars here -viv */}
-            <p>Cars Owned</p>
-            <div>
-              <AddCar fetchUserData={fetchUserData}/>
-            </div>
+              <CarsOwned fetchUserData={fetchUserData} cars={cars}/>
             <p>Friends</p>
           </div>
         </Col>

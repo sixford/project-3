@@ -2,13 +2,27 @@ import { useState } from 'react';
 import axios from 'axios';
 import { getToken } from '../../lib/auth.js'
 
+//Bootstrap Components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 export default function AddCar({ fetchUserData }) {
-    //*Modal variables
+
+    //State
+
+    const [formData, setFormData] = useState({
+        make: '',
+        model: '',
+        image: '',
+        mileage: '',
+        year: ''
+    })
+    
     const [show, setShow] = useState(false)
+    const [error, setError] = useState('')
+
+    //*Modal
     const handleClose = () => {
         setShow(false)
         clearForm()
@@ -17,43 +31,29 @@ export default function AddCar({ fetchUserData }) {
         setShow(true)
     }
 
-    
-    //*Token Variable
+    //*Token 
     const headers = { headers: { authorization: getToken() } }
+
     
-    //Form Variables
-    const [formData, setFormData] = useState({
-        title: '',
-        content: '',
-        image: null,
-    })
-
-    function clearForm() {
-        setFormData({ title: '', content: '', image: null })
-    }
-
-    //Error Variable
-    const [error, setError] = useState('')
-
-
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
         setError('')
     }
 
+
+    function clearForm() {
+        setFormData({ title: '', content: '', image: null })
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            const res = await axios.post('/api/posts/', formData, headers)
+                        //Remove res -viv
+            const res = await axios.post('/api/profile/cars', formData, headers)
             console.log(res)
-            //clear out input fields
-            // setFormData({ title: '', content: '', image: null })
             clearForm()
-            //close modal
             handleClose()
-            //update user posts list
             fetchUserData()
-
         } catch (error) {
             setError(error.response.data)
             console.log(error.response.data.message)
@@ -63,34 +63,33 @@ export default function AddCar({ fetchUserData }) {
 
     return (
         <>
-            <Button variant="primary"  className="my-3 px-4 py-2" onClick={handleShow}>Add a Car</Button>
+            <Button variant="primary"  className="my-3 px-1 py-1" onClick={handleShow}>Add a Car</Button>
             <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a New Post</Modal.Title>
+                    <Modal.Title>Add a New Car</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={handleSubmit}>
                     <Modal.Body>
-                        <Form.Group className="mb-3" controlId="title">
-                            <Form.Label>Title</Form.Label>
+                        <Form.Group className="mb-3" controlId="make">
+                            <Form.Label>Make</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Add a title to your post"
-                                name='title'
+                                placeholder="Make of Car"
+                                name='make'
                                 onChange={handleChange}
-                                value={formData.title}
+                                value={formData.make}
                                 autoFocus
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="content">
-                            <Form.Label>Content</Form.Label>
+                        <Form.Group className="mb-3" controlId="model">
+                            <Form.Label>Model</Form.Label>
                             <Form.Control
-                                as="textarea"
-                                rows={2}
-                                name='content'
+                                type="text"
+                                placeholder="Model of Car"
+                                name='model'
                                 onChange={handleChange}
-                                value={formData.content}
-                                placeholder="Share something about this post "
+                                value={formData.model}
                                 required
                             />
                         </Form.Group>
@@ -104,6 +103,28 @@ export default function AddCar({ fetchUserData }) {
                                 required
                             />
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="mileage">
+                            <Form.Label>Mileage</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Mileage of Car"
+                                name='mileage'
+                                onChange={handleChange}
+                                value={formData.mileage}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="year">
+                            <Form.Label>Year</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Year Purchased"
+                                name='year'
+                                onChange={handleChange}
+                                value={formData.year}
+                                required
+                            />
+                        </Form.Group>
                         {error && 
                             <p className='text-danger text-center my-2'>{error.message}. Complete all fields.</p>   
                         }
@@ -113,7 +134,7 @@ export default function AddCar({ fetchUserData }) {
                             Cancel
                         </Button>
                         <Button variant="primary" type="submit" onClick={handleSubmit}>
-                            Create Post
+                            Add Car
                         </Button>
                     </Modal.Footer>
                 </Form>
