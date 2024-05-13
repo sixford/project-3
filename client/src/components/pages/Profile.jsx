@@ -3,7 +3,8 @@ import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
-import AddCar from './AddCar.jsx'
+import CarsOwned from './CarsOwned.jsx'
+
 
 export default function Profile() {
   // State
@@ -13,6 +14,11 @@ export default function Profile() {
   const [follows, setFollows] = useState([])
   const [activeTab, setActiveTab] = useState('posts') // State to track active tab
 
+  const [cars, setCars] = useState([])
+  // const [error, setError] = useState('')
+  
+
+  
   // Local Variables
   const headers = { headers: { authorization: getToken() } }
 
@@ -52,10 +58,7 @@ export default function Profile() {
         <Col md={3} className="border-right">
           <div className="sidebar">
             <h4>{user.username}</h4>
-            <p>Cars Owned</p>
-            <div>
-              <AddCar fetchUserData={fetchUserData} />
-            </div>
+              <CarsOwned fetchUserData={fetchUserData} cars={cars}/>
             <p>Friends</p>
           </div>
         </Col>

@@ -9,53 +9,49 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 export default function AddPost({ fetchUserData }) {
-    //*Modal variables
-    const [show, setShow] = useState(false)
-    const handleClose = () => {
-        setShow(false)
-        clearForm()
-    }
-    const handleShow = () => {
-        setShow(true)
-    }
 
-    
-    //*Token Variable
-    const headers = { headers: { authorization: getToken() } }
-    
-    //Form Variables
+    //State
     const [formData, setFormData] = useState({
         title: '',
         content: '',
         image: null,
     })
-
-    function clearForm() {
-        setFormData({ title: '', content: '', image: null })
-    }
-
-    //Error Variable
+    const [show, setShow] = useState(false)
     const [error, setError] = useState('')
 
+    //*Modal
+    const handleClose = () => {
+        setShow(false)
+        clearForm()
+    }
 
+    const handleShow = () => {
+        setShow(true)
+    }
+
+    //*Token Variable
+    const headers = { headers: { authorization: getToken() } }
+
+    
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
         setError('')
     }
 
+
+    function clearForm() {
+        setFormData({ title: '', content: '', image: null })
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
         try {
+            //Remove res -viv
             const res = await axios.post('/api/posts/', formData, headers)
             console.log(res)
-            //clear out input fields
-            // setFormData({ title: '', content: '', image: null })
             clearForm()
-            //close modal
             handleClose()
-            //update user posts list
             fetchUserData()
-
         } catch (error) {
             setError(error.response.data)
             console.log(error.response.data.message)

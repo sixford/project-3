@@ -4,8 +4,7 @@ import { Error } from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config.js'
-import { json } from 'express'
-import mongoose from 'mongoose'
+import Post from '../models/Post.js'
 
 //controller to view  user profile ✅
 export const getProfile = async (req, res) => {
@@ -34,7 +33,6 @@ export const deleteProfile = async (req, res) => {
   try {
     console.log('Hit DELETE endpoint')
     // console.log(req)
-    //*requires req.params i think?
   } catch (error) {
     console.log(error)
   }
@@ -44,9 +42,12 @@ export const deleteProfile = async (req, res) => {
 export const getOtherProfile = async (req, res) => {
   try {
     const { userId } = req.params
-    //Was attempting to populate the cars on line below
-    const foundUser = await User.findById(userId).populate('cars')
+
+    let foundUser = await User.findById(userId).populate('posts')
     if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
+
+    // Add logged in user id to check if following
+    foundUser = { ...foundUser, userId: req.currentUser._id }
     return res.json(foundUser)
   } catch (error) {
     console.log(error)
@@ -127,9 +128,14 @@ export const getHomeFeed = async (req, res) => {
     // Get following list, find each user and populate posts, appending posts to  array
     const following = req.currentUser.following
     let posts = []
-    for (let i = 0; i < following.length; i++) {
-      const followingWithPosts = await User.findById(following[i]).populate('posts')
-      posts.push(...followingWithPosts.posts)
+
+    if (following.length === 0) {
+      posts = await Post.find({})
+    } else {
+      for (let i = 0; i < following.length; i++) {
+        const followingWithPosts = await User.findById(following[i]).populate('posts')
+        posts.push(...followingWithPosts.posts)
+      }
     }
     // Return array of all posts of users followed
     return res.json(posts)
@@ -142,7 +148,6 @@ export const getHomeFeed = async (req, res) => {
 export const handleFollow = async (req, res) => {
   try {
 
-
     // Disallow following yourself -> this needs an error message handler in sendError
     if (req.body.toFollow == req.currentUser._id) throw new Error(`You cant follow yourself User ${req.currentUser._id}`)
 
@@ -152,17 +157,21 @@ export const handleFollow = async (req, res) => {
     if (!follow) throw new DocumentNotFoundError('Not a user Id')
 
     const currentUser = req.currentUser
-
     // If already following
+
     if (currentUser.following.includes(follow._id)) {
       // remove eachother from their respective followers/following arrays
-      follow.followers.splice(follow.followers.findIndex((element) => element === currentUser._id), 1)
-      currentUser.following.splice(currentUser.following.findIndex((element) => element === req.body.toFollow), 1)
+
+      follow.followers = follow.followers.filter(id => !id.equals(currentUser._id))
+
+      currentUser.following = currentUser.following.filter(id => !id.equals(follow._id))
+
+      // follow.followers.splice(follow.followers.findIndex((element) => element === currentUser._id), 1)
+      // currentUser.following.splice(currentUser.following.findIndex((element) => element === req.body.toFollow), 1)
     } else {
       // If a new follower: push into eachother's following/followers arrays
       currentUser.following.push(follow._id)
       follow.followers.push(currentUser._id)
-
     }
     // save the documents
     currentUser.save()
