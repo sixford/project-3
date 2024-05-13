@@ -33,6 +33,7 @@ export default function Profile() {
       setPosts(data.posts || [])
       setLikes(data.likes || [])
       setFollows(data.following || [])
+      setCars(data.cars)
       console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
