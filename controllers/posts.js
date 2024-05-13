@@ -98,7 +98,7 @@ export const handleLike = async (req, res) => {
 
     // If already liked:
     console.log(currentUser)
-    if (currentUser.likes.includes(postToLike._id)) {
+    if (postToLike.likes.includes(currentUser._id)) {
       // Remove from likes for both
       currentUser.likes.splice(currentUser.likes.findIndex((id) => id === postToLike._id), 1)
       postToLike.likes.splice(postToLike.likes.findIndex((id) => id === currentUser._id), 1)
