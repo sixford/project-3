@@ -33,8 +33,10 @@ async function seedData() {
     // Push users into following for admin for testing
     const admin = await User.findOne({ username: "admin" })
     console.log("FOUND ADMIN:", admin)
-    createdUsers.forEach(user => user.username !== 'admin' && admin.following.push(user._id))
+    createdUsers.forEach(user => user.username !== 'admin' && admin.following.push(user._id) && user.followers.push(admin._id) && user.save())
+    // createdUsers.forEach(user => user.username !== 'admin' && user. )
     admin.save()
+
 
 
     // Deletet, Create comments, adding owners 
