@@ -2,13 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import { getToken } from '../../lib/auth.js'
 
-
-//Bootstrap Components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-export default function AddPost({ fetchUserData }) {
+export default function AddCar({ fetchUserData }) {
     //*Modal variables
     const [show, setShow] = useState(false)
     const handleClose = () => {
@@ -65,7 +63,7 @@ export default function AddPost({ fetchUserData }) {
 
     return (
         <>
-            <Button variant="primary"  className="my-3 px-4 py-2" onClick={handleShow}>Add a Post</Button>
+            <Button variant="primary"  className="my-3 px-4 py-2" onClick={handleShow}>Add a Car</Button>
             <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a New Post</Modal.Title>

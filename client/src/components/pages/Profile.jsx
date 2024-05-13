@@ -3,6 +3,7 @@ import { Container, Row, Col, Nav, Card} from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
+import AddCar from './AddCar.jsx'
 
 export default function Profile() {
   // State
@@ -21,7 +22,7 @@ export default function Profile() {
       // Make API call to fetch user data using axios
       const { data } = await axios.get('/api/profile', headers)
       setUser(data)
-      // console.log('User data:', data)
+      console.log('User data:', data)
       // Include secureRoute/Bearer token/Authorization
 
 
@@ -64,7 +65,11 @@ export default function Profile() {
         <Col md={3} className="border-right">
           <div className="sidebar">
             <h4>{user.username}</h4>
+            {/* adding ability to addCars here -viv */}
             <p>Cars Owned</p>
+            <div>
+              <AddCar fetchUserData={fetchUserData}/>
+            </div>
             <p>Friends</p>
           </div>
         </Col>
@@ -84,7 +89,7 @@ export default function Profile() {
             <h3>User Posts</h3>
               {/* Added this to help with creating new post-viv */}
               {/* //!Calling it down here so we render the page when a new post is added -viv */}
-              <AddPost fetchPosts={fetchUserData}/>
+              <AddPost fetchUserData={fetchUserData}/>
             <Row>
               {posts.map((post, index) => (
                 <Col key={index} md={4} className="mb-3">
