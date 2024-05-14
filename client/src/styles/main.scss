@@ -67,3 +67,21 @@ footer {
     width: 35%;
     margin: 1rem auto;
 }
+
+.home-feed-container {
+  background: linear-gradient(to right, red, blue); // Define your gradient colors
+}
+
+@keyframes movingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
