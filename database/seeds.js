@@ -7,6 +7,7 @@ import Post from '../models/Post.js'
 import postData from './data/posts.js'
 import commentData from './data/comments.js'
 import Comment from '../models/Comment.js'
+import { removeToken } from '../client/src/lib/auth.js'
 
 async function seedData() {
 

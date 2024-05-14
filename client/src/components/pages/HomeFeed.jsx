@@ -28,6 +28,7 @@ export default function HomeFeed() {
                 console.log(data.data)
             } catch (error) {
                 console.log(error)
+                navigate('/')
             }
         }
         getPostData()
@@ -44,11 +45,11 @@ export default function HomeFeed() {
                     return (
                         // Generate card for each post
                         <Col xs={12} sm={6} m={4} lg={4} xl={3} key={_id} >
-                            <Card className="home-feed-card" >
+                            <Card className="home-feed-card my-4" >
                                 <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
-                                <Card.Body >
+                                <Card.Body>
                                     <Card.Title>{title}</Card.Title>
-                                    <Card.Text >{content}</Card.Text>
+                                    <Card.Text>{content}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
