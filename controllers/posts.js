@@ -26,7 +26,7 @@ export const getPosts = async (req, res) => {
 //Create Post ✅
 export const createPost = async (req, res) => {
   try {
-    
+
     req.body.owner = req.currentUser._id
     const createdPost = await Post.create(req.body)
     return res.status(201).json(createdPost)
@@ -95,10 +95,10 @@ export const deletePost = async (req, res) => {
 export const handleLike = async (req, res) => {
   try {
     const currentUser = req.currentUser
+
     // wants 'postId' property passed in req.body
     const postToLike = await Post.findById(req.body.postId)
 
-    console.log(currentUser)
     // If already liked:
     console.log(currentUser)
     if (postToLike.likes.includes(currentUser._id)) {
