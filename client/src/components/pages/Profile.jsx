@@ -108,29 +108,31 @@ export default function Profile() {
                 <Row>
                   {posts.map((post, index) => (
                     <Col key={index} md={4} className="mb-3">
-                      <Card>
-                        <Card.Img variant="top" src={post.image} />
-                        <Card.Body>
-                          <Card.Title>{post.title}</Card.Title>
-                          <Card.Text>{post.content}</Card.Text>
-                          <UpdatePost id={post._id} reloadData={fetchUserData} />
-                          <Button variant="danger" onClick={handleShow}>Delete</Button>
-
-                          <Modal show={show} onHide={handleClose} animation={false}>
-                            <Modal.Header closeButton>
-                              <Modal.Title></Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
-                            <Modal.Footer>
-                              <Button variant="secondary" onClick={handleClose}>
-                                Close
-                              </Button>
-                              <Button variant="danger" id={post._id} onClick={deletePost}>
-                                Save Changes
-                              </Button>
-                            </Modal.Footer>
-                          </Modal>                        </Card.Body>
-                      </Card>
+                      <Link to={`/posts/${post._id}`} style={{ textDecoration: 'none' }}>
+                        <Card style={{ cursor: 'pointer' }}>
+                          <Card.Img variant="top" src={post.image} />
+                          <Card.Body>
+                            <Card.Title>{post.title}</Card.Title>
+                            <Card.Text>{post.content}</Card.Text>
+                            <UpdatePost id={post._id} reloadData={fetchUserData} />
+                            <Button variant="danger" onClick={handleShow}>Delete</Button>
+                            <Modal show={show} onHide={handleClose} animation={false}>
+                              <Modal.Header closeButton>
+                                <Modal.Title></Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+                              <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                  Close
+                                </Button>
+                                <Button variant="danger" id={post._id} onClick={deletePost}>
+                                  Save Changes
+                                </Button>
+                              </Modal.Footer>
+                            </Modal>
+                          </Card.Body>
+                        </Card>
+                      </Link>
                     </Col>
                   ))}
                 </Row>
