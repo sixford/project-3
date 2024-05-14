@@ -33,6 +33,12 @@ export default function Profile() {
   // Local Variables
   const headers = { headers: { authorization: getToken() } }
 
+
+  function clickProfile(e) {
+    navigate(`/profile/${e.target.id}`)
+    console.log(e.target)
+  }
+
   // Fetch user data
   async function fetchUserData() {
     try {
@@ -86,25 +92,26 @@ export default function Profile() {
   }
 
   return (
-    <Container className="mt-5" style={{ border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }}>
+    <Container className="profile-container" >
       <Row>
         <Col md={3} className="border-right">
           <div className="sidebar">
-            <h4>{user.username}</h4>
+            <h4 className='mt-2'>{user.username}</h4>
+            <img className="profile-pic" src={user.profilePic}></img>
             <CarsOwned fetchUserData={fetchUserData} cars={cars} />
             <p>Friends</p>
           </div>
         </Col>
         <Col md={9}>
-          <Nav variant="tabs" defaultActiveKey="/posts">
-            <Nav.Item>
-              <Button variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+          <Nav variant="tabs" defaultActiveKey="/posts" className='d-flex justify-content-end profile-nav'>
+            <Nav.Item >
+              <Button className='nav-item' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
             </Nav.Item>
-            <Nav.Item>
-              <Button variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
+            <Nav.Item >
+              <Button className='nav-item' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
             </Nav.Item>
-            <Nav.Item>
-              <Button variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
+            <Nav.Item >
+              <Button className='nav-item' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
             </Nav.Item>
           </Nav>
           <div className="mt-3">
@@ -173,14 +180,13 @@ export default function Profile() {
                 <h3>Follows</h3>
                 <Row>
                   {follows.map((follow, index) => (
-                    <Col key={index} md={4} className="mb-3">
-                      <Link to={`/profile/${follow.id}`}>
-                        <Card>
-                          <Card.Body>
-                            <Card.Title>{follow.username}</Card.Title>
-                          </Card.Body>
-                        </Card>
-                      </Link>
+                    <Col key={follow._id} md={4} className="mb-3">
+                      {/* <Link to={`/profile/${follow.id}`}> */}
+                      <Card className='user-card' onClick={clickProfile} id={follow._id}>
+                        <Card.Img className='w-25' src={follow.profilePic}></Card.Img>
+                        <Card.Text className='user-card-text' >{follow.username}</Card.Text>
+                      </Card>
+                      {/* ?</Link> */}
                     </Col>
                   ))}
                 </Row>
