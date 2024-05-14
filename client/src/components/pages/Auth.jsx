@@ -52,7 +52,7 @@ export default function Auth() {
     }
 
     return (
-      <div className="auth-container">
+      <div className="auth-container ">
       <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
           <div >
               <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px' />
@@ -92,7 +92,7 @@ export default function Auth() {
                         {error.email || error.username || error.message ||'Invalid details. Please please try again'}
                         </p>}
                     <div>
-                        <button type='button' className='btn btn-secondary m-4' onClick={switchStatus}>
+                        <button type='button' className='btn dynamic m-4' onClick={switchStatus}>
                             {isSignup ? 'Already have an account? Sign In' : 'New here? Create an Account '}
                         </button>
                     </div>
