@@ -142,12 +142,12 @@ nav {
 
 }
 
-.other-profile-nav {
+.profile-nav {
     justify-content: right;
-
+    padding-top: 1rem
 }
 
-.nav-item-other-profile {
+.nav-item {
     text-decoration: none;
 }
 
@@ -196,4 +196,26 @@ nav {
 
 .cars-owned-title {
     text-align: center;
+}
+
+.profile-container {
+    border: 1px solid #ccc;
+    border-Radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 3rem auto;
+
+}
+
+.user-card-text {
+    flex-grow: 1;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+.user-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer
 }

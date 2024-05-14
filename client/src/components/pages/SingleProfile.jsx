@@ -55,32 +55,32 @@ export default function SingleProfile() {
 
 
   return (
-    <Container>
+    <Container className={"profile-container"}>
       {userData ?
         <Row>
           <Col md={3} className="border-right">
             <div className="sidebar">
-              <h4 className="text-center">{userData.username}</h4>
+              <h4 className="text-center mt-2">{userData.username}</h4>
               <img className="profile-pic" src={userData.profilePic}></img>
               <CarsOwned fetchUserData={getData} cars={userData.cars} />
               <p>Friends</p>
             </div>
           </Col>
           <Col md={9}>
-            <Nav variant="tabs" defaultActiveKey="/posts" className='other-profile-nav d-flex justify-content-between'>
+            <Nav variant="tabs" defaultActiveKey="/posts" className='profile-nav d-flex justify-content-between'>
 
               <Nav.Item>
                 <button className='follow-button' onClick={handleFollow}>{following ? 'Following' : 'Follow'}</button>
               </Nav.Item>
               <div className="d-flex">
                 <Nav.Item >
-                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
                 </Nav.Item>
                 <Nav.Item>
-                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
+                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
                 </Nav.Item>
                 <Nav.Item>
-                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
+                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
                 </Nav.Item>
               </div>
 
