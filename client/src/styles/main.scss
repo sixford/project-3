@@ -14,6 +14,7 @@ nav {
     .home-logo {
         width: 45px;
         border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     .nav-item {
@@ -53,6 +54,44 @@ nav {
     }
 }
 
+.profile-container {
+    background: #E6E6E6;
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .btn {
+            font-size: .8em;
+            margin: 2px;
+            padding: 8px;
+        }
+
+    }
+}
+
+
+.auth-container {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn {
+        border: 1px solid rgba(87, 87, 87, 0.671);
+    }
+
+    .dynamic {
+        background-color: #dbc54e
+    }
+}
+
+
+
+
 .btn-teal {
     background-color: teal;
     border-color: teal;
@@ -73,29 +112,35 @@ nav {
 }
 
 .footer {
-  background-color: #f8f9fa; /* Set the background color of the footer */
-  padding: 20px 0; /* Add padding to the top and bottom of the footer */
+    background-color: #f8f9fa;
+    /* Set the background color of the footer */
+    padding: 20px 0;
+    /* Add padding to the top and bottom of the footer */
 }
 
 .footer-row {
-  justify-content: space-between; /* Evenly space the columns */
+    justify-content: space-between;
+    /* Evenly space the columns */
 }
 
 .footer-col {
-  text-align: center; /* Center-align the content within the column */
+    text-align: center;
+    /* Center-align the content within the column */
 }
 
 .footer-link {
-  text-decoration: none; /* Remove text decoration from the links */
-  color: #333; /* Set the color of the links */
+    text-decoration: none;
+    /* Remove text decoration from the links */
+    color: #333;
+    /* Set the color of the links */
 }
 
 .footer-link:hover {
-  color: white;
+    color: white;
 }
 
 .teal-text {
-  color: teal;
+    color: teal;
 }
 
 .single-post {
@@ -112,14 +157,7 @@ nav {
     cursor: pointer;
 }
 
-.auth-container {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 
 .home-feed-container {
@@ -171,8 +209,6 @@ nav {
     &:hover {
         background-color: white;
     }
-
-
 }
 
 .like-button-img {

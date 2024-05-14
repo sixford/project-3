@@ -127,8 +127,10 @@ export default function Profile() {
                         <Card.Body>
                           <Card.Title>{post.title}</Card.Title>
                           <Card.Text>{post.content}</Card.Text>
-                          <UpdatePost id={post._id} reloadData={fetchUserData} />
-                          <Button variant="danger" onClick={handleShow}>Delete</Button>
+                          <div className='btn-container '>
+                          <UpdatePost className="btn" id={post._id} reloadData={fetchUserData} />
+                          <Button className="btn delete" variant="danger" onClick={handleShow}>Delete</Button>
+                          </div>
                           <Modal show={show} onHide={handleClose} animation={false}>
                             <Modal.Header closeButton>
                               <Modal.Title></Modal.Title>

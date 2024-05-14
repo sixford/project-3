@@ -21,7 +21,6 @@ export default function HomeFeed() {
         // for now you must click the image to load the single post page
         const _id = e.target.id
         navigate(`/posts/${_id}`)
-
     }
     // call homefeed endpoint for post data
     useEffect(() => {
