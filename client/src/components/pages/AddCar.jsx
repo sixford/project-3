@@ -24,7 +24,6 @@ export default function AddCar({ fetchUserData, currentUser }) {
     const [show, setShow] = useState(false)
     const [error, setError] = useState('')
     const params = useParams()
-    console.log(params)
     //*Modal
     const handleClose = () => {
         setShow(false)

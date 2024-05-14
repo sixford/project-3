@@ -55,7 +55,7 @@ export default function UpdatePost({id, reloadData}) {
 
     return (
         <>
-            <Button id={id} variant="warning" className="my-3 px-4 py-2" onClick={handleShow}>
+            <Button id={id} variant="warning" onClick={handleShow}>
                 Update
             </Button>
             <FormModal
