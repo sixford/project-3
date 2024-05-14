@@ -7,7 +7,7 @@ export default function CarsOwned({ fetchUserData, cars, currentUser }) {
 
     return (
         <>
-            <Container className="mt-4">
+            <Container className="mt-4 cars-owned">
                 <h5 className="cars-owned-title">Cars Owned</h5>
                 {cars.map((car) => (
                     <Card key={car.make} className="mb-1" style={{ position: 'relative' }}>

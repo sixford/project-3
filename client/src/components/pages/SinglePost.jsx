@@ -64,7 +64,8 @@ export default function SinglePost() {
     return (
         <>
             {post ?
-                <Container >
+            <div className= "single-post-div d-flex flex-grow-1 justify-content-center align-items-center">
+                <Container className="single-post-container">
                     <div className="d-flex justify-content-center">
                         <Card className='single-post'>
                             <Card.Header className="d-flex justify-content-between single-card-header" >
@@ -97,6 +98,7 @@ export default function SinglePost() {
                         </Card>
                     </div>
                 </Container >
+            </div>
                 : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>
             }
         </>

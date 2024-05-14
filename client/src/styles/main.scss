@@ -1,3 +1,8 @@
+$background: radial-gradient(#e66465, #9198e5);
+$transparent: #00000048;
+$secondary: #dbc54e;
+
+
 body {
     height: 100vh;
 
@@ -19,17 +24,16 @@ nav {
 
     .nav-item {
         text-decoration: none;
-        color: white;
+        color: teal;
         margin-left: 1.2rem;
         padding-left: 10px;
-        border-left: 2px solid rgba(255, 255, 255, 0.753);
+        border-left: 2px solid rgba(0, 128, 128, 0.352);
         transition: transform 300ms;
     }
 
     .nav-item:hover {
-        transform: scale(1.5);
+        transform: scale(1);
         font-weight: bold;
-
     }
 }
 
@@ -54,20 +58,25 @@ nav {
     }
 }
 
-.profile-container {
-    background: #E6E6E6;
 
-    .btn-container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+.profile-page {
+    background: $background;
 
-        .btn {
-            font-size: .8em;
-            margin: 2px;
-            padding: 8px;
+    .profile-container {
+        background: $transparent;
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .btn {
+                font-size: .8em;
+                margin: 2px;
+                padding: 8px;
+            }
+
         }
-
     }
 }
 
@@ -75,21 +84,53 @@ nav {
 .auth-container {
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+    // background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+    background: $background;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .btn {
-        border: 1px solid rgba(87, 87, 87, 0.671);
-    }
+    .form-page {
 
-    .dynamic {
-        background-color: #dbc54e
+        background-color: $transparent;
+        border-radius: 15px;
+        padding: 5px 10px;
+
+        .btn {
+            border: 2px solid rgba(0, 0, 0, 0.258);
+        }
+
+        .dynamic {
+            background-color: #dbc54e
+        }
     }
 }
 
 
+.cars-owned {
+    text-align: center;
+
+    .add-car-btn {
+        background-color: #008080;
+    }
+}
+
+
+.single-post-div {
+    background: $background;
+
+    .single-post-container {
+        background: $transparent;
+        border-radius: 15px;
+        padding: 20px 0;
+
+        .single-post {
+            width: 35%;
+            margin: 1rem 0.25rem;
+        }
+    }
+
+}
 
 
 .btn-teal {
@@ -139,14 +180,24 @@ nav {
     color: white;
 }
 
+
 .teal-text {
     color: teal;
+    transition: transform 300ms;
 }
 
-.single-post {
-    width: 35%;
-    margin: 1rem 0.25rem;
+
+
+
+
+.teal-text:hover {
+    transform: scale(1);
+    font-weight: bold;
+    color: teal;
+    text-decoration: underline;
 }
+
+
 
 .home-feed-card {
     width: "20rem";
@@ -159,10 +210,28 @@ nav {
     cursor: pointer;
 }
 
+.add-post {
+    border: none;
+    background-color: teal;
+    transition: transform 300ms;
+}
 
 
+.add-post:hover {
+    background-color: teal;
+    transform: scale(1);
+    font-weight: bold;
+}
+
+.homefeed {
+    background: $background;
+}
 
 .home-feed-container {
+
+    background: $transparent;
+    border-radius: 15px;
+
     @media screen and (max-width: 992px) {
         padding: 0 7em;
     }
@@ -189,6 +258,8 @@ nav {
 
 .nav-item {
     text-decoration: none;
+    color: teal;
+    font-weight: bold;
 }
 
 .like-button {

@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col'
 
 export default function Footer() {
   return (
-    <footer className='footer' style={{ background: 'linear-gradient(to right, white, black)' }}>
+    <footer className='footer' style={{ background: '#E6E6E6' }}>
       <Container>
         <Row className='footer-row'>
           <Col className='footer-col'>

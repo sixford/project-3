@@ -46,7 +46,7 @@ export default function AddPost({ fetchUserData }) {
     
     return (
         <>
-            <Button variant="primary" className="my-3 px-4 py-2" onClick={handleShow}>
+            <Button variant="primary" className="my-3 px-4 py-2 add-post" onClick={handleShow}>
                 Add a Post
             </Button>
             <FormModal

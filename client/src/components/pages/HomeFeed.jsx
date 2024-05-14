@@ -38,14 +38,14 @@ export default function HomeFeed() {
     }, [])
 
     return (
-        <div
+        <div className="homefeed"
 
-            style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
+            // style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
         >
             <Container className="home-feed-container">
                 {postData ?
                     <>
-                        <h1 className="text-center" style={{ color: 'white', margin:'0.5rem auto' }}>Home Feed</h1>
+                        <h1 className="text-center text-light my-4">Home Feed</h1>
                         <Row className="g-4">
                             {postData.map(post => {
                                 // destructure vital data

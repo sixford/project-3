@@ -68,7 +68,7 @@ export default function AddCar({ fetchUserData, currentUser }) {
             {currentUser === params.userId && <Button variant="primary" className="my-3 px-1 py-1" onClick={handleShow}>Add a Car</Button>}
             <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a New Car</Modal.Title>
+                    <Modal.Title >Add a New Car</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -126,7 +126,7 @@ export default function AddCar({ fetchUserData, currentUser }) {
                         <Button variant="secondary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button variant="primary" type="submit" onClick={handleSubmit}>
+                        <Button variant="primary" type="submit" className='add-car-btn' onClick={handleSubmit}>
                             Add Car
                         </Button>
                     </Modal.Footer>
