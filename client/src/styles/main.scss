@@ -77,6 +77,10 @@ nav {
     /* Set the background color of the footer */
     padding: 20px 0;
     /* Add padding to the top and bottom of the footer */
+    background-color: #f8f9fa;
+    /* Set the background color of the footer */
+    padding: 20px 0;
+    /* Add padding to the top and bottom of the footer */
 }
 
 .footer-row {
@@ -227,6 +231,10 @@ nav {
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+}
+
+.home-feed-card-img:hover {
+    opacity: 0.5;;
 }
 
 .home-feed-card-img {
