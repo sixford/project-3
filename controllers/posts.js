@@ -108,7 +108,7 @@ export const handleLike = async (req, res) => {
     } else {
       // Add each object id into each likes array
       postToLike.likes.push(req.currentUser._id)
-      req.currentUser.likes.push(postToLike._id)
+      // req.currentUser.likes.push(postToLike._id)
     }
     // save documents
     currentUser.save()
