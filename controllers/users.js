@@ -134,7 +134,7 @@ export const getHomeFeed = async (req, res) => {
       posts = await Post.find({})
     } else {
       for (let i = 0; i < following.length; i++) {
-        const followingWithPosts = await User.findById(following[i]).populate('posts')
+        const followingWithPosts = await User.findById(following[i]).populate({ path: 'posts', populate: { path: 'owner' } })
         posts.push(...followingWithPosts.posts)
       }
     }
