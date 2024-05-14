@@ -54,14 +54,14 @@ nav {
 }
 
 .btn-teal {
-  background-color: teal;
-  border-color: teal;
-  color: white;
+    background-color: teal;
+    border-color: teal;
+    color: white;
 }
 
 .btn-teal:hover,
 .btn-teal:focus {
-    background-color: #008080; 
+    background-color: #008080;
     border-color: #008080;
     color: white;
 }
@@ -113,12 +113,12 @@ nav {
 }
 
 .auth-container {
-  width: 100%;
-  height: 100vh;
-  background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -140,4 +140,60 @@ nav {
     font-size: 1em;
     text-align: center;
 
+}
+
+.other-profile-nav {
+    justify-content: right;
+
+}
+
+.nav-item-other-profile {
+    text-decoration: none;
+}
+
+.like-button {
+    background-color: white;
+    border: none;
+    padding: 0 0.25rem;
+
+    &:hover {
+        background-color: white;
+    }
+
+}
+
+.follow-button {
+    padding: 0.25em;
+    background-color: white;
+    border: none;
+    font-style: italic;
+
+    &:hover {
+        background-color: white;
+    }
+
+
+}
+
+.like-button-img {
+    height: 20px;
+}
+
+.single-card-header {
+    padding-right: 0px
+}
+
+.profile-pic {
+    width: 50%;
+    border-radius: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cars-owned-title {
+    text-align: center;
 }
