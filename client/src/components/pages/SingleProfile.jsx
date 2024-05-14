@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { getToken } from "../../lib/auth";
 import { Container, Row, Col, Nav, Button, Card } from "react-bootstrap";
 import CarsOwned from './CarsOwned.jsx'
+// import AddPost from './AddPost.jsx'
 
 export default function SingleProfile() {
 

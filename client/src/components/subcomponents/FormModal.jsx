@@ -55,5 +55,5 @@ export default function FormModal({ show, handleClose, handleSubmit, title, form
                 </Modal.Footer>
             </Form>
         </Modal>
-    );
-};
+    )
+}
