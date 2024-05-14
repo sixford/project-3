@@ -101,23 +101,21 @@ footer {
 
 
 .home-feed-container {
-    //   background: linear-gradient(to right, red, blue); // Define your gradient colors
-    padding: 0 14rem
+    @media screen and (max-width: 992px) {
+        padding: 0 7em;
+    }
+
+    padding: 0 14em;
 }
 
-.dynamic-font-size {
-  font-size: 1em; 
-  // text-wrap: nowrap;
+.error {
+    color: red;
+    text-align: center;
+    margin: 4em
 }
 
-@media (max-width: 768px) {
-  .dynamic-font-size {
-      font-size: 0.75em;
-}
+.card-title {
+    font-size: 1em;
+    text-align: center;
 
-@media (max-width: 576px) {
-  .dynamic-font-size {
-      font-size: 0.5em; 
-  }
-}
 }

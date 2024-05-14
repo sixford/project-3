@@ -62,7 +62,7 @@ export default function Profile() {
 
   // Render
   if (!user) {
-    return <div>{error && <p style={{ color: 'red' }}>{error.response.data.message}</p> || <LoadingSpinner />} </div>
+    return <div className='d-flex justify-content-center '>{error && <p className='error'>{error.response.data.message}</p> || <LoadingSpinner />} </div>
   }
   // onClick
   const handleTabChange = (tab) => {

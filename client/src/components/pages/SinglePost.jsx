@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Card, Container, Button, ListGroup, ListGroupItem } from "react-bootstrap"
 import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
+import LoadingSpinner from "../subcomponents/LoadingSpinner.jsx"
 // import jwt from 'jsonwebtoken'
 // import 'dotenv/config'
 
@@ -14,6 +15,7 @@ export default function SinglePost() {
     const [following, setFollowing] = useState()
     const [liked, setLiked] = useState()
     const [user, setUser] = useState()
+    const [error, setError] = useState()
 
     const args = { headers: { authorization: getToken() } }
 
@@ -51,6 +53,7 @@ export default function SinglePost() {
 
             } catch (error) {
                 console.log(error)
+                setError(error)
             }
         }
 
@@ -96,7 +99,7 @@ export default function SinglePost() {
                         </Card>
                     </div>
                 </Container >
-                : "loading"
+                : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>
             }
         </>
     )
