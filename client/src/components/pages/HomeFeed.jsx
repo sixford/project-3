@@ -40,18 +40,18 @@ export default function HomeFeed() {
             style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
         >
             <Container className="home-feed-container">
-                <h1 className="text-center" style={{ color: 'white' }}>Home Feed - Recent posts from others you follow</h1>
+                <h1 className="text-center" style={{ color: 'white' }}>Home Feed</h1>
                 <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
                     {postData && postData.map(post => {
                         // destructure vital data
-                        const { image, title, content, _id } = post
+                        const { image, title, _id } = post
                         return (
                             // Generate card for each post
                             <Col key={_id}>
                                 <Card style={{ cursor: "pointer" }} >
                                     <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
                                     <Card.Body>
-                                        <Card.Title>{title}</Card.Title>
+                                        <Card.Title className="dynamic-font-size">{title}</Card.Title>
                                     </Card.Body>
                                 </Card>
                             </Col>

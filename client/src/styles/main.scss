@@ -53,6 +53,20 @@ nav {
     }
 }
 
+.btn-teal {
+  background-color: teal;
+  border-color: teal;
+  color: white;
+}
+
+.btn-teal:hover,
+.btn-teal:focus {
+    background-color: #008080; 
+    border-color: #008080;
+    color: white;
+}
+
+
 .form-page {
     max-width: 450px;
     margin: auto;
@@ -76,7 +90,34 @@ footer {
     cursor: pointer;
 }
 
+.auth-container {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .home-feed-container {
     //   background: linear-gradient(to right, red, blue); // Define your gradient colors
     padding: 0 14rem
+}
+
+.dynamic-font-size {
+  font-size: 1em; 
+  // text-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+  .dynamic-font-size {
+      font-size: 0.75em;
+}
+
+@media (max-width: 576px) {
+  .dynamic-font-size {
+      font-size: 0.5em; 
+  }
+}
 }
