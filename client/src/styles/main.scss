@@ -73,29 +73,35 @@ nav {
 }
 
 .footer {
-  background-color: #f8f9fa; /* Set the background color of the footer */
-  padding: 20px 0; /* Add padding to the top and bottom of the footer */
+    background-color: #f8f9fa;
+    /* Set the background color of the footer */
+    padding: 20px 0;
+    /* Add padding to the top and bottom of the footer */
 }
 
 .footer-row {
-  justify-content: space-between; /* Evenly space the columns */
+    justify-content: space-between;
+    /* Evenly space the columns */
 }
 
 .footer-col {
-  text-align: center; /* Center-align the content within the column */
+    text-align: center;
+    /* Center-align the content within the column */
 }
 
 .footer-link {
-  text-decoration: none; /* Remove text decoration from the links */
-  color: #333; /* Set the color of the links */
+    text-decoration: none;
+    /* Remove text decoration from the links */
+    color: #333;
+    /* Set the color of the links */
 }
 
 .footer-link:hover {
-  color: white;
+    color: white;
 }
 
 .teal-text {
-  color: teal;
+    color: teal;
 }
 
 .single-post {
@@ -105,7 +111,9 @@ nav {
 
 .home-feed-card {
     width: "20rem";
-    cursor: pointer
+    cursor: pointer;
+
+    &:hover {}
 }
 
 .profile-card-post {
@@ -170,6 +178,7 @@ nav {
 
     &:hover {
         background-color: white;
+
     }
 
 
@@ -217,5 +226,9 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer
+    cursor: pointer;
+}
+
+.home-feed-card-img:hover {
+    opacity: 0.5;
 }

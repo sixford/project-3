@@ -55,7 +55,7 @@ export default function HomeFeed() {
                                     // Generate card for each post
                                     <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
                                         <Card style={{ cursor: "pointer" }} >
-                                            <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
+                                            <Card.Img src={image} alt={title} id={_id} onClick={handleClick} className='home-feed-card-img' />
                                             <Card.Body>
                                                 <Card.Title className="card-title">{title}</Card.Title>
                                             </Card.Body>
