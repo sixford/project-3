@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { getToken } from "../../lib/auth";
 import { Container, Row, Col, Nav, Button, Card } from "react-bootstrap";
 import CarsOwned from './CarsOwned.jsx'
+import LoadingSpinner from "../subcomponents/LoadingSpinner.jsx";
 
 export default function SingleProfile() {
 
@@ -12,12 +13,9 @@ export default function SingleProfile() {
   const [user, setUser] = useState()
   const params = useParams()
   const [activeTab, setActiveTab] = useState('posts')
+  const [error, setError] = useState()
 
   const args = { headers: { authorization: getToken() } }
-
-  function handle() {
-    console.log(userData)
-  }
 
   async function handleFollow(e) {
     try {
@@ -26,6 +24,7 @@ export default function SingleProfile() {
 
     } catch (error) {
       console.log(error)
+      setError(error)
     }
   }
 
@@ -40,6 +39,8 @@ export default function SingleProfile() {
       console.log(data)
     } catch (error) {
       console.log(error)
+      setError(error)
+
     }
   }
 
@@ -59,25 +60,30 @@ export default function SingleProfile() {
         <Row>
           <Col md={3} className="border-right">
             <div className="sidebar">
-              <h4>{userData.username}</h4>
+              <h4 className="text-center">{userData.username}</h4>
+              <img className="profile-pic" src={userData.profilePic}></img>
               <CarsOwned fetchUserData={getData} cars={userData.cars} />
               <p>Friends</p>
             </div>
           </Col>
           <Col md={9}>
-            <Nav variant="tabs" defaultActiveKey="/posts">
+            <Nav variant="tabs" defaultActiveKey="/posts" className='other-profile-nav d-flex justify-content-between'>
+
               <Nav.Item>
-                <Button variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+                <button className='follow-button' onClick={handleFollow}>{following ? 'Following' : 'Follow'}</button>
               </Nav.Item>
-              <Nav.Item>
-                <Button variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
-              </Nav.Item>
-              <Nav.Item>
-                <Button variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
-              </Nav.Item>
-              <Nav.Item>
-                <Button onClick={handleFollow}>{following ? 'Following' : 'Follow'}</Button>
-              </Nav.Item>
+              <div className="d-flex">
+                <Nav.Item >
+                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+                </Nav.Item>
+                <Nav.Item>
+                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
+                </Nav.Item>
+                <Nav.Item>
+                  <Button className='nav-item-other-profile' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
+                </Nav.Item>
+              </div>
+
             </Nav>
             <div className="mt-3">
               {activeTab === 'posts' && (
@@ -152,7 +158,7 @@ export default function SingleProfile() {
               )}
             </div>
           </Col>
-        </Row> : 'test'}
+        </Row> : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>}
     </Container>
   )
 }

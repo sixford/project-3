@@ -53,13 +53,49 @@ nav {
     }
 }
 
+.btn-teal {
+    background-color: teal;
+    border-color: teal;
+    color: white;
+}
+
+.btn-teal:hover,
+.btn-teal:focus {
+    background-color: #008080;
+    border-color: #008080;
+    color: white;
+}
+
+
 .form-page {
     max-width: 450px;
     margin: auto;
 }
 
-footer {
-    min-height: 5vh;
+.footer {
+  background-color: #f8f9fa; /* Set the background color of the footer */
+  padding: 20px 0; /* Add padding to the top and bottom of the footer */
+}
+
+.footer-row {
+  justify-content: space-between; /* Evenly space the columns */
+}
+
+.footer-col {
+  text-align: center; /* Center-align the content within the column */
+}
+
+.footer-link {
+  text-decoration: none; /* Remove text decoration from the links */
+  color: #333; /* Set the color of the links */
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+.teal-text {
+  color: teal;
 }
 
 .single-post {
@@ -70,4 +106,94 @@ footer {
 .home-feed-card {
     width: "20rem";
     cursor: pointer
+}
+
+.profile-card-post {
+    cursor: pointer;
+}
+
+.auth-container {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home-feed-container {
+    @media screen and (max-width: 992px) {
+        padding: 0 7em;
+    }
+
+    padding: 0 14em;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin: 4em
+}
+
+.card-title {
+    font-size: 1em;
+    text-align: center;
+
+}
+
+.other-profile-nav {
+    justify-content: right;
+
+}
+
+.nav-item-other-profile {
+    text-decoration: none;
+}
+
+.like-button {
+    background-color: white;
+    border: none;
+    padding: 0 0.25rem;
+
+    &:hover {
+        background-color: white;
+    }
+
+}
+
+.follow-button {
+    padding: 0.25em;
+    background-color: white;
+    border: none;
+    font-style: italic;
+
+    &:hover {
+        background-color: white;
+    }
+
+
+}
+
+.like-button-img {
+    height: 20px;
+}
+
+.single-card-header {
+    padding-right: 0px
+}
+
+.profile-pic {
+    width: 50%;
+    border-radius: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cars-owned-title {
+    text-align: center;
 }

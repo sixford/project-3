@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 
 
 export default function AddPost({ fetchUserData }) {
-    
+
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -46,7 +46,7 @@ export default function AddPost({ fetchUserData }) {
     
     return (
         <>
-            <Button  variant="primary" className="my-3 px-4 py-2" onClick={handleShow}>
+            <Button variant="primary" className="my-3 px-4 py-2" onClick={handleShow}>
                 Add a Post
             </Button>
             <FormModal

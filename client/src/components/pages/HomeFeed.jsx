@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { getToken } from "../../lib/auth"
 import { Col, Row, Card, Container } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom"
+import backgroundImage from "../assets/future-showroom.jpg"
+import LoadingSpinner from "../subcomponents/LoadingSpinner"
 
 export default function HomeFeed() {
 
@@ -10,6 +12,8 @@ export default function HomeFeed() {
     const args = { headers: { authorization: getToken() } }
 
     const [postData, setPostData] = useState()
+
+    const [error, setError] = useState()
 
     const navigate = useNavigate()
 
@@ -28,34 +32,42 @@ export default function HomeFeed() {
                 console.log(data.data)
             } catch (error) {
                 console.log(error)
+                setError(error)
             }
         }
         getPostData()
     }, [])
 
     return (
+        <div
 
-        <Container fluid>
-            <h1 className="text-center">Home Feed - Recent posts from others you follow</h1>
-            <Row >
-                {postData && postData.map(post => {
-                    // destructure vital data
-                    const { image, title, content, _id } = post
-                    return (
-                        // Generate card for each post
-                        <Col xs={12} sm={6} m={4} lg={4} xl={3} key={_id} >
-                            <Card className="home-feed-card" >
-                                <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
-                                <Card.Body >
-                                    <Card.Title>{title}</Card.Title>
-                                    <Card.Text >{content}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    )
-                })}
-            </Row>
-        </Container>
-
+            style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
+        >
+            <Container className="home-feed-container">
+                {postData ?
+                    <>
+                        <h1 className="text-center" style={{ color: 'white', margin:'0.5rem auto' }}>Home Feed</h1>
+                        <Row className="g-4">
+                            {postData.map(post => {
+                                // destructure vital data
+                                const { image, title, _id } = post
+                                return (
+                                    // Generate card for each post
+                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
+                                        <Card style={{ cursor: "pointer" }} >
+                                            <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
+                                            <Card.Body>
+                                                <Card.Title className="card-title">{title}</Card.Title>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                )
+                            })}
+                        </Row>
+                        s
+                    </>
+                    : <div className='d-flex justify-content-center' style={{ color: 'white' }}>{error ? <p className='error'>{error.message}</p> : <LoadingSpinner />}</div>}
+            </Container>
+        </div>
     )
 }

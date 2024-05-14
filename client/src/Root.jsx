@@ -7,9 +7,9 @@ import Navbar from './components/subcomponents/Navbar'
 import Footer from './components/pages/Footer'
 
 export default function Root({ children }) {
-
   return (
     <>
+
       {/* Header / Nav */}
       <Navbar />
 

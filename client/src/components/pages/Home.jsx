@@ -8,8 +8,8 @@ export default function Home() {
       <video className='bg-black'autoPlay loop muted src={heroBackground} />
       <div className='hero-content d-flex flex-column align-items-center  justify-content-center'>
         <h1 className='display-1'>Welcome to Pedal</h1>
-        <p className='h1'>Time to gear up!</p>
-        <Link type="button" className="btn btn-primary btn-lg mt-4" to='/auth'>Login / Register</Link>
+        <p className='h1'>Connect and share your passion for cars here!</p>
+        <Link type="button" className="btn btn-teal btn-lg mt-4" to='/auth'>Login / Register</Link>
       </div>
     </div>
   )

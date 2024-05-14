@@ -13,10 +13,10 @@ export default function NavBar() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-md bg-black">
+      <nav className="navbar navbar-expand-md" style={{ background: 'linear-gradient(to right, white, black)' }}>
         <div className="container ">
           <div className='flex-grow-1'>
-            <Link className="navbar-brand" to="/home">
+            <Link className="navbar-brand" to={isLoggedIn() ? "/home" : '/'}>
               <img className="home-logo" src={homeImage} alt="Home" />
             </Link>
           </div>

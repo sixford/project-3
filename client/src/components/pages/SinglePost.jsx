@@ -3,9 +3,8 @@ import { useEffect, useState } from "react"
 import { Card, Container, Button, ListGroup, ListGroupItem } from "react-bootstrap"
 import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
-// import jwt from 'jsonwebtoken'
-// import 'dotenv/config'
-
+import LoadingSpinner from "../subcomponents/LoadingSpinner.jsx"
+import ThumbsUp from '../assets/thumbs-up.png'
 export default function SinglePost() {
 
     // When single post is loaded, the post Id should be passed through in the params
@@ -14,6 +13,7 @@ export default function SinglePost() {
     const [following, setFollowing] = useState()
     const [liked, setLiked] = useState()
     const [user, setUser] = useState()
+    const [error, setError] = useState()
 
     const args = { headers: { authorization: getToken() } }
 
@@ -51,6 +51,7 @@ export default function SinglePost() {
 
             } catch (error) {
                 console.log(error)
+                setError(error)
             }
         }
 
@@ -66,11 +67,11 @@ export default function SinglePost() {
                 <Container >
                     <div className="d-flex justify-content-center">
                         <Card className='single-post'>
-                            <Card.Header className="d-flex justify-content-between" >
-                                <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
+                            <Card.Header className="d-flex justify-content-between single-card-header" >
+                                <Link to={post.owner._id === user ? '/profile/' : `/profile/${post.owner._id}`}>{post.owner.username}</Link>
                                 <div className="follow-and-like">
-                                    <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
-                                    <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
+                                    <button onClick={handleFollow} id='follow-button' className="text-secondary follow-button">{following ? 'Following' : 'Follow'}</button>
+                                    <button className='like-button text-secondary' onClick={handleLike}>{liked ? 'Liked' : <img className='like-button-img' src={ThumbsUp} />}</button>
                                 </div>
                             </Card.Header> {/* On click should navigate to Owner's page*/}
                             <Card.Img src={post.image} />
@@ -96,7 +97,7 @@ export default function SinglePost() {
                         </Card>
                     </div>
                 </Container >
-                : "loading"
+                : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>
             }
         </>
     )

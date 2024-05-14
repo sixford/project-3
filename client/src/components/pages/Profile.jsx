@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Nav, Card, Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
 import UpdatePost from './UpdatePost.jsx'
-import DeleteImg from '../assets/x-letter.svg'
-import UpdateImg2 from '../assets/update2.png'
-import UpdateImg from '../assets/update.png'
+import LoadingSpinner from '../subcomponents/LoadingSpinner.jsx'
 
 import CarsOwned from './CarsOwned.jsx'
 
@@ -19,9 +17,12 @@ export default function Profile() {
   const [likes, setLikes] = useState([])
   const [follows, setFollows] = useState([])
   const [activeTab, setActiveTab] = useState('posts') // State to track active tab
+  const [error, setError] = useState()
 
   const [cars, setCars] = useState([])
   // const [error, setError] = useState('')
+
+  const navigate = useNavigate()
 
   // For modal
   const [show, setShow] = useState(false);
@@ -45,8 +46,13 @@ export default function Profile() {
       setCars(data.cars)
       // console.log(data)
     } catch (error) {
-      console.error('Error fetching user data:', error.message)
+      setError(error)
+      console.error('Error fetching user data:', error)
     }
+  }
+
+  function handleSelectPost(e) {
+    navigate(`/posts/${e.target.id}`)
   }
 
   // Effects
@@ -56,7 +62,7 @@ export default function Profile() {
 
   // Render
   if (!user) {
-    return <div>Loading...</div>
+    return <div className='d-flex justify-content-center '>{error && <p className='error'>{error.response.data.message}</p> || <LoadingSpinner />} </div>
   }
   // onClick
   const handleTabChange = (tab) => {
@@ -73,6 +79,7 @@ export default function Profile() {
       setLikes(data.likes || [])
       setFollows(data.following || [])
       setCars(data.cars)
+      handleClose()
     } catch (error) {
       console.log(error)
     }
@@ -109,7 +116,7 @@ export default function Profile() {
                   {posts.map((post, index) => (
                     <Col key={index} md={4} className="mb-3">
                       <Card>
-                        <Card.Img variant="top" src={post.image} />
+                        <Card.Img variant="top" src={post.image} id={post._id} onClick={handleSelectPost} className='profile-card-post' />
                         <Card.Body>
                           <Card.Title>{post.title}</Card.Title>
                           <Card.Text>{post.content}</Card.Text>
@@ -125,7 +132,7 @@ export default function Profile() {
                                 Close
                               </Button>
                               <Button variant="danger" id={post._id} onClick={deletePost}>
-                                Save Changes
+                                Delete Post
                               </Button>
                             </Modal.Footer>
                           </Modal>
