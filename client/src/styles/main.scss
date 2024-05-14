@@ -53,6 +53,20 @@ nav {
     }
 }
 
+.btn-teal {
+  background-color: teal;
+  border-color: teal;
+  color: white;
+}
+
+.btn-teal:hover,
+.btn-teal:focus {
+    background-color: #008080; 
+    border-color: #008080;
+    color: white;
+}
+
+
 .form-page {
     max-width: 450px;
     margin: auto;
@@ -75,6 +89,16 @@ footer {
 .profile-card-post {
     cursor: pointer;
 }
+
+.auth-container {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .home-feed-container {
     @media screen and (max-width: 992px) {
