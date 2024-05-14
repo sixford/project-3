@@ -8,7 +8,7 @@ export default function CarsOwned({ fetchUserData, cars, currentUser }) {
     return (
         <>
             <Container className="mt-4">
-                <h5>Cars Owned</h5>
+                <h5 className="cars-owned-title">Cars Owned</h5>
                 {cars.map((car) => (
                     <Card key={car.make} className="mb-1" style={{ position: 'relative' }}>
                         <Card.Img variant="top" src={car.image} style={{ height: '200px', objectFit: 'cover', filter: 'brightness(0.5)', }} />

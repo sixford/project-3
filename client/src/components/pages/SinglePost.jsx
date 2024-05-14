@@ -68,7 +68,7 @@ export default function SinglePost() {
                     <div className="d-flex justify-content-center">
                         <Card className='single-post'>
                             <Card.Header className="d-flex justify-content-between single-card-header" >
-                                <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
+                                <Link to={post.owner._id === user ? '/profile/' : `/profile/${post.owner._id}`}>{post.owner.username}</Link>
                                 <div className="follow-and-like">
                                     <button onClick={handleFollow} id='follow-button' className="text-secondary follow-button">{following ? 'Following' : 'Follow'}</button>
                                     <button className='like-button text-secondary' onClick={handleLike}>{liked ? 'Liked' : <img className='like-button-img' src={ThumbsUp} />}</button>
