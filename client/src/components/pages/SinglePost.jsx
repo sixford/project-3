@@ -4,9 +4,7 @@ import { Card, Container, Button, ListGroup, ListGroupItem } from "react-bootstr
 import { useParams, Link } from "react-router-dom"
 import { getToken } from "../../lib/auth.js"
 import LoadingSpinner from "../subcomponents/LoadingSpinner.jsx"
-// import jwt from 'jsonwebtoken'
-// import 'dotenv/config'
-
+import ThumbsUp from '../assets/thumbs-up.png'
 export default function SinglePost() {
 
     // When single post is loaded, the post Id should be passed through in the params
@@ -69,11 +67,11 @@ export default function SinglePost() {
                 <Container >
                     <div className="d-flex justify-content-center">
                         <Card className='single-post'>
-                            <Card.Header className="d-flex justify-content-between" >
+                            <Card.Header className="d-flex justify-content-between single-card-header" >
                                 <Link to={`/profile/${post.owner._id}`}>{post.owner.username}</Link>
                                 <div className="follow-and-like">
-                                    <Button onClick={handleFollow} id='follow-button'>{following ? 'Following' : 'Follow'}</Button>
-                                    <Button onClick={handleLike}>{liked ? 'Liked' : 'Like'}</Button>
+                                    <button onClick={handleFollow} id='follow-button' className="text-secondary follow-button">{following ? 'Following' : 'Follow'}</button>
+                                    <button className='like-button text-secondary' onClick={handleLike}>{liked ? 'Liked' : <img className='like-button-img' src={ThumbsUp} />}</button>
                                 </div>
                             </Card.Header> {/* On click should navigate to Owner's page*/}
                             <Card.Img src={post.image} />

@@ -95,3 +95,40 @@ footer {
     text-align: center;
 
 }
+
+// .follow-and-like {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+.like-button {
+    background-color: white;
+    border: none;
+    padding: 0 0.25rem;
+
+    &:hover {
+        background-color: white;
+    }
+
+}
+
+.follow-button {
+    padding: 0.25em;
+    background-color: white;
+    border: none;
+
+    &:hover {
+        background-color: white;
+    }
+
+
+}
+
+.like-button-img {
+    height: 20px;
+}
+
+.single-card-header {
+    padding-right: 0px
+}
