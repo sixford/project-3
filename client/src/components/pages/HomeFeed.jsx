@@ -4,6 +4,7 @@ import { getToken } from "../../lib/auth"
 import { Col, Row, Card, Container } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom"
 import backgroundImage from "../assets/future-showroom.jpg"
+import LoadingSpinner from "../subcomponents/LoadingSpinner"
 
 export default function HomeFeed() {
 
@@ -11,6 +12,8 @@ export default function HomeFeed() {
     const args = { headers: { authorization: getToken() } }
 
     const [postData, setPostData] = useState()
+
+    const [error, setError] = useState()
 
     const navigate = useNavigate()
 
@@ -29,6 +32,7 @@ export default function HomeFeed() {
                 console.log(data.data)
             } catch (error) {
                 console.log(error)
+                setError(error)
             }
         }
         getPostData()
@@ -40,24 +44,29 @@ export default function HomeFeed() {
             style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
         >
             <Container className="home-feed-container">
-                <h1 className="text-center" style={{ color: 'white' }}>Home Feed - Recent posts from others you follow</h1>
-                <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
-                    {postData && postData.map(post => {
-                        // destructure vital data
-                        const { image, title, content, _id } = post
-                        return (
-                            // Generate card for each post
-                            <Col key={_id}>
-                                <Card style={{ cursor: "pointer" }} >
-                                    <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
-                                    <Card.Body>
-                                        <Card.Title>{title}</Card.Title>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        )
-                    })}
-                </Row>
+                {postData ?
+                    <>
+                        <h1 className="text-center" style={{ color: 'white' }}>Home Feed - Recent posts from others you follow</h1>
+                        <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
+                            {postData.map(post => {
+                                // destructure vital data
+                                const { image, title, content, _id } = post
+                                return (
+                                    // Generate card for each post
+                                    <Col key={_id}>
+                                        <Card style={{ cursor: "pointer" }} >
+                                            <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
+                                            <Card.Body>
+                                                <Card.Title>{title}</Card.Title>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                )
+                            })}
+                        </Row>
+                        s
+                    </>
+                    : <div className='d-flex justify-content-center' style={{ color: 'white' }}>{error ? <p className='error'>{error.message}</p> : <LoadingSpinner />}</div>}
             </Container>
         </div>
     )
