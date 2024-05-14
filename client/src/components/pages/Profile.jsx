@@ -142,7 +142,8 @@ export default function Profile() {
                                 Delete Post
                               </Button>
                             </Modal.Footer>
-                          </Modal>                        </Card.Body>
+                          </Modal>
+                        </Card.Body>
                       </Card>
                     </Col>
                   ))}
