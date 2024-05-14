@@ -1,4 +1,3 @@
-
 body {
     height: 100vh;
 
@@ -63,9 +62,14 @@ footer {
     min-height: 5vh;
 }
 
-.single-post{
+.single-post {
     width: 35%;
-    margin: 1rem auto;
+    margin: 1rem 0.25rem;
+}
+
+.home-feed-card {
+    width: "20rem";
+    cursor: pointer
 }
 
 .home-feed-container {

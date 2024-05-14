@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Nav, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Nav, Card, Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
 import { getToken } from '../../lib/auth.js'
 import AddPost from './AddPost.jsx'
+import UpdatePost from './UpdatePost.jsx'
+import DeleteImg from '../assets/x-letter.svg'
+import UpdateImg2 from '../assets/update2.png'
+import UpdateImg from '../assets/update.png'
+
 import CarsOwned from './CarsOwned.jsx'
 
 
@@ -18,7 +23,11 @@ export default function Profile() {
   const [cars, setCars] = useState([])
   // const [error, setError] = useState('')
 
+  // For modal
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // Local Variables
   const headers = { headers: { authorization: getToken() } }
@@ -34,7 +43,7 @@ export default function Profile() {
       setLikes(data.likes || [])
       setFollows(data.following || [])
       setCars(data.cars)
-      console.log(data)
+      // console.log(data)
     } catch (error) {
       console.error('Error fetching user data:', error.message)
     }
@@ -52,6 +61,21 @@ export default function Profile() {
   // onClick
   const handleTabChange = (tab) => {
     setActiveTab(tab)
+  }
+
+  async function deletePost(e) {
+    const postId = e.target.id
+    try {
+      await axios.delete(`/api/posts/${postId}`, headers)
+      const { data } = await axios.get(`/api/profile`, headers)
+      setUser(data)
+      setPosts(data.posts || [])
+      setLikes(data.likes || [])
+      setFollows(data.following || [])
+      setCars(data.cars)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -84,18 +108,52 @@ export default function Profile() {
                 <Row>
                   {posts.map((post, index) => (
                     <Col key={index} md={4} className="mb-3">
-                      <Button 
-                        as={Link} 
-                        to={`/posts/${post._id}`} 
-                        variant="light" 
+                      <Card>
+                        <Card.Img variant="top" src={post.image} />
+                        <Card.Body>
+                          <Card.Title>{post.title}</Card.Title>
+                          <Card.Text>{post.content}</Card.Text>
+                          <UpdatePost id={post._id} reloadData={fetchUserData} />
+                          <Button variant="danger" onClick={handleShow}>Delete</Button>
+
+                          <Modal show={show} onHide={handleClose} animation={false}>
+                            <Modal.Header closeButton>
+                              <Modal.Title></Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+                            <Modal.Footer>
+                              <Button variant="secondary" onClick={handleClose}>
+                                Close
+                              </Button>
+                              <Button variant="danger" id={post._id} onClick={deletePost}>
+                                Save Changes
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            )}
+            {activeTab === 'likes' && (
+              <div>
+                <h3>Likes</h3>
+                <Row>
+                  {likes.map((like, index) => (
+                    <Col key={index} md={4} className="mb-3">
+                      <Button
+                        as={Link}
+                        to={`/posts/${like._id}`}
+                        variant="light"
                         className="p-0 border-0 text-left"
                         style={{ width: '100%', backgroundColor: 'transparent' }}
                       >
                         <Card>
-                          <Card.Img variant="top" src={post.image} />
+                          <Card.Img variant="top" src={like.image} />
                           <Card.Body>
-                            <Card.Title>{post.title}</Card.Title>
-                            <Card.Text>{post.content}</Card.Text>
+                            <Card.Title>{like.title}</Card.Title>
+                            <Card.Text>{like.content}</Card.Text>
                           </Card.Body>
                         </Card>
                       </Button>
@@ -103,32 +161,6 @@ export default function Profile() {
                   ))}
                 </Row>
               </div>
-            )}
-  {activeTab === 'likes' && (
-        <div>
-          <h3>Likes</h3>
-          <Row>
-            {likes.map((like, index) => (
-              <Col key={index} md={4} className="mb-3">
-                <Button 
-                  as={Link} 
-                  to={`/posts/${like._id}`} 
-                  variant="light" 
-                  className="p-0 border-0 text-left"
-                  style={{ width: '100%', backgroundColor: 'transparent' }}
-                >
-                  <Card>
-                    <Card.Img variant="top" src={like.image} />
-                    <Card.Body>
-                      <Card.Title>{like.title}</Card.Title>
-                      <Card.Text>{like.content}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Button>
-              </Col>
-            ))}
-          </Row>
-        </div>
             )}
             {activeTab === 'follows' && (
               <div>
