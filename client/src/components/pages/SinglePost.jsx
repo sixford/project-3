@@ -87,7 +87,7 @@ export default function SinglePost() {
                                     return <ListGroupItem key={comment._id}>
                                         {comment.text} <br />
                                         <div className="d-flex justify-content-between">
-                                            <small>{comment.owner.username}</small>
+                                            <Link to={post.owner._id === user ? '/profile/' : `/profile/${comment.owner._id}`}>{comment.owner.username}</Link>
                                             <small>{new Date(comment.updatedAt).toDateString()}</small>
                                         </div>
 
