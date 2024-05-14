@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { getToken } from "../../lib/auth";
 import { Container, Row, Col, Nav, Button, Card } from "react-bootstrap";
 import CarsOwned from './CarsOwned.jsx'
-// import AddPost from './AddPost.jsx'
+import LoadingSpinner from "../subcomponents/LoadingSpinner.jsx";
 
 export default function SingleProfile() {
 
@@ -13,12 +13,9 @@ export default function SingleProfile() {
   const [user, setUser] = useState()
   const params = useParams()
   const [activeTab, setActiveTab] = useState('posts')
+  const [error, setError] = useState()
 
   const args = { headers: { authorization: getToken() } }
-
-  function handle() {
-    console.log(userData)
-  }
 
   async function handleFollow(e) {
     try {
@@ -27,6 +24,7 @@ export default function SingleProfile() {
 
     } catch (error) {
       console.log(error)
+      setError(error)
     }
   }
 
@@ -41,6 +39,8 @@ export default function SingleProfile() {
       console.log(data)
     } catch (error) {
       console.log(error)
+      setError(error)
+
     }
   }
 
@@ -153,7 +153,7 @@ export default function SingleProfile() {
               )}
             </div>
           </Col>
-        </Row> : 'test'}
+        </Row> : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>}
     </Container>
   )
 }

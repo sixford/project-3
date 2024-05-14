@@ -46,18 +46,18 @@ export default function HomeFeed() {
             <Container className="home-feed-container">
                 {postData ?
                     <>
-                        <h1 className="text-center" style={{ color: 'white' }}>Home Feed - Recent posts from others you follow</h1>
-                        <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
+                        <h1 className="text-center" style={{ color: 'white', margin:'0.5rem auto' }}>Home Feed</h1>
+                        <Row className="g-4">
                             {postData.map(post => {
                                 // destructure vital data
-                                const { image, title, content, _id } = post
+                                const { image, title, _id } = post
                                 return (
                                     // Generate card for each post
-                                    <Col key={_id}>
+                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
                                         <Card style={{ cursor: "pointer" }} >
                                             <Card.Img src={image} alt={title} id={_id} onClick={handleClick} />
                                             <Card.Body>
-                                                <Card.Title>{title}</Card.Title>
+                                                <Card.Title className="card-title">{title}</Card.Title>
                                             </Card.Body>
                                         </Card>
                                     </Col>

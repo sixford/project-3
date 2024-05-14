@@ -5,11 +5,8 @@ import { Outlet } from 'react-router-dom'
 
 import Navbar from './components/subcomponents/Navbar'
 import Footer from './components/pages/Footer'
-import { removeToken } from './lib/auth'
 
 export default function Root({ children }) {
-  // Remove after retsrat
-  removeToken()
   return (
     <>
 
