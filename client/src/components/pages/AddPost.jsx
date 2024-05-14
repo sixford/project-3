@@ -43,7 +43,7 @@ export default function AddPost({ fetchUserData }) {
             console.log(error.response.data.message)
         }
     }
-
+    
     return (
         <>
             <Button  variant="primary" className="my-3 px-4 py-2" onClick={handleShow}>

@@ -115,7 +115,6 @@ export default function Profile() {
                           <Card.Text>{post.content}</Card.Text>
                           <UpdatePost id={post._id} reloadData={fetchUserData} />
                           <Button variant="danger" onClick={handleShow}>Delete</Button>
-
                           <Modal show={show} onHide={handleClose} animation={false}>
                             <Modal.Header closeButton>
                               <Modal.Title></Modal.Title>
@@ -129,7 +128,8 @@ export default function Profile() {
                                 Save Changes
                               </Button>
                             </Modal.Footer>
-                          </Modal>                        </Card.Body>
+                          </Modal>
+                        </Card.Body>
                       </Card>
                     </Col>
                   ))}
