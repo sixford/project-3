@@ -10,7 +10,7 @@ export default
         {
             title: "Cruising through the city!",
             content: "Took my car for a spin downtown. Loving the urban vibes!",
-            image: "https://via.placeholder.com/300",
+            image: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
             comments: [],
             likes: []
         },
