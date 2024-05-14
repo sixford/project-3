@@ -72,8 +72,30 @@ nav {
     margin: auto;
 }
 
-footer {
-    min-height: 5vh;
+.footer {
+  background-color: #f8f9fa; /* Set the background color of the footer */
+  padding: 20px 0; /* Add padding to the top and bottom of the footer */
+}
+
+.footer-row {
+  justify-content: space-between; /* Evenly space the columns */
+}
+
+.footer-col {
+  text-align: center; /* Center-align the content within the column */
+}
+
+.footer-link {
+  text-decoration: none; /* Remove text decoration from the links */
+  color: #333; /* Set the color of the links */
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+.teal-text {
+  color: teal;
 }
 
 .single-post {
