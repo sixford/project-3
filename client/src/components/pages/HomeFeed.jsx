@@ -15,13 +15,23 @@ export default function HomeFeed() {
 
     const [error, setError] = useState()
 
+    const [titleShow, setTitleShow] = useState()
+
     const navigate = useNavigate()
 
-    function handleClick(e) {
-        // for now you must click the image to load the single post page
-        const _id = e.target.id
-        navigate(`/posts/${_id}`)
-    }
+    const [nextPost, setNextPost] = useState()
+
+
+    useEffect(() => {
+        nextPost && navigate(`/posts/${nextPost}`)
+
+    }, [nextPost])
+
+
+    // for now you must click the image to load the single post page
+
+
+
     // call homefeed endpoint for post data
     useEffect(() => {
         async function getPostData() {
@@ -37,6 +47,14 @@ export default function HomeFeed() {
         getPostData()
     }, [])
 
+    function hoverPost(e) {
+        setTitleShow(e.target.id)
+    }
+
+    function unhoverPost(e) {
+        setTitleShow(false)
+    }
+
     return (
         <div className="homefeed"
 
@@ -49,21 +67,25 @@ export default function HomeFeed() {
                         <Row className="g-4">
                             {postData.map(post => {
                                 // destructure vital data
-                                const { image, title, _id } = post
+                                const { owner, image, title, _id } = post
                                 return (
                                     // Generate card for each post
-                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
+                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4}  >
                                         <Card style={{ cursor: "pointer" }} >
-                                            <Card.Img src={image} alt={title} id={_id} onClick={handleClick} className='home-feed-card-img' />
+                                            <Card.Img src={image} alt={title} className={titleShow && titleShow === title ? 'home-feed-card-img' : ''} />
+                                            <Card.ImgOverlay className="overlay d-flex flex-column justify-content-center"
+                                                id={title} onMouseEnter={hoverPost} onMouseLeave={unhoverPost} onClick={() => setNextPost(_id)}>
+
+                                                <div>{titleShow && <Card.Title className='post-title'>{title === titleShow ? title : ''}</Card.Title>}</div>
+                                            </Card.ImgOverlay>
                                             <Card.Body>
-                                                <Card.Title className="card-title">{title}</Card.Title>
+                                                <Card.Title className="card-title">{post.owner.username}</Card.Title>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 )
                             })}
                         </Row>
-                        s
                     </>
                     : <div className='d-flex justify-content-center' style={{ color: 'white' }}>{error ? <p className='error'>{error.message}</p> : <LoadingSpinner />}</div>}
             </Container>

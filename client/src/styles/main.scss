@@ -157,6 +157,10 @@ nav {
     /* Set the background color of the footer */
     padding: 20px 0;
     /* Add padding to the top and bottom of the footer */
+    background-color: #f8f9fa;
+    /* Set the background color of the footer */
+    padding: 20px 0;
+    /* Add padding to the top and bottom of the footer */
 }
 
 .footer-row {
@@ -331,5 +335,22 @@ nav {
 }
 
 .home-feed-card-img:hover {
+    opacity: 0.5;;
+}
+
+.home-feed-card-img {
     opacity: 0.5;
+    background-color: balck;
+}
+
+.post-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.overlay {
+
+    // &:hover {
+    //     opacity: 70%
+    // }
 }
