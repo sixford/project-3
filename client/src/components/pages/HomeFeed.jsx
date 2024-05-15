@@ -70,7 +70,7 @@ export default function HomeFeed() {
                                 const { owner, image, title, _id } = post
                                 return (
                                     // Generate card for each post
-                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4}  >
+                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
                                         <Card style={{ cursor: "pointer", height: '300px', width: '275px'}} >
                                             <Card.Img src={image} alt={title} className={titleShow && titleShow === title ? 'home-feed-card-img-hover' : 'home-feed-card-img'} />
                                             <Card.ImgOverlay className="overlay d-flex flex-column justify-content-center "

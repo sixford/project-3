@@ -18,6 +18,7 @@ export default function Profile() {
   const [follows, setFollows] = useState([])
   const [activeTab, setActiveTab] = useState('posts') // State to track active tab
   const [error, setError] = useState()
+  const [profileChange, setProfileChange] = useState(undefined)
 
   const [cars, setCars] = useState([])
   // const [error, setError] = useState('')
@@ -34,10 +35,15 @@ export default function Profile() {
   const headers = { headers: { authorization: getToken() } }
 
 
-  function clickProfile(e) {
-    navigate(`/profile/${e.target.id}`)
-    console.log(e.target)
-  }
+  useEffect(() => {
+    function clickProfile() {
+      navigate(`/profile/${profileChange}`)
+
+    }
+
+    profileChange && clickProfile()
+  }, [profileChange])
+
 
   // Fetch user data
   async function fetchUserData() {
@@ -184,12 +190,10 @@ export default function Profile() {
                   <Row>
                     {follows.map((follow, index) => (
                       <Col key={follow._id} md={4} className="mb-3">
-                        {/* <Link to={`/profile/${follow.id}`}> */}
-                        <Card className='user-card' onClick={clickProfile} id={follow._id}>
-                          <Card.Img className='w-25' src={follow.profilePic}></Card.Img>
-                          <Card.Text className='user-card-text' >{follow.username}</Card.Text>
+                        <Card className='user-card' value={follow._id} onClick={() => setProfileChange(follow._id)} id={follow._id}>
+                          <Card.Img className='w-25' value={follow._id} src={follow.profilePic} onClick={() => setProfileChange(follow._id)} ></Card.Img>
+                          <Card.Text className='user-card-text' value={follow._id} onClick={() => setProfileChange(follow._id)}>{follow.username}</Card.Text>
                         </Card>
-                        {/* ?</Link> */}
                       </Col>
                     ))}
                   </Row>
