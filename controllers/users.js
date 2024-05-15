@@ -44,7 +44,7 @@ export const getOtherProfile = async (req, res) => {
   try {
     const { userId } = req.params
 
-    let foundUser = await User.findById(userId).populate('posts').populate('likes')
+    let foundUser = await User.findById(userId).populate('posts').populate('likes').populate('following')
     if (!foundUser) throw new Error.DocumentNotFoundError('User not found')
 
     // Add logged in user id to check if following
