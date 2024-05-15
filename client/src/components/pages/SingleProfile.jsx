@@ -55,6 +55,7 @@ export default function SingleProfile() {
 
 
   return (
+    <div className='profile-page flex-grow-1'>
     <Container className={"profile-container"}>
       {userData ?
         <Row>
@@ -63,7 +64,6 @@ export default function SingleProfile() {
               <h4 className="text-center mt-2">{userData.username}</h4>
               <img className="profile-pic" src={userData.profilePic}></img>
               <CarsOwned fetchUserData={getData} cars={userData.cars} />
-              <p>Friends</p>
             </div>
           </Col>
           <Col md={9}>
@@ -74,13 +74,13 @@ export default function SingleProfile() {
               </Nav.Item>
               <div className="d-flex">
                 <Nav.Item >
-                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+                  <Button className='profile-nav-item' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
                 </Nav.Item>
                 <Nav.Item>
-                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
+                  <Button className='profile-nav-item' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
                 </Nav.Item>
                 <Nav.Item>
-                  <Button className='nav-item' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
+                  <Button className='profile-nav-item' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
                 </Nav.Item>
               </div>
 
@@ -160,6 +160,8 @@ export default function SingleProfile() {
           </Col>
         </Row> : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>}
     </Container>
+
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-$background: radial-gradient(#e66465, #9198e5);
+$background: radial-gradient(#EE696B,#523A78);
 $transparent: #00000048;
 $secondary: #dbc54e;
 
@@ -84,7 +84,6 @@ nav {
 .auth-container {
     width: 100%;
     height: 100%;
-    // background-image: linear-gradient(to bottom right, #ca3d9e, #21a9b0);
     background: $background;
     display: flex;
     justify-content: center;
@@ -221,10 +220,24 @@ nav {
 }
 
 
+
 .add-post:hover {
-    background-color: teal;
+    background-color: #e6e6e6;
+    color: teal;
     transform: scale(1);
     font-weight: bold;
+}
+
+.add-car {
+    border: none;
+    background-color: teal;
+    transition: transform 300ms;
+}
+
+.add-car:hover {
+  background-color: teal;
+  transform: scale(1);
+  font-weight: bold;
 }
 
 .homefeed {
@@ -260,10 +273,35 @@ nav {
     padding-top: 1rem
 }
 
-.nav-item {
+.profile-nav-item {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+    &:not(.active):hover {
+      text-decoration: underline;
+      color: white;
+    }
+
+    &.active {
+      text-decoration: underline;
+      color: white;
+    }
+  }
+
+.nav-item-profile {
     text-decoration: none;
     color: teal;
     font-weight: bold;
+
+    &:hover {
+        color: #e6e6e6;
+    }
+
+    &.active {
+        color: #e6e6e6
+    }
+
 }
 
 .like-button {

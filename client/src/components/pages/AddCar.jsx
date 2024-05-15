@@ -65,7 +65,7 @@ export default function AddCar({ fetchUserData, currentUser }) {
 
     return (
         <>
-            {currentUser === params.userId && <Button variant="primary" className="my-3 px-1 py-1" onClick={handleShow}>Add a Car</Button>}
+            {currentUser === params.userId && <Button variant="teal" className="my-3 px-1 py-1 add-car" onClick={handleShow}>Add a Car</Button>}
             <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton>
                     <Modal.Title >Add a New Car</Modal.Title>
