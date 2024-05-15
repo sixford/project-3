@@ -71,7 +71,7 @@ export default function HomeFeed() {
                                 return (
                                     // Generate card for each post
                                     <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4} >
-                                        <Card style={{ cursor: "pointer", height: '300px', width: '275px'}} >
+                                        <Card className="home-cards">
                                             <Card.Img src={image} alt={title} className={titleShow && titleShow === title ? 'home-feed-card-img-hover' : 'home-feed-card-img'} />
                                             <Card.ImgOverlay className="overlay d-flex flex-column justify-content-center "
                                                 id={title} onMouseEnter={hoverPost} onMouseLeave={unhoverPost} onClick={() => setNextPost(_id)}>

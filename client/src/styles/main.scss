@@ -204,6 +204,7 @@ nav {
 
 .profile-card-post {
     cursor: pointer;
+
 }
 
 .add-post {
@@ -315,7 +316,7 @@ nav {
     border: 1px solid teal;
     border-radius: 5px;
     padding: 0.5em;
-    margin: 20px auto;
+    margin: auto;
 
     &:hover {
         color: teal;
@@ -411,4 +412,10 @@ nav {
 
 .search-input {
     margin-right: 50%
+}
+
+.home-cards {
+    cursor: pointer;
+    height: 300px;
+    width: 275px;
 }

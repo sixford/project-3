@@ -105,8 +105,7 @@ export default function Profile() {
           <Col md={3} className="border-right">
             <div className="sidebar">
               <h4 className='mt-2'>{user.username}</h4>
-              <img className="profile-pic"  src={user.profilePic}></img>
-              {/* {!user.profilePic && ( <AddProfilePic/> )} */}
+              <img className="profile-pic" src={user.profilePic ? user.profilePic : 'https://via.placeholder.com/300'}></img>
               <CarsOwned fetchUserData={fetchUserData} cars={cars} />
             </div>
           </Col>
@@ -130,9 +129,9 @@ export default function Profile() {
                   <Row>
                     {posts.map((post, index) => (
                       <Col key={index} md={4} className="mb-3 post">
-                        <Card>
+                        <Card className='profile-card'>
                           <Card.Img variant="top" src={post.image} id={post._id} onClick={handleSelectPost} className='profile-card-post' />
-                          <Card.Body>
+                          <Card.Body >
                             <Card.Title>{post.title}</Card.Title>
                             <Card.Text>{post.content}</Card.Text>
                             <div className='btn-container '>
