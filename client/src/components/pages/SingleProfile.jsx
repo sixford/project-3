@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { getToken } from "../../lib/auth";
 import { Container, Row, Col, Nav, Button, Card } from "react-bootstrap";
 import CarsOwned from './CarsOwned.jsx'
@@ -10,22 +10,20 @@ export default function SingleProfile() {
 
   const [userData, setUserData] = useState()
   const [following, setFollowing] = useState()
-  const [user, setUser] = useState()
   const params = useParams()
   const [activeTab, setActiveTab] = useState('posts')
   const [error, setError] = useState()
   const [profileChange, setProfileChange] = useState(undefined)
 
-
-
+  const navigate = useNavigate()
   const args = { headers: { authorization: getToken() } }
 
   useEffect(() => {
     function clickProfile() {
+
       navigate(`/profile/${profileChange}`)
 
     }
-
     profileChange && clickProfile()
   }, [profileChange])
 
@@ -48,7 +46,6 @@ export default function SingleProfile() {
       data._doc.posts = data.$$populatedVirtuals.posts
       setUserData(data._doc)
       data._doc.followers.includes(data.userId) ? setFollowing(true) : setFollowing(false)
-      setUser(data.userId)
       console.log(data)
     } catch (error) {
       console.log(error)
@@ -60,7 +57,7 @@ export default function SingleProfile() {
   useEffect(() => {
 
     getData()
-  }, [])
+  }, [params])
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
