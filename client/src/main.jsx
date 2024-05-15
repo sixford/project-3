@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-
 //Style Components
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
@@ -11,10 +10,8 @@ import './styles/main.scss'
 
 
 //Page components
-
 import Auth from './components/pages/Auth.jsx'
 import Home from './components/pages/Home.jsx'
-
 import Profile from './components/pages/Profile.jsx'
 import HomeFeed from './components/pages/HomeFeed.jsx'
 import SinglePost from './components/pages/SinglePost.jsx'

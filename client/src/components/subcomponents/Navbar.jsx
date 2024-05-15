@@ -13,7 +13,7 @@ export default function NavBar() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-md" style={{ background: '#e6e6e6' }}>
+      <nav className="navbar navbar-expand-md" style={{ background:'#E6E6E6' }}>
         <div className="container ">
           <div className='flex-grow-1'>
             <Link className="navbar-brand" to={isLoggedIn() ? "/home" : '/'}>

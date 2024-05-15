@@ -26,10 +26,10 @@ export default function ImageUpload({ formData, setFormData }) {
     }
     return (
         <>
-        {formData.image ?
+        {/* {formData.image ?
                 <img src={formData.image} alt='Uploaded image' />
                 :
-                <>
+                <> */}
                     <Form.Group controlId="image">
                         <Form.Label>Image</Form.Label>
                         <Form.Control
@@ -40,8 +40,8 @@ export default function ImageUpload({ formData, setFormData }) {
                             required
                         />
                     </Form.Group>
-                </>
-        }
+                {/* </>
+        } */}
         </>
     )
 }

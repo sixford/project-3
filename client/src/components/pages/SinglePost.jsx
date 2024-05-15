@@ -64,7 +64,8 @@ export default function SinglePost() {
     return (
         <>
             {post ?
-                <Container >
+            <div className= "single-post-div d-flex flex-grow-1 justify-content-center align-items-center">
+                <Container className="single-post-container">
                     <div className="d-flex justify-content-center">
                         <Card className='single-post'>
                             <Card.Header className="d-flex justify-content-between single-card-header" >
@@ -87,7 +88,7 @@ export default function SinglePost() {
                                     return <ListGroupItem key={comment._id}>
                                         {comment.text} <br />
                                         <div className="d-flex justify-content-between">
-                                            <small>{comment.owner.username}</small>
+                                            <Link to={post.owner._id === user ? '/profile/' : `/profile/${comment.owner._id}`}>{comment.owner.username}</Link>
                                             <small>{new Date(comment.updatedAt).toDateString()}</small>
                                         </div>
 
@@ -97,6 +98,7 @@ export default function SinglePost() {
                         </Card>
                     </div>
                 </Container >
+            </div>
                 : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>
             }
         </>
