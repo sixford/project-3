@@ -64,41 +64,41 @@ export default function SinglePost() {
     return (
         <>
             {post ?
-            <div className= "single-post-div d-flex flex-grow-1 justify-content-center align-items-center">
-                <Container className="single-post-container">
-                    <div className="d-flex justify-content-center">
-                        <Card className='single-post'>
-                            <Card.Header className="d-flex justify-content-between single-card-header" >
-                                <Link to={post.owner._id === user ? '/profile/' : `/profile/${post.owner._id}`}>{post.owner.username}</Link>
-                                <div className="follow-and-like">
-                                    <button onClick={handleFollow} id='follow-button' className="text-secondary follow-button">{following ? 'Following' : 'Follow'}</button>
-                                    <button className='like-button text-secondary' onClick={handleLike}>{liked ? 'Liked' : <img className='like-button-img' src={ThumbsUp} />}</button>
-                                </div>
-                            </Card.Header> {/* On click should navigate to Owner's page*/}
-                            <Card.Img src={post.image} />
-                            <Card.Body>
-                                <Card.Title>{post.title}</Card.Title>
-                                <Card.Text>{post.content}</Card.Text>
-                            </Card.Body>
-                        </Card >
-                        <Card className="single-post">
-                            <Card.Header>Comments</Card.Header>
-                            <ListGroup >
-                                {post.comments.map(comment => {
-                                    return <ListGroupItem key={comment._id}>
-                                        {comment.text} <br />
-                                        <div className="d-flex justify-content-between">
-                                            <Link to={post.owner._id === user ? '/profile/' : `/profile/${comment.owner._id}`}>{comment.owner.username}</Link>
-                                            <small>{new Date(comment.updatedAt).toDateString()}</small>
-                                        </div>
+                <div className="single-post-div d-flex flex-grow-1 justify-content-center align-items-center">
+                    <Container className="single-post-container">
+                        <div className="d-flex justify-content-center">
+                            <Card className='single-post'>
+                                <Card.Header className="d-flex justify-content-between single-card-header" >
+                                    <Link to={post.owner._id === user ? '/profile/' : `/profile/${post.owner._id}`}>{post.owner.username}</Link>
+                                    <div className="follow-and-like">
+                                        <button onClick={handleFollow} id='follow-button' className="follow-button">{following ? 'Following' : 'Follow'}</button>
+                                        <button className='like-button text-secondary' onClick={handleLike}>{liked ? 'Liked' : <img className='like-button-img' src={ThumbsUp} />}</button>
+                                    </div>
+                                </Card.Header> {/* On click should navigate to Owner's page*/}
+                                <Card.Img src={post.image} />
+                                <Card.Body>
+                                    <Card.Title>{post.title}</Card.Title>
+                                    <Card.Text>{post.content}</Card.Text>
+                                </Card.Body>
+                            </Card >
+                            <Card className="single-post">
+                                <Card.Header>Comments</Card.Header>
+                                <ListGroup >
+                                    {post.comments.map(comment => {
+                                        return <ListGroupItem key={comment._id}>
+                                            {comment.text} <br />
+                                            <div className="d-flex justify-content-between">
+                                                <Link to={post.owner._id === user ? '/profile/' : `/profile/${comment.owner._id}`}>{comment.owner.username}</Link>
+                                                <small>{new Date(comment.updatedAt).toDateString()}</small>
+                                            </div>
 
-                                    </ListGroupItem>
-                                })}
-                            </ListGroup>
-                        </Card>
-                    </div>
-                </Container >
-            </div>
+                                        </ListGroupItem>
+                                    })}
+                                </ListGroup>
+                            </Card>
+                        </div>
+                    </Container >
+                </div>
                 : <div className="d-flex justify-content-center"> {error ? <p className="error">{error.message}</p> : <LoadingSpinner />}</div>
             }
         </>
