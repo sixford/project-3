@@ -106,13 +106,13 @@ export default function Profile() {
           <Col md={9}>
             <Nav variant="tabs" defaultActiveKey="/posts" className='d-flex justify-content-end profile-nav'>
               <Nav.Item >
-                <Button className='nav-item' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
+                <Button className='nav-item-profile' variant="link" onClick={() => handleTabChange('posts')} active={activeTab === 'posts'}>Posts</Button>
               </Nav.Item>
               <Nav.Item >
-                <Button className='nav-item' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
+                <Button className='nav-item-profile' variant="link" onClick={() => handleTabChange('likes')} active={activeTab === 'likes'}>Likes</Button>
               </Nav.Item>
-              <Nav.Item >
-                <Button className='nav-item' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
+              <Nav.Item>
+                <Button className='nav-item-profile' variant="link" onClick={() => handleTabChange('follows')} active={activeTab === 'follows'}>Follows</Button>
               </Nav.Item>
             </Nav>
             <div className="mt-3">
