@@ -1,4 +1,4 @@
-$background: radial-gradient(#EE696B,#523A78);
+$background: radial-gradient(#EE696B, #523A78);
 $transparent: #00000048;
 $secondary: #dbc54e;
 
@@ -190,23 +190,11 @@ nav {
 }
 
 
-
-
-
 .teal-text:hover {
     transform: scale(1);
     font-weight: bold;
     color: teal;
     text-decoration: underline;
-}
-
-
-
-.home-feed-card {
-    width: "20rem";
-    cursor: pointer;
-
-    &:hover {}
 }
 
 .profile-card-post {
@@ -218,7 +206,6 @@ nav {
     background-color: teal;
     transition: transform 300ms;
 }
-
 
 
 .add-post:hover {
@@ -235,7 +222,8 @@ nav {
 }
 
 .add-car:hover {
-  background-color: teal;
+  background-color: #e6e6e6;
+  color: teal;
   transform: scale(1);
   font-weight: bold;
 }
@@ -265,7 +253,6 @@ nav {
 .card-title {
     font-size: 1em;
     text-align: center;
-
 }
 
 .profile-nav {
@@ -279,15 +266,15 @@ nav {
     font-weight: bold;
 
     &:not(.active):hover {
-      text-decoration: underline;
-      color: white;
+        text-decoration: underline;
+        color: white;
     }
 
     &.active {
-      text-decoration: underline;
-      color: white;
+        text-decoration: underline;
+        color: white;
     }
-  }
+}
 
 .nav-item-profile {
     text-decoration: none;
@@ -371,15 +358,21 @@ nav {
     cursor: pointer;
 }
 
-.home-feed-card-img:hover {
+.home-feed-card-img-hover {
     opacity: 0.5;
-    ;
+    height: 100%;
+    width: 100%;
+    max-height: 85%;
+
 }
 
 .home-feed-card-img {
-    opacity: 0.5;
-    background-color: balck;
+    height: 100%;
+    width: 100%;
+    max-height: 85%;
+
 }
+
 
 .post-title {
     font-size: 1rem;
