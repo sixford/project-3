@@ -58,7 +58,7 @@ export default function SingleProfile() {
     <div className='profile-page flex-grow-1'>
     <Container className={"profile-container"}>
       {userData ?
-        <Row>
+        <Row className="pb-5">
           <Col md={3} className="border-right">
             <div className="sidebar">
               <h4 className="text-center mt-2">{userData.username}</h4>

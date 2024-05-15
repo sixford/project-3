@@ -8,6 +8,7 @@ import UpdatePost from './UpdatePost.jsx'
 import LoadingSpinner from '../subcomponents/LoadingSpinner.jsx'
 
 import CarsOwned from './CarsOwned.jsx'
+import AddProfilePic from './AddProfilePic.jsx'
 
 
 export default function Profile() {
@@ -104,7 +105,8 @@ export default function Profile() {
           <Col md={3} className="border-right">
             <div className="sidebar">
               <h4 className='mt-2'>{user.username}</h4>
-              <img className="profile-pic" src={user.profilePic}></img>
+              <img className="profile-pic"  src={user.profilePic}></img>
+              {/* {!user.profilePic && ( <AddProfilePic/> )} */}
               <CarsOwned fetchUserData={fetchUserData} cars={cars} />
             </div>
           </Col>
