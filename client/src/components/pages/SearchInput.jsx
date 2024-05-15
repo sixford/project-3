@@ -17,7 +17,7 @@ export default function SearchInput() {
         navigate(`/search/${search}`)
     }
     return (
-        <Form onSubmit={handleSearch} className='search-input'>
+        <Form onSubmit={handleSearch} className='search-input mx-auto'>
             <InputGroup >
                 <Form.Control placeholder="Search for someone.." id="search" value={search} onChange={handleChange} />
                 <Button variant="outline" className="search-btn" onClick={handleSearch}>

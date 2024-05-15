@@ -56,22 +56,22 @@ export default function HomeFeed() {
     }
 
     return (
-        <div className="homefeed"
+        <div className="homefeed flex-grow-1"
 
             // style={{ backgroundImage: `url(${backgroundImage})` }} // Set background image
         >
-            <Container className="home-feed-container">
+            <Container className="home-feed-container ">
                 {postData ?
                     <>
                         <h1 className="text-center text-light my-4">Home Feed</h1>
-                        <Row className="g-4">
+                        <Row className="g-4 pb-4">
                             {postData.map(post => {
                                 // destructure vital data
                                 const { owner, image, title, _id } = post
                                 return (
                                     // Generate card for each post
-                                    <Col key={_id} xs={12} sm={6} md={4} lg={4} xl={4}  >
-                                        <Card style={{ cursor: "pointer" }} >
+                                    <Col  key={_id} xs={12} sm={6} md={4} lg={4} xl={4}  >
+                                        <Card  style={{ cursor: "pointer"}} >
                                             <Card.Img src={image} alt={title} className={titleShow && titleShow === title ? 'home-feed-card-img' : ''} />
                                             <Card.ImgOverlay className="overlay d-flex flex-column justify-content-center"
                                                 id={title} onMouseEnter={hoverPost} onMouseLeave={unhoverPost} onClick={() => setNextPost(_id)}>

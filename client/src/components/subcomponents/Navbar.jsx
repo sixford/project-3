@@ -20,12 +20,14 @@ export default function NavBar() {
               <img className="home-logo" src={homeImage} alt="Home" />
             </Link>
           </div>
-          <SearchInput />
           {isLoggedIn() && (
-            <div>
-              <NavLink className="nav-item" to="/profile">Profile</NavLink>
-              <span type="button" className="nav-item" onClick={handleLogout}>Logout</span>
-            </div>
+            <>
+              <SearchInput />
+              <div className='d-flex'>
+                <NavLink className="nav-item" to="/profile">Profile</NavLink>
+                <span type="button" className="nav-item" onClick={handleLogout}>Logout</span>
+              </div>
+            </>
           )}
         </div>
       </nav>
