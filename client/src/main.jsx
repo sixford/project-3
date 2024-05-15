@@ -16,6 +16,7 @@ import Profile from './components/pages/Profile.jsx'
 import HomeFeed from './components/pages/HomeFeed.jsx'
 import SinglePost from './components/pages/SinglePost.jsx'
 import SingleProfile from './components/pages/SingleProfile.jsx'
+import Search from './components/pages/Search.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'profile/:userId',
         element: <SingleProfile />
+      },
+      {
+        path: 'search/:username',
+        element: <Search />
       }
     ]
   }

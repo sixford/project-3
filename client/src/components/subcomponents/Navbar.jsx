@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { isLoggedIn, removeToken } from '../../lib/auth'
-
+import SearchInput from '../pages/SearchInput'
 import homeImage from '../assets/garage-home.png'
 
 export default function NavBar() {
@@ -13,13 +13,14 @@ export default function NavBar() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-md" style={{ background:'#E6E6E6' }}>
+      <nav className="navbar navbar-expand-md header" style={{ background: '#E6E6E6' }}>
         <div className="container ">
-          <div className='flex-grow-1'>
+          <div >
             <Link className="navbar-brand" to={isLoggedIn() ? "/home" : '/'}>
               <img className="home-logo" src={homeImage} alt="Home" />
             </Link>
           </div>
+          <SearchInput />
           {isLoggedIn() && (
             <div>
               <NavLink className="nav-item" to="/profile">Profile</NavLink>
