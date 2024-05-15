@@ -11,6 +11,7 @@ export default function ImageUpload({ formData, setFormData }) {
     const uploadUrl = import.meta.env.VITE_CLOUDINARY_URL
 
     async function handleUpload(e) {
+        // console.dir(e.target.files[0])
         const form = new FormData()
         form.append('file', e.target.files[0])
         form.append('upload_preset', uploadPreset)
@@ -25,12 +26,21 @@ export default function ImageUpload({ formData, setFormData }) {
     }
     return (
         <>
-        {/* {formData.image ?
+            {/* {formData.image ?
                 <img src={formData.image} alt='Uploaded image' />
                 :
                 <> */}
-                    
-                {/* </>
+            <Form.Group controlId="image">
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={handleUpload}
+                    required
+                />
+            </Form.Group>
+            {/* </>
         } */}
         </>
     )
