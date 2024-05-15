@@ -97,7 +97,7 @@ export default
     {
       title: "Car maintenance day!",
       content: "Taking care of routine maintenance to keep my car running smoothly. Safety first!",
-      image: "https://via.placeholder.com/300",
+      image: "https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=800",
       comments: [],
       likes: []
     },
