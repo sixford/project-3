@@ -58,6 +58,7 @@ export default function AddPost({ fetchUserData }) {
                 setFormData={setFormData}
                 error={error}
                 setError={setError}
+                isCreate={true}
             />
         </>
     );

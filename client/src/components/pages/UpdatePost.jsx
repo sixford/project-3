@@ -67,6 +67,7 @@ export default function UpdatePost({id, reloadData}) {
                 setFormData={setFormData}
                 error={error}
                 setError={setError}
+                isCreate={false}
             />
 
         </>
