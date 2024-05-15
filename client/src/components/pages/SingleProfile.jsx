@@ -67,18 +67,18 @@ export default function SingleProfile() {
 
   return (
     <div className='profile-page flex-grow-1'>
-      <Container className={"profile-container"}>
-        {userData ?
-          <Row>
-            <Col md={3} className="border-right">
-              <div className="sidebar">
-                <h4 className="text-center mt-2">{userData.username}</h4>
-                <img className="profile-pic" src={userData.profilePic}></img>
-                <CarsOwned fetchUserData={getData} cars={userData.cars} />
-              </div>
-            </Col>
-            <Col md={9}>
-              <Nav variant="tabs" defaultActiveKey="/posts" className='profile-nav d-flex justify-content-between'>
+    <Container className={"profile-container"}>
+      {userData ?
+        <Row className="pb-5">
+          <Col md={3} className="border-right">
+            <div className="sidebar">
+              <h4 className="text-center mt-2">{userData.username}</h4>
+              <img className="profile-pic" src={userData.profilePic}></img>
+              <CarsOwned fetchUserData={getData} cars={userData.cars} />
+            </div>
+          </Col>
+          <Col md={9}>
+            <Nav variant="tabs" defaultActiveKey="/posts" className='profile-nav d-flex justify-content-between'>
 
                 <Nav.Item>
                   <button className='follow-button' onClick={handleFollow}>{following ? 'Following' : 'Follow'}</button>

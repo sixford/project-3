@@ -1,10 +1,10 @@
 //Bootstrap Component
-import {Button, Form, Modal} from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 //Custom Components
 import ImageUpload from '../elements/ImageUpload.jsx'
 
-export default function FormModal({ show, handleClose, handleSubmit, title, formData, setFormData, error, setError }) {
+export default function FormModal({ show, handleClose, handleSubmit, title, formData, setFormData, error, setError, isCreate = true }) {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         setError('');
@@ -42,7 +42,9 @@ export default function FormModal({ show, handleClose, handleSubmit, title, form
                         />
                     </Form.Group>
                     {/* //!ADDED custom component here form elements/ -viv */}
-                    <ImageUpload formData={formData} setFormData={setFormData}/>
+                    {isCreate && (
+                        <ImageUpload formData={formData} setFormData={setFormData} />
+                    )}
                     {error && <p className='text-danger text-center my-2'>{error.message}. Complete all fields.</p>}
                 </Modal.Body>
                 <Modal.Footer>

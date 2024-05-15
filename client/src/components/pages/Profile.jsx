@@ -8,6 +8,7 @@ import UpdatePost from './UpdatePost.jsx'
 import LoadingSpinner from '../subcomponents/LoadingSpinner.jsx'
 
 import CarsOwned from './CarsOwned.jsx'
+import AddProfilePic from './AddProfilePic.jsx'
 
 
 export default function Profile() {
