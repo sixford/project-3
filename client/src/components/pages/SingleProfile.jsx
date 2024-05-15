@@ -22,6 +22,7 @@ export default function SingleProfile() {
     function clickProfile() {
 
       navigate(`/profile/${profileChange}`)
+      handleTabChange('posts')
 
     }
     profileChange && clickProfile()

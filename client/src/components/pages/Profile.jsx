@@ -128,7 +128,7 @@ export default function Profile() {
                   <Row>
                     {posts.map((post, index) => (
                       <Col key={index} md={4} className="mb-3 post">
-                        <Card>
+                        <Card className='profile-card'>
                           <Card.Img variant="top" src={post.image} id={post._id} onClick={handleSelectPost} className='profile-card-post' />
                           <Card.Body>
                             <Card.Title>{post.title}</Card.Title>
