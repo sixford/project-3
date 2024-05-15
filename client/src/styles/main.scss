@@ -1,4 +1,4 @@
-$background: radial-gradient(#e66465, #9198e5);
+$background: radial-gradient(#EE696B,#523A78);
 $transparent: #00000048;
 $secondary: #dbc54e;
 
@@ -221,10 +221,23 @@ nav {
 }
 
 
+
 .add-post:hover {
     background-color: teal;
     transform: scale(1);
     font-weight: bold;
+}
+
+.add-car {
+    border: none;
+    background-color: teal;
+    transition: transform 300ms;
+}
+
+.add-car:hover {
+  background-color: teal;
+  transform: scale(1);
+  font-weight: bold;
 }
 
 .homefeed {
@@ -260,11 +273,21 @@ nav {
     padding-top: 1rem
 }
 
-.nav-item {
+.profile-nav-item {
     text-decoration: none;
-    color: teal;
+    color: white;
     font-weight: bold;
-}
+
+    &:not(.active):hover {
+      text-decoration: underline;
+      color: white;
+    }
+
+    &.active {
+      text-decoration: underline;
+      color: white;
+    }
+  }
 
 .like-button {
     background-color: white;
