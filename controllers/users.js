@@ -183,3 +183,16 @@ export const handleFollow = async (req, res) => {
     sendError(error, res)
   }
 }
+
+export const search = async (req, res) => {
+  try {
+    const username = req.params
+    console.log(username)
+    const foundUsers = await User.find({ username: { $regex: "^" + username.username } })
+    return res.json(foundUsers)
+  } catch (error) {
+    sendError(error, res)
+  }
+
+
+}

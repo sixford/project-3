@@ -335,7 +335,8 @@ nav {
 }
 
 .home-feed-card-img:hover {
-    opacity: 0.5;;
+    opacity: 0.5;
+    ;
 }
 
 .home-feed-card-img {
@@ -348,9 +349,25 @@ nav {
     font-weight: bold;
 }
 
-.overlay {
+.search-btn {
+    background-color: teal;
+    border-color: teal;
+    color: #E6E6E6;
+    font-weight: bold;
 
-    // &:hover {
-    //     opacity: 70%
-    // }
+    &:hover {
+        background-color: #E6E6E6;
+        border-color: teal;
+
+        color: teal;
+    }
+}
+
+.search-list {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.search-input {
+    margin-right: 50%
 }
