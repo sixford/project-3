@@ -12,7 +12,8 @@ export default function Auth() {
         username: '',
         email: '',
         password: '',
-        passwordConfirmation: ''
+        passwordConfirmation: '',
+        profilePic: 'https://via.placeholder.com/300'
     })
 
     const [error, setError] = useState('')
@@ -52,53 +53,53 @@ export default function Auth() {
     }
 
     return (
-      <div className="auth-container ">
-      <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
-          <div >
-              <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px' />
-          </div>
-            <h2>{isSignup ? 'Sign Up' : 'Sign In'}</h2>
-            <form className="d-flex flex-column " onSubmit={handleSubmit}>
-                {isSignup && (
-                    <>
-                        <div className='form-floating mb-3'>
-                            <input type='text' className="form-control" name='username' id='username' placeholder='Username' onChange={handleChange} value={formData.username} />
-                            <label htmlFor="username">Username</label>
-                        </div>
-                    </>
-                )}
-                <div className='form-floating mb-3'>
-                    <input type='email' className="form-control" name='email' id='email' placeholder='Email' onChange={handleChange} value={formData.email} />
-                    <label htmlFor="email">Email</label>
+        <div className="auth-container ">
+            <div className='form-page flex-grow-1 d-flex flex-column justify-content-center align-items-center'>
+                <div >
+                    <img src="https://www.svgrepo.com/show/506724/lock.svg" alt="lock" width='100px' />
                 </div>
-                <div className='form-floating mb-3'>
-                    <input type='password' className="form-control" name='password' id='password' placeholder='Password' onChange={handleChange} value={formData.password} />
-                    <label htmlFor="password">Password</label>
-                </div>
-                {isSignup && (
-                    <>
-                        <div className='form-floating mb-3'>
-                            <input type='password' className="form-control" name='passwordConfirmation' id='passwordConfirmation' placeholder='Confirm Password' onChange={handleChange} value={formData.passwordConfirmation} />
-                            <label htmlFor="passwordConfirmation">Confirm Password</label>
-                        </div>
-                    </>
-                )}
-                <button type='submit' className='btn btn-teal mt-3'>
-                    {isSignup ? 'Sign Up' : 'Sign In'}
-                </button>
-                <div className='text-center'>
-                    {error && 
-                        <p className='text-center mt-3 text-danger'>
-                        {error.email || error.username || error.message ||'Invalid details. Please please try again'}
-                        </p>}
-                    <div>
-                        <button type='button' className='btn dynamic m-4' onClick={switchStatus}>
-                            {isSignup ? 'Already have an account? Sign In' : 'New here? Create an Account '}
-                        </button>
+                <h2>{isSignup ? 'Sign Up' : 'Sign In'}</h2>
+                <form className="d-flex flex-column " onSubmit={handleSubmit}>
+                    {isSignup && (
+                        <>
+                            <div className='form-floating mb-3'>
+                                <input type='text' className="form-control" name='username' id='username' placeholder='Username' onChange={handleChange} value={formData.username} />
+                                <label htmlFor="username">Username</label>
+                            </div>
+                        </>
+                    )}
+                    <div className='form-floating mb-3'>
+                        <input type='email' className="form-control" name='email' id='email' placeholder='Email' onChange={handleChange} value={formData.email} />
+                        <label htmlFor="email">Email</label>
                     </div>
-                </div>
-            </form>
-          </div>
+                    <div className='form-floating mb-3'>
+                        <input type='password' className="form-control" name='password' id='password' placeholder='Password' onChange={handleChange} value={formData.password} />
+                        <label htmlFor="password">Password</label>
+                    </div>
+                    {isSignup && (
+                        <>
+                            <div className='form-floating mb-3'>
+                                <input type='password' className="form-control" name='passwordConfirmation' id='passwordConfirmation' placeholder='Confirm Password' onChange={handleChange} value={formData.passwordConfirmation} />
+                                <label htmlFor="passwordConfirmation">Confirm Password</label>
+                            </div>
+                        </>
+                    )}
+                    <button type='submit' className='btn btn-teal mt-3'>
+                        {isSignup ? 'Sign Up' : 'Sign In'}
+                    </button>
+                    <div className='text-center'>
+                        {error &&
+                            <p className='text-center mt-3 text-danger'>
+                                {error.email || error.username || error.message || 'Invalid details. Please please try again'}
+                            </p>}
+                        <div>
+                            <button type='button' className='btn dynamic m-4' onClick={switchStatus}>
+                                {isSignup ? 'Already have an account? Sign In' : 'New here? Create an Account '}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

@@ -34,6 +34,9 @@ export default function Profile() {
   // Local Variables
   const headers = { headers: { authorization: getToken() } }
 
+  function uploadProfilePic() {
+
+  }
 
   useEffect(() => {
     function clickProfile() {
@@ -104,7 +107,7 @@ export default function Profile() {
           <Col md={3} className="border-right">
             <div className="sidebar">
               <h4 className='mt-2'>{user.username}</h4>
-              <img className="profile-pic" src={user.profilePic ? user.profilePic : 'https://via.placeholder.com/300'}></img>
+              <img className="profile-pic" src={user.profilePic} onClick={uploadProfilePic}></img>
               <CarsOwned fetchUserData={fetchUserData} cars={cars} />
             </div>
           </Col>
