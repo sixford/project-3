@@ -12,10 +12,10 @@ Project 3 presents a series of new challenges. Among these are our first use of 
 
 
 The project is available to view on my Github page. Link below :-
-https://github.com/8055-NVW/Project-3-Pedal
+[https://github.com/8055-NVW/Project-3-Pedal](https://github.com/sixford/project-3)
 
-Blend Bay can experienced from the link below:- 
-https://project-pedal-035a309c1004.herokuapp.com/
+Pedal can experienced from the link below:- 
+[https://project-pedal-035a309c1004.herokuapp.com/](https://pedal-p3-1ebc68fc8e6b.herokuapp.com/)
 
 
 ---
@@ -54,7 +54,7 @@ https://project-pedal-035a309c1004.herokuapp.com/
 ---
 ## Brief
 
- I was fortunate to share this project with Simon and Kane. Among us we all shared a passion to collaborate and work effectively. We were able to get on the same page with choices and topics smoothly and as a result it did not take us long to decide on what kind of a project we wanted to work on. A social network like clone for car enthusiasts is what we settled on with an e-commerce website being the alternative. The site “Pedal” would allow users to Add, Comment, Like , Update and Delete Posts as well as Add and Delete cars of their own. Users can add cars that would be able to be viewed on their profile and allow users to Follow others!
+ I was fortunate to share this project with Viv and Kane. Among us we all shared a passion to collaborate and work effectively. We were able to get on the same page with choices and topics smoothly and as a result it did not take us long to decide on what kind of a project we wanted to work on. A social network like clone for car enthusiasts is what we settled on with an e-commerce website being the alternative. The site “Pedal” would allow users to Add, Comment, Like , Update and Delete Posts as well as Add and Delete cars of their own. Users can add cars that would be able to be viewed on their profile and allow users to Follow others!
 
 
 
@@ -90,7 +90,7 @@ Begin testing Endpoints
 
 - **Day 3:** 
 Finish Back-end
-Worked with Simon on testing endpoints.
+Worked with Viv on testing endpoints.
 Made corrections to models
 Added logic to go with Post model
 
